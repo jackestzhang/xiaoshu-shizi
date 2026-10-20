@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF6EC">
+<title>小书 · 识字绘本</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2226%22 fill=%22%236F8F6A%22/%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2218%22 fill=%22%23FFF8E8%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">小</div>
+      <div class="brand-text">
+        <h1>小书</h1>
+        <p id="subtitle">点字听声音</p>
+      </div>
+    </div>
+    <button id="parentBtn" class="ghost-btn" type="button" aria-label="打开家长面板">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z" fill="currentColor"/></svg>
+      家长
+    </button>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="课程"></nav>
+
+  <main class="view" id="view"></main>
+
+  <footer class="foot">
+    <span id="footHint">轻点字听声音 · 长按看大字</span>
+    <span class="dot-sep">·</span>
+    <span id="footStat"></span>
+  </footer>
+</div>
+
+<div class="mask" id="mask" hidden></div>
+
+<aside class="drawer" id="drawer" aria-label="家长面板" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <h2>学习报告</h2>
+      <p id="drawerSub">—</p>
+    </div>
+    <button class="icon-btn" id="closeDrawer" aria-label="关闭">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-act">
+    <button class="primary-btn" id="quizBtn">听音找字 · 5 题</button>
+    <div class="mini-actions">
+      <button class="text-btn" id="soundBtn">测试声音</button>
+      <button class="text-btn" id="exportBtn">导出数据</button>
+      <button class="text-btn danger" id="resetBtn">清空记录</button>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" hidden>
+  <span id="toastMsg"></span>
+  <button class="toast-btn" id="toastBtn" hidden>重试</button>
+</div>
+
+<div class="overlay" id="bigWrap" hidden>
+  <div class="bigcard" id="bigCard" role="dialog" aria-label="大字卡">
+    <div class="b-glyph" id="bigGlyph">字</div>
+    <div class="b-py" id="bigPy"></div>
+    <div class="b-word" id="bigWord"></div>
+  </div>
+</div>
+
+<div class="overlay" id="quizWrap" hidden>
+  <div class="quizcard" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+    <div class="quiz-head">
+      <h2 id="quizTitle">听一听，找一找</h2>
+      <span id="quizCount">1 / 5</span>
+    </div>
+    <button class="speaker" id="replayBtn" aria-label="再听一次">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z" fill="currentColor"/></svg>
+      再听一次
+    </button>
+    <div class="options" id="options"></div>
+    <p class="quiz-msg" id="quizMsg" aria-live="polite"></p>
+    <button class="text-btn" id="closeQuiz">退出</button>
+  </div>
+</div>
+
+<script src="sprites.js"></script>
+<script src="scene.js"></script>
+<script src="data.js"></script>
+<script src="track.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

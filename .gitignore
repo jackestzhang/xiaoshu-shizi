@@ -1,0 +1,25 @@
+# 构建产物
+dist/
+review/*.html
+
+# 测试截图（每次跑都会重新生成）
+tests/shots/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 归档与临时文件
+archive/
+*.log
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/
+
+# 说明：以下文件虽然由脚本生成，但为了 clone 后能直接打开，仍然提交
+#   app/data.js
+#   app/sprites.js
+#   app/assets/audio/*.mp3
+#   app/assets/art/*.webp
