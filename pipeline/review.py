@@ -29,12 +29,12 @@ def page_html(lesson: dict, page: dict, idx: int, allowed: set[str], curriculum:
     if art.get("file"):
         visual = f'<img class="art" src="../app/{html.escape(art["file"])}" alt="">'
         art_badge = f'插画 {art.get("status","?")}'
-    elif lesson.get("experimental"):
-        visual = '<div class="artmissing">插画待生成<br><small>提示词已就绪</small></div>'
-        art_badge = "插画：待生成"
-    else:
+    elif (page.get("scene") or {}).get("items"):
         visual = f'<div class="scene" data-scene=\'{html.escape(json.dumps(page.get("scene") or {}, ensure_ascii=False))}\'></div>'
         art_badge = "插画：SVG 回退"
+    else:
+        visual = '<div class="artmissing">插画待生成<br><small>提示词已就绪</small></div>'
+        art_badge = "插画：待生成"
     return f"""
     <section class="page">
       <div class="phead"><span>第 {idx} 页</span><span>{len(cs)} 字 · 新字 {len(new)} · {art_badge}</span></div>

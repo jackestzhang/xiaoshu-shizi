@@ -22,9 +22,7 @@ PAGE_LIMIT = 10        # 3–4 岁单页建议上限（汉字，不含标点）
 PAGE_HARD_LIMIT = 12   # 超过直接判错
 NEW_PER_LESSON = 6     # 一节预备课大约几个新字（用于估算）
 
-# 实验模式：只用于流程压力测试，不适合 3–4 岁独立阅读
-EXPERIMENTAL_PAGE_LIMIT = 20
-EXPERIMENTAL_HARD_LIMIT = 22
+# 单课可以在课程 JSON 里用 page_limit 覆盖上面的默认值（例如长故事 20 字/页）
 
 
 def chars(text: str) -> list[str]:

@@ -32,7 +32,8 @@
     expSeen: new Set(),
     bigTimer: null,
     quiz: null,
-    flash: new Map(),
+    flashEls: [],
+    flashTimer: null,
     playing: null,
   };
 
@@ -199,29 +200,33 @@
 
   /* ---------------- 点读 ---------------- */
 
-  function flash(ch) {
-    const prev = state.flash.get(ch);
-    if (prev) prev.forEach(el => el.classList.remove("lit", "active"));
+  let flashSeq = 0;
 
-    const lit = Array.from(document.querySelectorAll('button.ch[data-ch="' + ch + '"]'));
-    const spots = Array.from(document.querySelectorAll('.spot[data-ch="' + ch + '"]'));
-    lit.forEach(el => el.classList.add("lit"));
-    spots.forEach(el => el.classList.add("active"));
-    state.flash.set(ch, lit.concat(spots));
+  // 只高亮被点的那一个元素。同一页出现多个相同字时，不再连带全亮。
+  function flash(ch, target) {
+    const seq = ++flashSeq;
+    clearTimeout(state.flashTimer);
+    state.flashEls.forEach(el => el.classList.remove("lit", "active"));
 
-    setTimeout(() => {
-      lit.forEach(el => el.classList.remove("lit"));
-      spots.forEach(el => el.classList.remove("active"));
-      state.flash.delete(ch);
+    const els = target
+      ? [target]
+      : Array.from(document.querySelectorAll('button.ch[data-ch="' + ch + '"]'));
+    els.forEach(el => el.classList.add("lit"));
+    state.flashEls = els;
+
+    state.flashTimer = setTimeout(() => {
+      if (seq !== flashSeq) return;  // 期间又点了别的字，让新的那轮负责收尾
+      els.forEach(el => el.classList.remove("lit"));
+      state.flashEls = [];
     }, 1200);
   }
 
-  function tapChar(ch) {
+  function tapChar(ch, el) {
     const lesson = current();
     const readBtn = document.getElementById("readall");
     if (readBtn) readBtn.classList.remove("playing");
     const meta = audioFor(ch);
-    flash(ch);
+    flash(ch, el);
     playAudio(meta.audio, lat => {
       T.log("tap", { lesson: lesson.id, page: pageNo(), ch, lat });
       updateFoot();
@@ -230,7 +235,7 @@
         speak(ch);
         T.log("tap", { lesson: lesson.id, page: pageNo(), ch, lat: null });
         updateFoot();
-        toast("这一段没播出声音", () => tapChar(ch));
+        toast("这一段没播出声音", () => tapChar(ch, el));
       }
     });
   }
@@ -275,7 +280,6 @@
           (l.kind === "cards"
             ? '<span class="wide">' + esc(shortTitle(l)) + '</span><span class="narrow">字卡</span>'
             : esc(shortTitle(l))) +
-          (l.experimental ? '<span class="tabexp">实验</span>' : '') +
         '</span>' +
       '</button>'
     ).join("");
@@ -294,10 +298,8 @@
 
   function render() {
     const lesson = current();
-    subtitle.textContent = lesson.kind === "cards" ? "先认这几个字"
-      : lesson.experimental ? "实验绘本 · 每页约 20 字" : "点字听声音";
-    footHint.textContent = lesson.experimental ? "实验绘本 · 仅用于流程测试，不适合 3–4 岁独立阅读"
-      : lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
+    subtitle.textContent = lesson.kind === "cards" ? "先认这几个字" : "点字听声音";
+    footHint.textContent = lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
     if (lesson.kind === "cards") renderCards(lesson); else renderStory(lesson);
     updateFoot();
   }
@@ -327,9 +329,7 @@
     const art = page.art && page.art.file;
     const sceneHtml = art
       ? '<img class="art" src="' + esc(art) + '" alt="" draggable="false">'
-      : lesson.experimental
-        ? artPlaceholder(page)
-        : window.renderScene(page.scene, { spots: false });
+      : artPlaceholder(page);
 
     view.innerHTML =
       '<section class="story">' +
@@ -351,7 +351,7 @@
 
     document.querySelectorAll("#textline .ch").forEach(el => {
       const ch = el.dataset.ch;
-      bindPress(el, () => tapChar(ch), () => showBig(ch));
+      bindPress(el, () => tapChar(ch, el), () => showBig(ch));
     });
 
     document.getElementById("prev").addEventListener("click", () => turn(-1));
@@ -417,7 +417,7 @@
 
     document.querySelectorAll(".card").forEach(el => {
       const ch = el.dataset.ch;
-      bindPress(el, () => tapChar(ch), () => showBig(ch));
+      bindPress(el, () => tapChar(ch, el), () => showBig(ch));
     });
     document.querySelectorAll(".wordbtn").forEach(btn => {
       btn.addEventListener("pointerdown", e => e.stopPropagation());

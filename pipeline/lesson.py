@@ -15,12 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import common
 import scene as scene_mod
-from common import (
-    EXPERIMENTAL_HARD_LIMIT,
-    EXPERIMENTAL_PAGE_LIMIT,
-    PAGE_HARD_LIMIT,
-    PAGE_LIMIT,
-)
+from common import PAGE_HARD_LIMIT, PAGE_LIMIT
 
 
 def build_story(args, curriculum, lessons) -> dict:
@@ -29,8 +24,8 @@ def build_story(args, curriculum, lessons) -> dict:
         common.die("--pages 为空，用 | 分隔每一页")
 
     allowed = common.taught_before(lessons, args.order, curriculum) | set(args.new)
-    soft = EXPERIMENTAL_PAGE_LIMIT if args.experimental else PAGE_LIMIT
-    hard = EXPERIMENTAL_HARD_LIMIT if args.experimental else PAGE_HARD_LIMIT
+    soft = args.page_limit or PAGE_LIMIT
+    hard = args.page_limit or PAGE_HARD_LIMIT
     problems, warnings = [], []
     out_all, missing_all = set(), set()
     pages = []
@@ -92,7 +87,7 @@ def build_story(args, curriculum, lessons) -> dict:
         "status": "draft",
         "world": args.world,
         "new_chars": args.new,
-        **({"experimental": True} if args.experimental else {}),
+        **({"page_limit": args.page_limit} if args.page_limit else {}),
         "pages": pages,
     }
 
@@ -128,8 +123,8 @@ def main() -> None:
     ap.add_argument("--regen", action="store_true", help="归档旧版后重生成")
     ap.add_argument("--strict", action="store_true", help="超过建议页长直接失败")
     ap.add_argument("--no-scene", action="store_true", help="不自动生成场景")
-    ap.add_argument("--experimental", action="store_true",
-                    help="实验绘本：单页上限放宽到 20 字，明确标注不适合 3–4 岁")
+    ap.add_argument("--page-limit", type=int, metavar="N",
+                    help="本课单页汉字上限（默认 10，硬上限 12）；长故事可设 20")
     args = ap.parse_args()
 
     if args.from_json:

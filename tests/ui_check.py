@@ -147,6 +147,26 @@ def main() -> int:
         total = 0
         m.evaluate("localStorage.clear()")
         m.reload(); m.wait_for_timeout(500)
+
+        # 同一页有重复字时，只高亮被点的那一个
+        m.locator(".tab").nth(3).click(); m.wait_for_timeout(400)
+        idx = m.evaluate("""() => {
+          const els = [...document.querySelectorAll('#textline .ch')];
+          const seen = {};
+          for (let i = 0; i < els.length; i++) {
+            const c = els[i].dataset.ch;
+            if (seen[c] !== undefined) return {ch: c, n: els.filter(e => e.dataset.ch === c).length};
+            seen[c] = i;
+          }
+          return null;
+        }""")
+        assert idx, "该页没有重复字，无法验证同字高亮"
+        m.locator('button.ch[data-ch="%s"]' % idx["ch"]).first.click()
+        m.wait_for_timeout(250)
+        lit = m.locator(".ch.lit").count()
+        assert lit == 1, f"同字应只亮 1 个，实际 {lit}"
+        print(f"✓ 同字：页面有 {idx['n']} 个「{idx['ch']}」，只高亮被点的 1 个")
+
         n_lessons = m.evaluate("SHIZI.lessons.length")
         for li in range(n_lessons):
             m.locator(".tab").nth(li).click(); m.wait_for_timeout(250)

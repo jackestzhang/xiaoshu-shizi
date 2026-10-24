@@ -5,7 +5,7 @@
   "title": "鲤鱼跃龙门",
   "status": "confirmed",
   "world": "一条橙红色的小鲤鱼，圆眼睛、长尾巴；清清的小河，水草和鹅卵石；山间一道高高的石门叫龙门，门那边是蓝天白云。",
-  "experimental": true,
+  "page_limit": 20,
   "pages": [
     {
       "text": "清清的小河里，住着一条小鲤鱼，他天天游来游去。",

@@ -13,6 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import common
+from common import PAGE_LIMIT
 import sprites
 import tts
 import validate
@@ -87,9 +88,10 @@ def main() -> None:
     if draft_art and not args.allow_draft:
         common.die(f"这些插画还没确认：{'、'.join(draft_art)}。先看 art/<ID>/ 再跑 art.py --id <ID> --ok")
 
-    exp = [l["id"] for l in lessons if l.get("experimental")]
-    if exp:
-        common.warn(f"实验课程：{'、'.join(exp)}，单页字数超过 3–4 岁建议，仅用于流程测试")
+    long_pages = [f"{l['id']}({l['page_limit']}字/页)" for l in lessons
+                  if l.get("page_limit") and l["page_limit"] > PAGE_LIMIT]
+    if long_pages:
+        print(f"  长页课程：{'、'.join(long_pages)}")
     print(f"校验通过（{len(notes)} 条提醒），开始合成语音")
     char_meta, page_audio, n = synth_all(lessons, curriculum)
 

@@ -14,25 +14,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import common
 import sprites
-from common import (
-    EXPERIMENTAL_HARD_LIMIT,
-    EXPERIMENTAL_PAGE_LIMIT,
-    PAGE_HARD_LIMIT,
-    PAGE_LIMIT,
-    NEW_PER_LESSON,
-)
+from common import PAGE_HARD_LIMIT, PAGE_LIMIT, NEW_PER_LESSON
 
 
 def check_lesson(lesson: dict, lessons: list[dict], curriculum: dict, with_assets: bool) -> tuple[list[str], list[str]]:
     errors, notes = [], []
     lid = lesson.get("id", "?")
     order = lesson.get("order", 999)
-    exp = bool(lesson.get("experimental"))
-    soft = EXPERIMENTAL_PAGE_LIMIT if exp else PAGE_LIMIT
-    hard = EXPERIMENTAL_HARD_LIMIT if exp else PAGE_HARD_LIMIT
+    limit = lesson.get("page_limit")
+    soft = limit or PAGE_LIMIT
+    hard = limit or PAGE_HARD_LIMIT
     allowed = common.taught_before(lessons, order, curriculum) | set(lesson.get("new_chars") or [])
-    if exp:
-        notes.append(f"[{lid}] 实验课程：单页最多 {hard} 字，不适合 3–4 岁独立阅读")
+    if limit and limit > PAGE_LIMIT:
+        notes.append(f"[{lid}] 本课单页上限 {limit} 字（高于 3–4 岁建议的 {PAGE_LIMIT} 字）")
 
     if lesson.get("status") not in ("draft", "confirmed"):
         errors.append(f"[{lid}] status 必须是 draft 或 confirmed")
@@ -171,8 +165,8 @@ def main() -> None:
         notes += n
         mark = "✗" if e else "✓"
         kind = {"cards": "字卡", "story": "绘本"}.get(l.get("kind"), l.get("kind"))
-        if l.get("experimental"):
-            kind += "·实验"
+        if l.get("page_limit"):
+            kind += f"·{l['page_limit']}字/页"
         print(f"  {mark} {l['id']}  {kind}  {l.get('title','')}  [{l.get('status')}]  {len(common.lesson_chars(l))} 字")
 
     for n in notes:

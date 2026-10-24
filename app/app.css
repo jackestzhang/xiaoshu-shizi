@@ -65,8 +65,6 @@ button{font-family:inherit}
 }
 .tab.on .tabnum{background:rgba(255,255,255,.22);color:#FFFDF8}
 .tname .narrow{display:none}
-.tabexp{font-size:9px;line-height:1.6;background:#FBE9D2;color:#A96A25;border-radius:99px;padding:1px 5px;margin-left:2px}
-.tab.on .tabexp{background:rgba(255,255,255,.22);color:#FFF8E8}
 
 .view{flex:1}
 .story,.cards{max-width:900px;margin:0 auto;animation:rise .28s ease both}
