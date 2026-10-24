@@ -297,11 +297,26 @@ SHIZI_IMG_BASE_URL=... SHIZI_IMG_KEY=... SHIZI_IMG_MODEL=... \
 python3 pipeline/art.py --id L03 --provider openai
 ```
 
-**出图通道**：平台图片接口在这台沙箱里不可用
-（`ai-corpus-backup-*.cos.ap-beijing.myqcloud.com` 被解析到 `169.254.0.49`），
-所以流程按「外部出图 → 导入」设计，不依赖内置接口。
-`shotlist.py` 生成的页面把每页做成一张卡片，点按钮就能复制提示词，
-不用在 `prompts.txt` 里挑段落；命名乱了也能按修改时间顺序导入。
+**出图通道排障**：如果内置图片工具报
+`host "ai-corpus-backup-*.cos.ap-beijing.myqcloud.com" resolves to a private/internal address (169.254.x.x)`，
+不是断网，也不是提示词问题：
+
+- 沙箱内网 DNS 把 COS 域名解析到腾讯云内网网关（`169.254.0.49`），这是正常的内网加速；
+- 但图片工具的 SSRF 防护把 `169.254.x.x` 判为“内部地址”，在发起请求前就拒绝；
+- COS 本身是可达的（`curl` 能拿到 `Server: tencent-cos` 和正常的 `AccessDenied`）。
+
+修法是把该域名指到 COS 的公网接入点，并同时写两处（`/etc/hosts` 会在工作区重启时还原）：
+
+```bash
+IP=82.156.94.17   # 任选，106.119.171.53 / 82.156.94.45 也可
+echo "$IP ai-corpus-backup-1258344699.cos.ap-beijing.myqcloud.com" >> /etc/hosts
+echo "$IP ai-corpus-backup-1258344699.cos.ap-beijing.myqcloud.com" >> ~/.user_hosts
+```
+
+请求的仍是同一个 COS 服务、同一张证书，不涉及绕过认证。
+
+`shotlist.py` 仍保留：外部出图、或想逐页挑提示词时用它；
+每页一张卡片，点按钮就能复制提示词；命名乱了也能按修改时间顺序导入。
 
 提示词的关键不是形容词，而是**画面描述要可画**：
 `visual` 字段是人工写的「这一页画什么」（树在左、兔子从左边跑来、农夫站在树桩旁），

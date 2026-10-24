@@ -141,7 +141,31 @@ def main() -> int:
         assert m.locator("#textline").is_visible()
         w = m.evaluate("document.documentElement.scrollWidth")
         assert w <= 390, f"手机端横向溢出：{w}px"
-        print("✓ 手机 390px：无横向溢出")
+
+        # 每一课的每一页：正文不能撑破卡片（长句最容易出问题）
+        bad = []
+        total = 0
+        m.evaluate("localStorage.clear()")
+        m.reload(); m.wait_for_timeout(500)
+        n_lessons = m.evaluate("SHIZI.lessons.length")
+        for li in range(n_lessons):
+            m.locator(".tab").nth(li).click(); m.wait_for_timeout(250)
+            if m.locator("#textline").count() == 0:
+                continue
+            pages = m.evaluate("SHIZI.lessons[%d].pages.length" % li)
+            for pi in range(pages):
+                if pi:
+                    m.locator(".dot").nth(pi).click(); m.wait_for_timeout(220)
+                r = m.evaluate("""() => {
+                  const b = document.getElementById('textline');
+                  if (!b) return null;
+                  return {sw: b.scrollWidth, cw: b.clientWidth};
+                }""")
+                total += 1
+                if r and r["sw"] > r["cw"] + 1:
+                    bad.append((li + 1, pi + 1, r["sw"], r["cw"]))
+        assert not bad, f"正文溢出卡片：{bad}"
+        print(f"✓ 手机 390px：无横向溢出 · {total} 页正文均未撑破卡片")
         m.screenshot(path=str(SHOTS / "06-mobile.png"), full_page=True)
 
         assert not errors, f"页面报错：{errors}"

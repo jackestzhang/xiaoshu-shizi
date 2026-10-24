@@ -363,7 +363,42 @@
 
     logExposure(state.page + 1);
     preload([page.audio].concat(charsOf(page.text).map(ch => audioFor(ch).audio)));
+    fitText();
   }
+
+  function fitText() {
+    const box = document.getElementById("textline");
+    if (!box) return;
+    box.style.removeProperty("--fs");
+    const avail = box.clientWidth;
+    if (!avail) return;
+    const first = box.querySelector(".ch") || box.querySelector(".punct");
+    if (!first) return;
+    const base = parseFloat(getComputedStyle(first).fontSize);
+    if (!isFinite(base)) return;
+
+    const widest = () => {
+      let w = 0;
+      box.querySelectorAll(".phrase").forEach(p => {
+        w = Math.max(w, p.getBoundingClientRect().width);
+      });
+      return w;
+    };
+
+    let fs = base;
+    let guard = 0;
+    // 从当前字号往下收，直到最长的一句也放得下；最多收到 20px
+    while (widest() > avail - 1 && fs > 20 && guard++ < 80) {
+      fs -= 1;
+      box.style.setProperty("--fs", fs + "px");
+    }
+  }
+
+  let fitTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitText, 120);
+  });
 
   function renderCards(lesson) {
     const cards = lesson.cards || [];
