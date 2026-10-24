@@ -12,6 +12,7 @@ __pycache__/
 # 归档与临时文件
 archive/
 art/*/versions/
+art/*/shotlist.html
 *.log
 .DS_Store
 

@@ -135,6 +135,10 @@ def write_prompts(lesson: dict) -> Path:
         f"  python pipeline/art.py --id {lesson['id']} --ok 2",
     ]
     (d / "prompts.txt").write_text("\n".join(lines), encoding="utf-8")
+
+    # 每页一个纯文本：直接全选复制，粘到即梦/豆包，不用从长文件里挑
+    for p in ps:
+        (d / f"p{p['page']}.txt").write_text(p["prompt"], encoding="utf-8")
     return d
 
 
@@ -231,24 +235,49 @@ def stage_source(lesson: dict, n: int, src: Path) -> Path:
 
 def import_images(lesson: dict, src_dir: Path) -> None:
     prompts = {p["page"]: p["prompt"] for p in make_prompts(lesson)}
-    found = 0
-    for i in range(1, len(pages(lesson)) + 1):
-        src = None
+    n_pages = len(pages(lesson))
+
+    # 命名优先；命名不全时，退化为“目录里的图按修改时间排序，第几个就是第几页”
+    # 这样从即梦/豆包下载的一串乱名也能直接丢进来
+    named = {}
+    for i in range(1, n_pages + 1):
         for ext in EXTS:
             cand = src_dir / f"p{i}{ext}"
             if cand.exists():
-                src = cand
+                named[i] = cand
                 break
+
+    fallback = []
+    if len(named) < n_pages:
+        used = set(named.values())
+        fallback = sorted(
+            (f for f in src_dir.iterdir()
+             if f.is_file() and f.suffix.lower() in EXTS and f not in used),
+            key=lambda f: (f.stat().st_mtime, f.name),
+        )
+        if fallback:
+            print(f"  没找到完整 p1..p{n_pages} 命名，按修改时间取目录里前 {min(len(fallback), n_pages)} 张")
+
+    found = 0
+    for i in range(1, n_pages + 1):
+        src = named.get(i)
+        if not src and fallback:
+            src = fallback[i - 1] if i - 1 < len(fallback) else None
         if not src:
-            common.warn(f"第 {i} 页找不到 p{i}.png/jpg/webp，跳过")
+            common.warn(f"第 {i} 页找不到图，跳过")
             continue
+        print(f"  第 {i} 页 ← {src.name}")
         staged = stage_source(lesson, i, src)
         out = apply_image(lesson, i, staged, prompts[i], "manual", "import")
         found += 1
         print(f"  · 第 {i} 页 {src.name} → {out.relative_to(common.ROOT)} ({out.stat().st_size/1024:.0f} KB)")
 
     if not found:
-        common.die("一张图都没导入。文件名必须是 p1.png / p2.png …")
+        common.die(
+            "一张图都没导入。\n"
+            f"  把图片放进 {src_dir}，命名成 p1.png … p{n_pages}.png；\n"
+            "  或者直接丢进去，按修改时间顺序对应页码。"
+        )
     save(lesson)
     print(f"\n✓ 导入 {found} 张，状态 draft。逐页通过：--ok 2；全部通过：--ok")
 

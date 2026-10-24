@@ -81,6 +81,7 @@ shizi/
     sprites.py         精灵图库 + 布局常量（无插画时的回退）
     scene.py           文案 → 回退场景布局
     art.py             整页插画：提示词 → 生成/导入 → WebP → 审核
+    shotlist.py        分镜单：每页文案 + 画面 + 一键复制提示词
     prompt.py          生成受字表约束的写故事提示词
     lesson.py          新建/重生成课程草稿（不合规不写文件）
     validate.py        字表、页长、拼音、场景、音频校验 + 词汇预算
@@ -228,7 +229,7 @@ python pipeline/validate.py --gap L03 --baseline before   # 算上更早的课
 
 | 参数 | 作用 |
 |---|---|
-| `--prompts` | 生成 `art/<ID>/prompts.txt`，不调用模型 |
+| `--prompts` | 生成 `art/<ID>/prompts.txt`，另附每页纯文本 `p1.txt…` |
 | `--import DIR` | 批量导入 p1/p2/…，裁成 1280×768 WebP，status=draft |
 | `--prompt N "..."` | 改第 N 页的**画面描述**，画风/设定仍自动拼接 |
 | `--prompt N "..." --full` | 第 N 页使用**完整自定义提示词**（高级） |
@@ -277,10 +278,14 @@ python pipeline/validate.py --gap L03 --baseline before   # 算上更早的课
 # 1. 生成提示词（画风 + 全书设定 + 每页画面 + 构图）
 python3 pipeline/art.py --id L03 --prompts
 
-# 2. 手动：按 art/L03/prompts.txt 去即梦/豆包生成，存成 p1.png p2.png p3.png
+# 2. 生成分镜单：每页可一键复制提示词（完整版 / 精简版）
+python3 pipeline/shotlist.py --id L03
+#    也可以直接看 art/L03/p1.txt … p3.txt
+
+# 3. 出图：丢进 art/L03/，命名 p1.png…；不命名也行，按修改时间顺序对应页码
 python3 pipeline/art.py --id L03 --import art/L03
 
-# 3. 看图，确认后才允许打包
+# 4. 看图，确认后才允许打包
 python3 pipeline/art.py --id L03 --ok
 python3 pipeline/build.py
 ```
@@ -291,6 +296,12 @@ python3 pipeline/build.py
 SHIZI_IMG_BASE_URL=... SHIZI_IMG_KEY=... SHIZI_IMG_MODEL=... \
 python3 pipeline/art.py --id L03 --provider openai
 ```
+
+**出图通道**：平台图片接口在这台沙箱里不可用
+（`ai-corpus-backup-*.cos.ap-beijing.myqcloud.com` 被解析到 `169.254.0.49`），
+所以流程按「外部出图 → 导入」设计，不依赖内置接口。
+`shotlist.py` 生成的页面把每页做成一张卡片，点按钮就能复制提示词，
+不用在 `prompts.txt` 里挑段落；命名乱了也能按修改时间顺序导入。
 
 提示词的关键不是形容词，而是**画面描述要可画**：
 `visual` 字段是人工写的「这一页画什么」（树在左、兔子从左边跑来、农夫站在树桩旁），
