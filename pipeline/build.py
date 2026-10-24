@@ -87,6 +87,9 @@ def main() -> None:
     if draft_art and not args.allow_draft:
         common.die(f"这些插画还没确认：{'、'.join(draft_art)}。先看 art/<ID>/ 再跑 art.py --id <ID> --ok")
 
+    exp = [l["id"] for l in lessons if l.get("experimental")]
+    if exp:
+        common.warn(f"实验课程：{'、'.join(exp)}，单页字数超过 3–4 岁建议，仅用于流程测试")
     print(f"校验通过（{len(notes)} 条提醒），开始合成语音")
     char_meta, page_audio, n = synth_all(lessons, curriculum)
 

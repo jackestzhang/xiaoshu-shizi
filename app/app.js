@@ -275,6 +275,7 @@
           (l.kind === "cards"
             ? '<span class="wide">' + esc(shortTitle(l)) + '</span><span class="narrow">字卡</span>'
             : esc(shortTitle(l))) +
+          (l.experimental ? '<span class="tabexp">实验</span>' : '') +
         '</span>' +
       '</button>'
     ).join("");
@@ -293,10 +294,24 @@
 
   function render() {
     const lesson = current();
-    subtitle.textContent = lesson.kind === "cards" ? "先认这几个字" : "点字听声音";
-    footHint.textContent = lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
+    subtitle.textContent = lesson.kind === "cards" ? "先认这几个字"
+      : lesson.experimental ? "实验绘本 · 每页约 20 字" : "点字听声音";
+    footHint.textContent = lesson.experimental ? "实验绘本 · 仅用于流程测试，不适合 3–4 岁独立阅读"
+      : lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
     if (lesson.kind === "cards") renderCards(lesson); else renderStory(lesson);
     updateFoot();
+  }
+
+  function artPlaceholder(page) {
+    return '<div class="art-missing">' +
+      '<svg viewBox="0 0 120 90" aria-hidden="true">' +
+        '<rect x="4" y="6" width="112" height="78" rx="12" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 7" opacity=".55"/>' +
+        '<circle cx="86" cy="30" r="9" fill="currentColor" opacity=".35"/>' +
+        '<path d="M18,70 L44,38 L60,58 L74,44 L102,70 Z" fill="currentColor" opacity=".22"/>' +
+      '</svg>' +
+      '<b>插画待生成</b>' +
+      '<span>第 ' + (state.page + 1) + ' 页 · 提示词已就绪</span>' +
+    '</div>';
   }
 
   function renderStory(lesson) {
@@ -312,7 +327,9 @@
     const art = page.art && page.art.file;
     const sceneHtml = art
       ? '<img class="art" src="' + esc(art) + '" alt="" draggable="false">'
-      : window.renderScene(page.scene, { spots: false });
+      : lesson.experimental
+        ? artPlaceholder(page)
+        : window.renderScene(page.scene, { spots: false });
 
     view.innerHTML =
       '<section class="story">' +

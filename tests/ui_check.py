@@ -30,10 +30,11 @@ def main() -> int:
         pg.reload()
         pg.wait_for_timeout(700)
 
-        assert pg.locator(".tab").count() == 3, "应有 3 节课"
+        n_lessons = pg.evaluate("SHIZI.lessons.length")
+        assert pg.locator(".tab").count() == n_lessons, f"应有 {n_lessons} 节课"
         assert "山边有树" in pg.locator("#textline").inner_text().replace("\n", ""), "第一页文案不对"
         assert pg.locator("#scene svg, #scene img.art").count() == 1, "场景没有渲染"
-        print("✓ 首屏：3 节课 / 插画或回退场景已渲染")
+        print(f"✓ 首屏：{n_lessons} 节课 / 插画或回退场景已渲染")
 
         # 图不可点：点画面不该产生 tap
         before = len([e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "tap"])
@@ -94,8 +95,9 @@ def main() -> int:
         pg.locator("#parentBtn").click()
         pg.wait_for_timeout(350)
         rows = pg.locator("table.stat tbody tr").count()
-        assert rows == 14, f"面板应有 14 行，实际 {rows}"
-        print("✓ 家长面板：14 行 ·", pg.locator(".summary").inner_text().replace("\n", " "))
+        expected = pg.evaluate("ShiziTrack.allChars(SHIZI.lessons).length")
+        assert rows == expected, f"面板应有 {expected} 行，实际 {rows}"
+        print(f"✓ 家长面板：{rows} 行 ·", pg.locator(".summary").inner_text().replace("\n", " "))
         pg.screenshot(path=str(SHOTS / "04-drawer.png"), full_page=True)
 
         # 家长标注优先于推断

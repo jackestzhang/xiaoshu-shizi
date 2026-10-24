@@ -313,6 +313,352 @@ window.SHIZI = {
           "audio": "assets/audio/7262254c690f.mp3"
         }
       ]
+    },
+    {
+      "id": "L04",
+      "order": 4,
+      "kind": "story",
+      "title": "鲤鱼跃龙门",
+      "status": "confirmed",
+      "world": "一条橙红色的小鲤鱼，圆眼睛、长尾巴；清清的小河，水草和鹅卵石；山间一道高高的石门叫龙门，门那边是蓝天白云。",
+      "experimental": true,
+      "pages": [
+        {
+          "text": "清清的小河里，住着一条小鲤鱼，他天天游来游去。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "farmer",
+                "x": 58,
+                "y": 83.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "清澈的小河，阳光透过水面，水草和鹅卵石；一条橙红色的小鲤鱼在游，远处是青山。",
+          "audio": "assets/audio/a288fe3d78a2.mp3"
+        },
+        {
+          "text": "妈妈告诉他：山上有龙门，跳过去就能变成龙了。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "mountain_far",
+                "x": 22,
+                "y": 38.0,
+                "scale": 1.15
+              },
+              {
+                "s": "mountain",
+                "x": 76,
+                "y": 41.0,
+                "scale": 1.1
+              },
+              {
+                "s": "farmer",
+                "x": 58,
+                "y": 83.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "鲤鱼妈妈和小鲤鱼在河里，妈妈抬鳍指向远处山上的石门（龙门），龙门在云间。",
+          "audio": "assets/audio/12f6e2e6adce.mp3"
+        },
+        {
+          "text": "小鲤鱼告别妈妈，顺着河水，一直用力往上游。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "river",
+                "x": 6,
+                "y": 90.0,
+                "scale": 1.3
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "小鲤鱼告别妈妈，顺着河水逆流向上游，河岸有石头和水草，水流开始变急。",
+          "audio": "assets/audio/86cc3249d02a.mp3"
+        },
+        {
+          "text": "大浪打来，小鲤鱼一次一次往上跳，一点也不怕。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "上游冲下大浪，小鲤鱼在浪花里一次次往上跳，眼神坚定，水花四溅。",
+          "audio": "assets/audio/5429e80e7c02.mp3"
+        },
+        {
+          "text": "他用尽全身力气，向前纵身一跳，终于跳过了龙门。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "farmer",
+                "x": 58,
+                "y": 83.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "小鲤鱼用尽力气纵身跃起，跃过高高的龙门，龙门在画面中央，水花在身后。",
+          "audio": "assets/audio/b796bcc0e25e.mp3"
+        },
+        {
+          "text": "龙门那边，天很蓝，水很清，小鲤鱼真的变成了龙。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "river",
+                "x": 6,
+                "y": 90.0,
+                "scale": 1.3
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "龙门那边，蓝天白云，水很清；小鲤鱼变成了金色的小龙，回头看着龙门。",
+          "audio": "assets/audio/7409835fc10a.mp3"
+        }
+      ],
+      "new_chars": [
+        "清",
+        "的",
+        "河",
+        "里",
+        "住",
+        "着",
+        "一",
+        "条",
+        "鲤",
+        "鱼",
+        "天",
+        "游",
+        "去",
+        "告",
+        "诉",
+        "龙",
+        "门",
+        "跳",
+        "过",
+        "就",
+        "能",
+        "变",
+        "成",
+        "了",
+        "别",
+        "顺",
+        "直",
+        "用",
+        "力",
+        "往",
+        "大",
+        "浪",
+        "打",
+        "次",
+        "点",
+        "也",
+        "不",
+        "怕",
+        "尽",
+        "全",
+        "身",
+        "气",
+        "向",
+        "前",
+        "纵",
+        "终",
+        "于",
+        "那",
+        "很",
+        "蓝",
+        "真"
+      ]
     }
   ],
   "chars": {
@@ -413,7 +759,371 @@ window.SHIZI = {
       "audio": "assets/audio/7d800fbf3b89.mp3",
       "wordAudio": "assets/audio/429faddb947f.mp3",
       "status": "known"
+    },
+    "清": {
+      "pinyin": "qīng",
+      "word": "清水",
+      "audio": "assets/audio/fd32e28665d1.mp3",
+      "wordAudio": "assets/audio/b2fd90c7f2b8.mp3",
+      "status": "planned"
+    },
+    "的": {
+      "pinyin": "de",
+      "word": "我的",
+      "audio": "assets/audio/aad9f589abee.mp3",
+      "wordAudio": "assets/audio/44cc7d0de9fc.mp3",
+      "status": "planned"
+    },
+    "河": {
+      "pinyin": "hé",
+      "word": "小河",
+      "audio": "assets/audio/3e1d1d48b972.mp3",
+      "wordAudio": "assets/audio/d72a0c33beaa.mp3",
+      "status": "planned"
+    },
+    "里": {
+      "pinyin": "lǐ",
+      "word": "里面",
+      "audio": "assets/audio/f86c1f7575bb.mp3",
+      "wordAudio": "assets/audio/71a98078f771.mp3",
+      "status": "planned"
+    },
+    "住": {
+      "pinyin": "zhù",
+      "word": "住下",
+      "audio": "assets/audio/1924f22c80aa.mp3",
+      "wordAudio": "assets/audio/6309082c81b3.mp3",
+      "status": "planned"
+    },
+    "着": {
+      "pinyin": "zhe",
+      "word": "住着",
+      "audio": "assets/audio/3f7d51a8cfe1.mp3",
+      "wordAudio": "assets/audio/add1acaf25a4.mp3",
+      "status": "planned"
+    },
+    "一": {
+      "pinyin": "yī",
+      "word": "一个",
+      "audio": "assets/audio/3db0a231c27d.mp3",
+      "wordAudio": "assets/audio/e42739e63902.mp3",
+      "status": "planned"
+    },
+    "条": {
+      "pinyin": "tiáo",
+      "word": "一条",
+      "audio": "assets/audio/29a3fcddbb14.mp3",
+      "wordAudio": "assets/audio/92e1216a907d.mp3",
+      "status": "planned"
+    },
+    "鲤": {
+      "pinyin": "lǐ",
+      "word": "鲤鱼",
+      "audio": "assets/audio/e5737073f56b.mp3",
+      "wordAudio": "assets/audio/37187ac9e833.mp3",
+      "status": "planned"
+    },
+    "鱼": {
+      "pinyin": "yú",
+      "word": "小鱼",
+      "audio": "assets/audio/b74793c03818.mp3",
+      "wordAudio": "assets/audio/547f69624ece.mp3",
+      "status": "planned"
+    },
+    "天": {
+      "pinyin": "tiān",
+      "word": "天空",
+      "audio": "assets/audio/6a659085ea90.mp3",
+      "wordAudio": "assets/audio/4355245d54a6.mp3",
+      "status": "planned"
+    },
+    "游": {
+      "pinyin": "yóu",
+      "word": "游水",
+      "audio": "assets/audio/24a4aab96970.mp3",
+      "wordAudio": "assets/audio/5b7afea43de8.mp3",
+      "status": "planned"
+    },
+    "去": {
+      "pinyin": "qù",
+      "word": "回去",
+      "audio": "assets/audio/21ddfab01d6f.mp3",
+      "wordAudio": "assets/audio/18a83b1487d2.mp3",
+      "status": "planned"
+    },
+    "妈": {
+      "pinyin": "mā",
+      "word": "妈妈",
+      "audio": "assets/audio/d247aa89a849.mp3",
+      "wordAudio": "assets/audio/e91d1732bf41.mp3",
+      "status": "known"
+    },
+    "告": {
+      "pinyin": "gào",
+      "word": "告诉",
+      "audio": "assets/audio/44040d5aeb40.mp3",
+      "wordAudio": "assets/audio/046458361d1f.mp3",
+      "status": "planned"
+    },
+    "诉": {
+      "pinyin": "sù",
+      "word": "告诉",
+      "audio": "assets/audio/fb164e790667.mp3",
+      "wordAudio": "assets/audio/046458361d1f.mp3",
+      "status": "planned"
+    },
+    "龙": {
+      "pinyin": "lóng",
+      "word": "龙门",
+      "audio": "assets/audio/c51934cbacf8.mp3",
+      "wordAudio": "assets/audio/55c656552968.mp3",
+      "status": "planned"
+    },
+    "门": {
+      "pinyin": "mén",
+      "word": "大门",
+      "audio": "assets/audio/32d830d3ebf5.mp3",
+      "wordAudio": "assets/audio/107b8eb94827.mp3",
+      "status": "planned"
+    },
+    "跳": {
+      "pinyin": "tiào",
+      "word": "跳高",
+      "audio": "assets/audio/f4fcc8b98043.mp3",
+      "wordAudio": "assets/audio/7db6e28fcd93.mp3",
+      "status": "planned"
+    },
+    "过": {
+      "pinyin": "guò",
+      "word": "过来",
+      "audio": "assets/audio/155d758e198d.mp3",
+      "wordAudio": "assets/audio/c8a81245173b.mp3",
+      "status": "planned"
+    },
+    "就": {
+      "pinyin": "jiù",
+      "word": "就是",
+      "audio": "assets/audio/70a89e9caedb.mp3",
+      "wordAudio": "assets/audio/f7afd72121c2.mp3",
+      "status": "planned"
+    },
+    "能": {
+      "pinyin": "néng",
+      "word": "能干",
+      "audio": "assets/audio/dc7dfa3b78dc.mp3",
+      "wordAudio": "assets/audio/9e01caf82a79.mp3",
+      "status": "planned"
+    },
+    "变": {
+      "pinyin": "biàn",
+      "word": "变化",
+      "audio": "assets/audio/35b1c1828ef7.mp3",
+      "wordAudio": "assets/audio/e77bc8199dbc.mp3",
+      "status": "planned"
+    },
+    "成": {
+      "pinyin": "chéng",
+      "word": "变成",
+      "audio": "assets/audio/7033661d9ee2.mp3",
+      "wordAudio": "assets/audio/7080175b5c52.mp3",
+      "status": "planned"
+    },
+    "了": {
+      "pinyin": "le",
+      "word": "好了",
+      "audio": "assets/audio/971f9791cb4b.mp3",
+      "wordAudio": "assets/audio/737cd539dae9.mp3",
+      "status": "planned"
+    },
+    "别": {
+      "pinyin": "bié",
+      "word": "告别",
+      "audio": "assets/audio/737a7386cf52.mp3",
+      "wordAudio": "assets/audio/ec0bdc6ed1a2.mp3",
+      "status": "planned"
+    },
+    "顺": {
+      "pinyin": "shùn",
+      "word": "顺着",
+      "audio": "assets/audio/c0d99983ace7.mp3",
+      "wordAudio": "assets/audio/ee1658835eb2.mp3",
+      "status": "planned"
+    },
+    "直": {
+      "pinyin": "zhí",
+      "word": "一直",
+      "audio": "assets/audio/9e0e596a6f5c.mp3",
+      "wordAudio": "assets/audio/5ff4f15ca20a.mp3",
+      "status": "planned"
+    },
+    "用": {
+      "pinyin": "yòng",
+      "word": "用力",
+      "audio": "assets/audio/ffe6a3e69ba9.mp3",
+      "wordAudio": "assets/audio/a95766c8f87e.mp3",
+      "status": "planned"
+    },
+    "力": {
+      "pinyin": "lì",
+      "word": "力气",
+      "audio": "assets/audio/21b4d88c6be5.mp3",
+      "wordAudio": "assets/audio/793c1d9eaee3.mp3",
+      "status": "planned"
+    },
+    "往": {
+      "pinyin": "wǎng",
+      "word": "往前",
+      "audio": "assets/audio/3262c470be8f.mp3",
+      "wordAudio": "assets/audio/be9d074aaf74.mp3",
+      "status": "planned"
+    },
+    "大": {
+      "pinyin": "dà",
+      "word": "大海",
+      "audio": "assets/audio/7064b14aa907.mp3",
+      "wordAudio": "assets/audio/80305216091b.mp3",
+      "status": "planned"
+    },
+    "浪": {
+      "pinyin": "làng",
+      "word": "浪花",
+      "audio": "assets/audio/6e53899ed482.mp3",
+      "wordAudio": "assets/audio/b588829aa8e3.mp3",
+      "status": "planned"
+    },
+    "打": {
+      "pinyin": "dǎ",
+      "word": "打水",
+      "audio": "assets/audio/cabeca792710.mp3",
+      "wordAudio": "assets/audio/42391af22bb5.mp3",
+      "status": "planned"
+    },
+    "次": {
+      "pinyin": "cì",
+      "word": "一次",
+      "audio": "assets/audio/d270a73bedf0.mp3",
+      "wordAudio": "assets/audio/6a5a7f0b87fe.mp3",
+      "status": "planned"
+    },
+    "点": {
+      "pinyin": "diǎn",
+      "word": "一点",
+      "audio": "assets/audio/e78751e72c3a.mp3",
+      "wordAudio": "assets/audio/d2ccc1304007.mp3",
+      "status": "planned"
+    },
+    "也": {
+      "pinyin": "yě",
+      "word": "也好",
+      "audio": "assets/audio/15f58d6a1dca.mp3",
+      "wordAudio": "assets/audio/1d5af9341fa3.mp3",
+      "status": "planned"
+    },
+    "不": {
+      "pinyin": "bù",
+      "word": "不要",
+      "audio": "assets/audio/54da86acee43.mp3",
+      "wordAudio": "assets/audio/96de14b1a941.mp3",
+      "status": "planned"
+    },
+    "怕": {
+      "pinyin": "pà",
+      "word": "不怕",
+      "audio": "assets/audio/65d7e3ea0609.mp3",
+      "wordAudio": "assets/audio/605a3ce30ce7.mp3",
+      "status": "planned"
+    },
+    "尽": {
+      "pinyin": "jìn",
+      "word": "用尽",
+      "audio": "assets/audio/06ccf998ef77.mp3",
+      "wordAudio": "assets/audio/c7121f05392d.mp3",
+      "status": "planned"
+    },
+    "全": {
+      "pinyin": "quán",
+      "word": "全部",
+      "audio": "assets/audio/72870bac7f07.mp3",
+      "wordAudio": "assets/audio/239886dcea3e.mp3",
+      "status": "planned"
+    },
+    "身": {
+      "pinyin": "shēn",
+      "word": "身体",
+      "audio": "assets/audio/b735157c8117.mp3",
+      "wordAudio": "assets/audio/1b545c229a38.mp3",
+      "status": "planned"
+    },
+    "气": {
+      "pinyin": "qì",
+      "word": "力气",
+      "audio": "assets/audio/e2d6a0a02c00.mp3",
+      "wordAudio": "assets/audio/793c1d9eaee3.mp3",
+      "status": "planned"
+    },
+    "向": {
+      "pinyin": "xiàng",
+      "word": "向前",
+      "audio": "assets/audio/44bcef3a2e20.mp3",
+      "wordAudio": "assets/audio/835d32566463.mp3",
+      "status": "planned"
+    },
+    "前": {
+      "pinyin": "qián",
+      "word": "前面",
+      "audio": "assets/audio/a41e2adcb7ef.mp3",
+      "wordAudio": "assets/audio/b6681aa271da.mp3",
+      "status": "planned"
+    },
+    "纵": {
+      "pinyin": "zòng",
+      "word": "纵身",
+      "audio": "assets/audio/7f3c8d60efee.mp3",
+      "wordAudio": "assets/audio/8e9aa59fe411.mp3",
+      "status": "planned"
+    },
+    "终": {
+      "pinyin": "zhōng",
+      "word": "终于",
+      "audio": "assets/audio/435686cbf112.mp3",
+      "wordAudio": "assets/audio/3a6222b5417b.mp3",
+      "status": "planned"
+    },
+    "于": {
+      "pinyin": "yú",
+      "word": "终于",
+      "audio": "assets/audio/7cc0acb0f585.mp3",
+      "wordAudio": "assets/audio/3a6222b5417b.mp3",
+      "status": "planned"
+    },
+    "那": {
+      "pinyin": "nà",
+      "word": "那边",
+      "audio": "assets/audio/ed5f83e6eca0.mp3",
+      "wordAudio": "assets/audio/a1681af0c971.mp3",
+      "status": "planned"
+    },
+    "很": {
+      "pinyin": "hěn",
+      "word": "很好",
+      "audio": "assets/audio/48047b2a386c.mp3",
+      "wordAudio": "assets/audio/5a4966d28f6a.mp3",
+      "status": "planned"
+    },
+    "蓝": {
+      "pinyin": "lán",
+      "word": "蓝天",
+      "audio": "assets/audio/64199df014e8.mp3",
+      "wordAudio": "assets/audio/2d3a4d822dc8.mp3",
+      "status": "planned"
+    },
+    "真": {
+      "pinyin": "zhēn",
+      "word": "真的",
+      "audio": "assets/audio/89c70d2e2b73.mp3",
+      "wordAudio": "assets/audio/ddfa63c1054a.mp3",
+      "status": "planned"
     }
   },
-  "totalChars": 14
+  "totalChars": 66
 };

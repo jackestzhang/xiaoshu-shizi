@@ -15,7 +15,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import common
 import scene as scene_mod
-from common import PAGE_HARD_LIMIT, PAGE_LIMIT
+from common import (
+    EXPERIMENTAL_HARD_LIMIT,
+    EXPERIMENTAL_PAGE_LIMIT,
+    PAGE_HARD_LIMIT,
+    PAGE_LIMIT,
+)
 
 
 def build_story(args, curriculum, lessons) -> dict:
@@ -24,6 +29,8 @@ def build_story(args, curriculum, lessons) -> dict:
         common.die("--pages 为空，用 | 分隔每一页")
 
     allowed = common.taught_before(lessons, args.order, curriculum) | set(args.new)
+    soft = EXPERIMENTAL_PAGE_LIMIT if args.experimental else PAGE_LIMIT
+    hard = EXPERIMENTAL_HARD_LIMIT if args.experimental else PAGE_HARD_LIMIT
     problems, warnings = [], []
     out_all, missing_all = set(), set()
     pages = []
@@ -32,10 +39,10 @@ def build_story(args, curriculum, lessons) -> dict:
         if not cs:
             problems.append(f"第{i}页没有汉字")
             continue
-        if len(cs) > PAGE_HARD_LIMIT:
-            problems.append(f"第{i}页 {len(cs)} 字，超过硬上限 {PAGE_HARD_LIMIT}")
-        elif len(cs) > PAGE_LIMIT:
-            warnings.append(f"第{i}页 {len(cs)} 字，超过建议上限 {PAGE_LIMIT}")
+        if len(cs) > hard:
+            problems.append(f"第{i}页 {len(cs)} 字，超过硬上限 {hard}")
+        elif len(cs) > soft:
+            warnings.append(f"第{i}页 {len(cs)} 字，超过建议上限 {soft}")
 
         out = [ch for ch in common.unique(cs) if ch not in allowed]
         if out:
@@ -84,6 +91,8 @@ def build_story(args, curriculum, lessons) -> dict:
         "title": args.title,
         "status": "draft",
         "world": args.world,
+        "new_chars": args.new,
+        **({"experimental": True} if args.experimental else {}),
         "pages": pages,
     }
 
@@ -119,6 +128,8 @@ def main() -> None:
     ap.add_argument("--regen", action="store_true", help="归档旧版后重生成")
     ap.add_argument("--strict", action="store_true", help="超过建议页长直接失败")
     ap.add_argument("--no-scene", action="store_true", help="不自动生成场景")
+    ap.add_argument("--experimental", action="store_true",
+                    help="实验绘本：单页上限放宽到 20 字，明确标注不适合 3–4 岁")
     args = ap.parse_args()
 
     if args.from_json:
