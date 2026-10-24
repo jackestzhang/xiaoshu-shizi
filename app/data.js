@@ -977,6 +977,239 @@ window.SHIZI = {
         "蓝",
         "真"
       ]
+    },
+    {
+      "id": "L05",
+      "order": 5,
+      "kind": "story",
+      "title": "春晓",
+      "status": "confirmed",
+      "world": "一个三四岁的小孩，短发、穿浅色睡衣；一间有木窗的小屋，窗外是院子，院里有一棵开粉白花的树；清晨暖光，夜里偏冷。",
+      "new_chars": [
+        "春",
+        "眠",
+        "觉",
+        "晓",
+        "处",
+        "闻",
+        "啼",
+        "鸟",
+        "夜",
+        "风",
+        "雨",
+        "声",
+        "花",
+        "落",
+        "知",
+        "多",
+        "少"
+      ],
+      "pages": [
+        {
+          "text": "春眠不觉晓",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "清晨的卧室，一个三四岁的小孩侧躺在床上睡得正香，被子盖到肩膀，脸蛋压在枕头上；窗外天已经大亮，阳光斜斜照进来，落在床前的地上。",
+          "art": {
+            "file": "assets/art/L05_p1.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】一个三四岁的小孩，短发、穿浅色睡衣；一间有木窗的小屋，窗外是院子，院里有一棵开粉白花的树；清晨暖光，夜里偏冷。\n【这一页的画面】清晨的卧室，一个三四岁的小孩侧躺在床上睡得正香，被子盖到肩膀，脸蛋压在枕头上；窗外天已经大亮，阳光斜斜照进来，落在床前的地上。\n【情节参考】春眠不觉晓（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 20:48"
+          },
+          "audio": "assets/audio/dcad493da388.mp3"
+        },
+        {
+          "text": "处处闻啼鸟",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "小孩坐在床上，一只手揉眼睛，头发翘着；窗外院子里有一棵开花的树，树枝上落着两三只小鸟，张着嘴在叫；窗台上落着几片花瓣。",
+          "art": {
+            "file": "assets/art/L05_p2.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】一个三四岁的小孩，短发、穿浅色睡衣；一间有木窗的小屋，窗外是院子，院里有一棵开粉白花的树；清晨暖光，夜里偏冷。\n【这一页的画面】小孩坐在床上，一只手揉眼睛，头发翘着；窗外院子里有一棵开花的树，树枝上落着两三只小鸟，张着嘴在叫；窗台上落着几片花瓣。\n【情节参考】处处闻啼鸟（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 20:48"
+          },
+          "audio": "assets/audio/9fa458878c77.mp3"
+        },
+        {
+          "text": "夜来风雨声",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "夜里，屋里只点着一盏小灯；窗外风雨交加，树枝被吹得弯下去，雨点打在窗玻璃上；小孩抱着被子坐在床上，睁着眼睛听。",
+          "art": {
+            "file": "assets/art/L05_p3.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】一个三四岁的小孩，短发、穿浅色睡衣；一间有木窗的小屋，窗外是院子，院里有一棵开粉白花的树；清晨暖光，夜里偏冷。\n【这一页的画面】夜里，屋里只点着一盏小灯；窗外风雨交加，树枝被吹得弯下去，雨点打在窗玻璃上；小孩抱着被子坐在床上，睁着眼睛听。\n【情节参考】夜来风雨声（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 20:48"
+          },
+          "audio": "assets/audio/b967d26d3858.mp3"
+        },
+        {
+          "text": "花落知多少",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "清晨的院子，地上落满粉白色的花瓣；小孩蹲在花树旁，伸手捡起一片花瓣；树上的花比之前稀疏了，枝头还剩几朵。",
+          "art": {
+            "file": "assets/art/L05_p4.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】一个三四岁的小孩，短发、穿浅色睡衣；一间有木窗的小屋，窗外是院子，院里有一棵开粉白花的树；清晨暖光，夜里偏冷。\n【这一页的画面】清晨的院子，地上落满粉白色的花瓣；小孩蹲在花树旁，伸手捡起一片花瓣；树上的花比之前稀疏了，枝头还剩几朵。\n【情节参考】花落知多少（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 20:48"
+          },
+          "audio": "assets/audio/c394480f9e1d.mp3"
+        }
+      ]
     }
   ],
   "chars": {
@@ -1812,7 +2045,126 @@ window.SHIZI = {
       "audio": "assets/audio/89c70d2e2b73.mp3",
       "wordAudio": "assets/audio/ddfa63c1054a.mp3",
       "status": "planned"
+    },
+    "春": {
+      "pinyin": "chūn",
+      "word": "春天",
+      "audio": "assets/audio/a8d085755e10.mp3",
+      "wordAudio": "assets/audio/a5fa2a28e584.mp3",
+      "status": "planned"
+    },
+    "眠": {
+      "pinyin": "mián",
+      "word": "睡眠",
+      "audio": "assets/audio/7cf6fb41f385.mp3",
+      "wordAudio": "assets/audio/a26af602155e.mp3",
+      "status": "planned"
+    },
+    "觉": {
+      "pinyin": "jué",
+      "word": "觉得",
+      "audio": "assets/audio/e60a77bdd6a0.mp3",
+      "wordAudio": "assets/audio/556a2444cefe.mp3",
+      "status": "planned"
+    },
+    "晓": {
+      "pinyin": "xiǎo",
+      "word": "天亮",
+      "audio": "assets/audio/3d5660152eec.mp3",
+      "wordAudio": "assets/audio/92c643b173f5.mp3",
+      "status": "planned"
+    },
+    "处": {
+      "pinyin": "chù",
+      "word": "处处",
+      "audio": "assets/audio/dc8da5f6f83e.mp3",
+      "wordAudio": "assets/audio/73a9de3c4f59.mp3",
+      "status": "planned"
+    },
+    "闻": {
+      "pinyin": "wén",
+      "word": "闻见",
+      "audio": "assets/audio/5b9a1b778015.mp3",
+      "wordAudio": "assets/audio/a4fad592d25c.mp3",
+      "status": "planned"
+    },
+    "啼": {
+      "pinyin": "tí",
+      "word": "啼叫",
+      "audio": "assets/audio/6149156ba0b0.mp3",
+      "wordAudio": "assets/audio/fcf94f8ba685.mp3",
+      "status": "planned"
+    },
+    "鸟": {
+      "pinyin": "niǎo",
+      "word": "小鸟",
+      "audio": "assets/audio/3eefa1a1e075.mp3",
+      "wordAudio": "assets/audio/731764cb06a9.mp3",
+      "status": "planned"
+    },
+    "夜": {
+      "pinyin": "yè",
+      "word": "夜里",
+      "audio": "assets/audio/2e06c7fc87d3.mp3",
+      "wordAudio": "assets/audio/4f957c82b5ad.mp3",
+      "status": "planned"
+    },
+    "风": {
+      "pinyin": "fēng",
+      "word": "风雨",
+      "audio": "assets/audio/2160c1eff6c1.mp3",
+      "wordAudio": "assets/audio/c0c231b8a796.mp3",
+      "status": "planned"
+    },
+    "雨": {
+      "pinyin": "yǔ",
+      "word": "下雨",
+      "audio": "assets/audio/db6f60aaa83b.mp3",
+      "wordAudio": "assets/audio/6dfe7066f782.mp3",
+      "status": "planned"
+    },
+    "声": {
+      "pinyin": "shēng",
+      "word": "声音",
+      "audio": "assets/audio/d75e7ab8c080.mp3",
+      "wordAudio": "assets/audio/26c1ef1be642.mp3",
+      "status": "planned"
+    },
+    "花": {
+      "pinyin": "huā",
+      "word": "花朵",
+      "audio": "assets/audio/cc10dac70727.mp3",
+      "wordAudio": "assets/audio/ee42c46e4b16.mp3",
+      "status": "planned"
+    },
+    "落": {
+      "pinyin": "luò",
+      "word": "落下",
+      "audio": "assets/audio/ef5e042a4b69.mp3",
+      "wordAudio": "assets/audio/0c6adca6c030.mp3",
+      "status": "planned"
+    },
+    "知": {
+      "pinyin": "zhī",
+      "word": "知道",
+      "audio": "assets/audio/bc710d392e83.mp3",
+      "wordAudio": "assets/audio/49d1dd4d3552.mp3",
+      "status": "planned"
+    },
+    "多": {
+      "pinyin": "duō",
+      "word": "多少",
+      "audio": "assets/audio/86ff72e1e1cc.mp3",
+      "wordAudio": "assets/audio/d5e9fb73ab3f.mp3",
+      "status": "planned"
+    },
+    "少": {
+      "pinyin": "shǎo",
+      "word": "多少",
+      "audio": "assets/audio/8b58ed302d7d.mp3",
+      "wordAudio": "assets/audio/d5e9fb73ab3f.mp3",
+      "status": "planned"
     }
   },
-  "totalChars": 119
+  "totalChars": 136
 };

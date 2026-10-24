@@ -385,10 +385,24 @@
       return w;
     };
 
+    const n = box.querySelectorAll(".ch").length;
+    // 诗句这种极短页，字放大才有分量；20 字的故事页不放大，避免行数爆炸
+    const maxFs = n <= 8 ? (window.innerWidth <= 768 ? 68 : 88) : base;
+
     let fs = base;
     let guard = 0;
-    // 从当前字号往下收，直到最长的一句也放得下；最多收到 20px
-    while (widest() > avail - 1 && fs > 20 && guard++ < 80) {
+    while (fs < maxFs && guard++ < 90) {
+      const next = fs + 1;
+      box.style.setProperty("--fs", next + "px");
+      if (widest() > avail * 0.96) {                 // 再大就贴边了
+        box.style.setProperty("--fs", fs + "px");
+        break;
+      }
+      fs = next;
+    }
+
+    // 再往下收，直到最长的一句也放得下；最多收到 20px
+    while (widest() > avail - 1 && fs > 20 && guard++ < 90) {
       fs -= 1;
       box.style.setProperty("--fs", fs + "px");
     }
