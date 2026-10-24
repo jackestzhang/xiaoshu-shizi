@@ -74,6 +74,8 @@ def check_lesson(lesson: dict, lessons: list[dict], curriculum: dict, with_asset
                 errors.append(f"[{lid}] 第{i}页插画状态必须是 draft 或 approved")
             if not art.get("prompt"):
                 notes.append(f"[{lid}] 第{i}页插画缺 prompt，后续不好复现")
+            if art.get("stale"):
+                notes.append(f"[{lid}] 第{i}页插画可能过期（文案或提示词改过，待重审）")
 
         scene = page.get("scene") or {}
         if not art and not scene.get("items"):

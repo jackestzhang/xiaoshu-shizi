@@ -125,6 +125,10 @@ def main() -> None:
         lesson["pages"][idx - 1]["text"] = args.text[1]
         lesson["pages"][idx - 1]["scene"] = scene_mod.auto_scene(args.text[1], idx)
         lesson["status"] = "draft"
+        art = lesson["pages"][idx - 1].get("art")
+        if art:
+            art["status"] = "draft"
+            art["stale"] = True
         common.write_json(Path(lesson["_path"]), {k: v for k, v in lesson.items() if not k.startswith("_")})
         common.ok(f"第 {idx} 页已改，状态打回 draft（旧语音因内容哈希自动失效）")
 

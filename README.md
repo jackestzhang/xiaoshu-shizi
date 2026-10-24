@@ -217,10 +217,21 @@ python pipeline/validate.py --gap L03 --baseline before   # 算上更早的课
 | 参数 | 作用 |
 |---|---|
 | `--prompts` | 生成 `art/<ID>/prompts.txt`，不调用模型 |
-| `--provider openai` | 走 OpenAI 兼容接口，读 `SHIZI_IMG_BASE_URL / KEY / MODEL` |
+| `--import DIR` | 批量导入 p1/p2/…，裁成 1280×768 WebP，status=draft |
+| `--prompt N "..."` | 改第 N 页的**画面描述**，画风/设定仍自动拼接 |
+| `--prompt N "..." --full` | 第 N 页使用**完整自定义提示词**（高级） |
+| `--regen N` | 只重生成第 N 页（需要 `SHIZI_IMG_KEY`） |
+| `--replace N FILE` | 用自己的图替换第 N 页 |
+| `--ok N` | 只通过第 N 页；`--ok` 不带页码则全部通过 |
+| `--versions N` | 列出第 N 页的历史版本 |
+| `--provider openai` | 批量调用 OpenAI 兼容接口 |
 | `--size` / `--quality` | 出图尺寸与质量，默认 `1536x1024 / high` |
-| `--import` | 导入 p1/p2/…，裁成 1280×768 WebP，status=draft |
-| `--ok` | 插画审核通过；没通过 `build.py` 拒绝打包 |
+
+每次 `--replace` / `--regen` / `--import` 都会先把旧图备份到 `art/<ID>/versions/`，
+新图一律是 `draft`，必须 `--ok N` 才能进包。
+
+改文案也会让该页插画自动变成 `draft/stale`（`review.py --text`），
+`build.py` 会拒绝打包，直到你重新通过这一页。
 
 ## 五个设计决定
 

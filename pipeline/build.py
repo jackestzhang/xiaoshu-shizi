@@ -99,7 +99,6 @@ def main() -> None:
         clean_lessons.append(d)
 
     payload = {
-        "builtAt": time.strftime("%Y-%m-%d %H:%M:%S"),
         "lessons": clean_lessons,
         "chars": char_meta,
         "totalChars": len(char_meta),
