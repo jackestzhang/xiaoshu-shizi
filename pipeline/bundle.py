@@ -56,7 +56,7 @@ def main() -> None:
     html = html.replace("<head>", "<head>\n<!-- 自包含构建：音视频/样式/脚本全部内联，无外部请求 -->")
 
     out = DIST / "shizi-demo.html"
-    out.write_text(html, encoding="utf-8")
+    common.write_atomic(out, html)
     print(f"✓ {out.relative_to(common.ROOT)} · {out.stat().st_size/1024:.0f} KB")
     print(f"  内联资源 {len(paths)} 个（其中插画 {n_img} 张）/ {total/1024:.0f} KB（base64 后约 {total*4/3/1024:.0f} KB）")
 

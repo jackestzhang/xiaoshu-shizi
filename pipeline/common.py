@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -115,3 +116,15 @@ def ok(msg: str) -> None:
 
 def warn(msg: str) -> None:
     print(f"! {msg}")
+
+
+def write_atomic(path: Path, text: str) -> None:
+    """先写临时文件再替换，避免浏览器在覆盖瞬间读到半截内容。
+
+    直接 write_text 会先截断再写入；4 MB 的单文件 Demo 有几十毫秒的空窗，
+    这时用户刷新可能拿到不完整的页面。os.replace 在同一分区上是原子的。
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)

@@ -61,10 +61,76 @@ window.SHIZI = {
       "kind": "story",
       "title": "守株待兔",
       "status": "confirmed",
-      "world": "山边有一棵大树和一个树桩，山下有条小河；农夫戴草帽、穿蓝衣、拿锄头；小兔是白色的，长耳朵。",
+      "world": "农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。",
+      "new_chars": [
+        "天",
+        "刚",
+        "亮",
+        "农",
+        "夫",
+        "就",
+        "到",
+        "田",
+        "里",
+        "挥",
+        "着",
+        "锄",
+        "头",
+        "一",
+        "下",
+        "草",
+        "忽",
+        "然",
+        "只",
+        "白",
+        "从",
+        "林",
+        "出",
+        "得",
+        "飞",
+        "快",
+        "子",
+        "看",
+        "路",
+        "在",
+        "桩",
+        "倒",
+        "地",
+        "不",
+        "动",
+        "了",
+        "过",
+        "去",
+        "捡",
+        "起",
+        "抱",
+        "怀",
+        "笑",
+        "合",
+        "嘴",
+        "把",
+        "放",
+        "坐",
+        "旁",
+        "再",
+        "也",
+        "长",
+        "满",
+        "野",
+        "邻",
+        "居",
+        "都",
+        "傻",
+        "红",
+        "脸",
+        "重",
+        "新",
+        "拿"
+      ],
+      "page_limit": 20,
       "pages": [
         {
-          "text": "山边有树，树边有水。",
+          "text": "天刚亮，农夫就来到田里，挥着锄头一下一下锄草。",
           "scene": {
             "bg": "day",
             "items": [
@@ -81,69 +147,41 @@ window.SHIZI = {
                 "scale": 0.9
               },
               {
-                "s": "mountain_far",
-                "x": 22,
-                "y": 38,
-                "scale": 1.15
-              },
-              {
-                "s": "mountain",
-                "x": 76,
-                "y": 41,
-                "scale": 1.1
-              },
-              {
-                "s": "tree",
-                "x": 34,
-                "y": 60,
-                "scale": 1.0
-              },
-              {
-                "s": "stump",
-                "x": 48,
-                "y": 82,
-                "scale": 1.0
-              },
-              {
-                "s": "river",
-                "x": 6,
-                "y": 90,
-                "scale": 1.3
-              },
-              {
                 "s": "grass",
                 "x": 7,
-                "y": 92,
+                "y": 92.0,
                 "scale": 1.1
               },
               {
                 "s": "flower",
                 "x": 88,
-                "y": 91,
+                "y": 91.0,
                 "scale": 0.7
               },
               {
                 "s": "rock",
                 "x": 68,
-                "y": 91,
+                "y": 91.0,
                 "scale": 0.8
               }
             ]
           },
-          "visual": "清晨的山边。左侧一条小河，河边草地上有一棵大树和一个被砍断的树桩；远处是连绵的青山，天上有太阳和几朵云。",
+          "visual": "清晨的田野，太阳刚升起来；农夫戴着草帽、穿蓝衣，双手挥着锄头一下一下锄草，草叶上还挂着露水；远处是青山和几棵树。",
           "art": {
             "file": "assets/art/L03_p1.webp",
             "width": 1280,
             "height": 768,
             "status": "approved",
-            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】山边有一棵大树和一个树桩，山下有条小河；农夫戴草帽、穿蓝衣、拿锄头；小兔是白色的，长耳朵。\n【这一页的画面】清晨的山边。左侧一条小河，河边草地上有一棵大树和一个被砍断的树桩；远处是连绵的青山，天上有太阳和几朵云。\n【情节参考】山边有树，树边有水。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】清晨的田野，太阳刚升起来；农夫戴着草帽、穿蓝衣，双手挥着锄头一下一下锄草，草叶上还挂着露水；远处是青山和几棵树。\n【情节参考】天刚亮，农夫就来到田里，挥着锄头一下一下锄草。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
             "model": "manual",
-            "created": "2026-10-20 14:11"
+            "source": "import",
+            "created": "2026-10-24 18:14"
           },
-          "audio": "assets/audio/8d9d47f131df.mp3"
+          "audio": "assets/audio/3494ed4b3e8f.mp3"
         },
         {
-          "text": "小兔跑来，撞上树。",
+          "text": "忽然，一只白兔从树林里跑出来，跑得飞快。",
           "scene": {
             "bg": "day",
             "items": [
@@ -154,89 +192,91 @@ window.SHIZI = {
                 "scale": 0.85
               },
               {
+                "s": "tree",
+                "x": 34,
+                "y": 60.0,
+                "scale": 1.0
+              },
+              {
+                "s": "stump",
+                "x": 48,
+                "y": 82.0,
+                "scale": 1.0
+              },
+              {
+                "s": "rabbit",
+                "x": 41,
+                "y": 84.0,
+                "scale": 1.0
+              },
+              {
                 "s": "cloud",
                 "x": 26,
                 "y": 13,
                 "scale": 0.9
               },
               {
-                "s": "mountain_far",
-                "x": 22,
-                "y": 38,
-                "scale": 1.15
-              },
-              {
-                "s": "mountain",
-                "x": 76,
-                "y": 41,
-                "scale": 1.1
-              },
-              {
-                "s": "tree",
-                "x": 34,
-                "y": 60,
-                "scale": 1.0
-              },
-              {
-                "s": "stump",
-                "x": 48,
-                "y": 82,
-                "scale": 1.0
-              },
-              {
-                "s": "river",
-                "x": 6,
-                "y": 90,
-                "scale": 1.3
-              },
-              {
-                "s": "rabbit",
-                "x": 41,
-                "y": 84,
-                "scale": 1.0
-              },
-              {
                 "s": "grass",
                 "x": 7,
-                "y": 92,
+                "y": 92.0,
                 "scale": 1.1
               },
               {
                 "s": "flower",
                 "x": 88,
-                "y": 91,
+                "y": 91.0,
                 "scale": 0.7
               },
               {
                 "s": "rock",
                 "x": 68,
-                "y": 91,
+                "y": 91.0,
                 "scale": 0.8
               }
             ]
           },
-          "visual": "一只白色长耳朵的小兔子从左边跑来，跑向树桩，快要撞上树桩，脚下的尘土被带起来；树和树桩在画面中间，小河在左侧。",
+          "visual": "一只雪白的兔子从右侧树林里窜出来，四脚腾空、耳朵向后飘，身后带起尘土；农夫在田里直起腰，惊讶地看过去。",
           "art": {
             "file": "assets/art/L03_p2.webp",
             "width": 1280,
             "height": 768,
             "status": "approved",
-            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】山边有一棵大树和一个树桩，山下有条小河；农夫戴草帽、穿蓝衣、拿锄头；小兔是白色的，长耳朵。\n【这一页的画面】一只白色长耳朵的小兔子从左边跑来，跑向树桩，快要撞上树桩，脚下的尘土被带起来；树和树桩在画面中间，小河在左侧。\n【情节参考】小兔跑来，撞上树。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】一只雪白的兔子从右侧树林里窜出来，四脚腾空、耳朵向后飘，身后带起尘土；农夫在田里直起腰，惊讶地看过去。\n【情节参考】忽然，一只白兔从树林里跑出来，跑得飞快。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
             "model": "manual",
-            "created": "2026-10-20 14:11"
+            "source": "import",
+            "created": "2026-10-24 18:14"
           },
-          "audio": "assets/audio/9006b9486c51.mp3"
+          "audio": "assets/audio/bfe513d90c1e.mp3"
         },
         {
-          "text": "他等兔，兔没来。",
+          "text": "兔子没看路，一头撞在树桩上，倒在地上就不动了。",
           "scene": {
             "bg": "dusk",
             "items": [
               {
                 "s": "sun",
                 "x": 84,
-                "y": 24,
-                "scale": 0.8
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "tree",
+                "x": 34,
+                "y": 60.0,
+                "scale": 1.0
+              },
+              {
+                "s": "stump",
+                "x": 48,
+                "y": 82.0,
+                "scale": 1.0
+              },
+              {
+                "s": "rabbit",
+                "x": 41,
+                "y": 84.0,
+                "scale": 1.0
               },
               {
                 "s": "cloud",
@@ -245,72 +285,284 @@ window.SHIZI = {
                 "scale": 0.9
               },
               {
-                "s": "mountain_far",
-                "x": 22,
-                "y": 38,
-                "scale": 1.15
-              },
-              {
-                "s": "mountain",
-                "x": 76,
-                "y": 41,
-                "scale": 1.1
-              },
-              {
-                "s": "tree",
-                "x": 34,
-                "y": 60,
-                "scale": 1.0
-              },
-              {
-                "s": "stump",
-                "x": 48,
-                "y": 82,
-                "scale": 1.0
-              },
-              {
-                "s": "river",
-                "x": 6,
-                "y": 90,
-                "scale": 1.3
-              },
-              {
-                "s": "farmer",
-                "x": 58,
-                "y": 83,
-                "scale": 1.0
-              },
-              {
                 "s": "grass",
                 "x": 7,
-                "y": 92,
+                "y": 92.0,
                 "scale": 1.1
               },
               {
                 "s": "flower",
-                "x": 30,
-                "y": 91,
+                "x": 88,
+                "y": 91.0,
                 "scale": 0.7
               },
               {
                 "s": "rock",
                 "x": 68,
-                "y": 91,
+                "y": 91.0,
                 "scale": 0.8
               }
             ]
           },
-          "visual": "傍晚，农夫戴着草帽、穿蓝衣、拿锄头，站在树桩旁边等着；兔子没有出现，天边有晚霞，草地上有几只萤火虫。",
+          "visual": "田边的老树桩，兔子一头撞上去，身体歪倒、耳朵耷拉，尘土扬起；农夫丢下锄头，张大嘴看着。",
           "art": {
             "file": "assets/art/L03_p3.webp",
             "width": 1280,
             "height": 768,
             "status": "approved",
-            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】山边有一棵大树和一个树桩，山下有条小河；农夫戴草帽、穿蓝衣、拿锄头；小兔是白色的，长耳朵。\n【这一页的画面】傍晚，农夫戴着草帽、穿蓝衣、拿锄头，站在树桩旁边等着；兔子没有出现，天边有晚霞，草地上有几只萤火虫。\n【情节参考】他等兔，兔没来。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；黄昏，暖橙晚霞，光线低斜。",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】田边的老树桩，兔子一头撞上去，身体歪倒、耳朵耷拉，尘土扬起；农夫丢下锄头，张大嘴看着。\n【情节参考】兔子没看路，一头撞在树桩上，倒在地上就不动了。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；黄昏，暖橙晚霞，光线低斜。",
             "model": "manual",
-            "created": "2026-10-20 14:11"
+            "source": "import",
+            "created": "2026-10-24 18:14"
           },
-          "audio": "assets/audio/7262254c690f.mp3"
+          "audio": "assets/audio/14a536233016.mp3"
+        },
+        {
+          "text": "农夫跑过去，捡起兔子，抱在怀里，笑得合不上嘴。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "rabbit",
+                "x": 41,
+                "y": 84.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "农夫蹲在树桩边，双手抱起白兔，眼睛笑成弯的；锄头立在旁边的土里；夕阳把影子拉长。",
+          "art": {
+            "file": "assets/art/L03_p4.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】农夫蹲在树桩边，双手抱起白兔，眼睛笑成弯的；锄头立在旁边的土里；夕阳把影子拉长。\n【情节参考】农夫跑过去，捡起兔子，抱在怀里，笑得合不上嘴。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 18:14"
+          },
+          "audio": "assets/audio/d3d8b1e02017.mp3"
+        },
+        {
+          "text": "他把锄头放在一边，天天坐在树桩旁，等兔子再来。",
+          "scene": {
+            "bg": "dusk",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "tree",
+                "x": 34,
+                "y": 60.0,
+                "scale": 1.0
+              },
+              {
+                "s": "stump",
+                "x": 48,
+                "y": 82.0,
+                "scale": 1.0
+              },
+              {
+                "s": "rabbit",
+                "x": 41,
+                "y": 84.0,
+                "scale": 1.0
+              },
+              {
+                "s": "farmer",
+                "x": 58,
+                "y": 83.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "农夫坐在树桩旁，双手抱膝，眼巴巴望着树林方向；锄头倒在草丛里，田里的草开始长高；太阳从早到晚。",
+          "art": {
+            "file": "assets/art/L03_p5.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】农夫坐在树桩旁，双手抱膝，眼巴巴望着树林方向；锄头倒在草丛里，田里的草开始长高；太阳从早到晚。\n【情节参考】他把锄头放在一边，天天坐在树桩旁，等兔子再来。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；黄昏，暖橙晚霞，光线低斜。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 18:14"
+          },
+          "audio": "assets/audio/6596f1e5c5b8.mp3"
+        },
+        {
+          "text": "一天天过去，兔子再也没来，田里长满了野草。",
+          "scene": {
+            "bg": "dusk",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "rabbit",
+                "x": 41,
+                "y": 84.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "田里野草长得很高，淹没了庄稼；农夫还坐在树桩边，神情失落，衣服有点脏；树叶黄了，季节变了。",
+          "art": {
+            "file": "assets/art/L03_p6.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】田里野草长得很高，淹没了庄稼；农夫还坐在树桩边，神情失落，衣服有点脏；树叶黄了，季节变了。\n【情节参考】一天天过去，兔子再也没来，田里长满了野草。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；黄昏，暖橙晚霞，光线低斜。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 18:14"
+          },
+          "audio": "assets/audio/bf7e44b06412.mp3"
+        },
+        {
+          "text": "邻居都笑他傻。农夫红着脸，重新拿起锄头下地。",
+          "scene": {
+            "bg": "day",
+            "items": [
+              {
+                "s": "sun",
+                "x": 84,
+                "y": 13,
+                "scale": 0.85
+              },
+              {
+                "s": "farmer",
+                "x": 58,
+                "y": 83.0,
+                "scale": 1.0
+              },
+              {
+                "s": "cloud",
+                "x": 26,
+                "y": 13,
+                "scale": 0.9
+              },
+              {
+                "s": "grass",
+                "x": 7,
+                "y": 92.0,
+                "scale": 1.1
+              },
+              {
+                "s": "flower",
+                "x": 88,
+                "y": 91.0,
+                "scale": 0.7
+              },
+              {
+                "s": "rock",
+                "x": 68,
+                "y": 91.0,
+                "scale": 0.8
+              }
+            ]
+          },
+          "visual": "田边站着两个村里人，一个摇头、一个捂着嘴笑；农夫红着脸低下头，弯腰捡起锄头，走向荒地。",
+          "art": {
+            "file": "assets/art/L03_p7.webp",
+            "width": 1280,
+            "height": 768,
+            "status": "approved",
+            "stale": false,
+            "prompt": "儿童绘本插画，面向 3–4 岁：扁平厚涂（gouache）质感，暖色自然光，柔和纸纹，造型圆润、表情清楚，颜色干净不刺眼；横版构图，主体完整、不切边；画面中不要出现任何文字、汉字、拼音、数字、水印、边框、页签。\n【全书设定】农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。\n【这一页的画面】田边站着两个村里人，一个摇头、一个捂着嘴笑；农夫红着脸低下头，弯腰捡起锄头，走向荒地。\n【情节参考】邻居都笑他傻。农夫红着脸，重新拿起锄头下地。（只用于理解，不要把这句话画进图里）\n【构图】横版 5:3；主体位于画面中下；天空占上方约三分之一；清晨到白天，自然暖光，空气通透。",
+            "model": "manual",
+            "source": "import",
+            "created": "2026-10-24 18:14"
+          },
+          "audio": "assets/audio/655029b98c2c.mp3"
         }
       ]
     },
@@ -812,19 +1064,446 @@ window.SHIZI = {
       "wordAudio": "assets/audio/a3a1409aa7e0.mp3",
       "status": "teaching"
     },
-    "山": {
-      "pinyin": "shān",
-      "word": "大山",
-      "audio": "assets/audio/4f19ef15f520.mp3",
-      "wordAudio": "assets/audio/c8e3aeb01b29.mp3",
-      "status": "known"
+    "天": {
+      "pinyin": "tiān",
+      "word": "天空",
+      "audio": "assets/audio/6a659085ea90.mp3",
+      "wordAudio": "assets/audio/4355245d54a6.mp3",
+      "status": "planned"
     },
-    "水": {
-      "pinyin": "shuǐ",
-      "word": "河水",
-      "audio": "assets/audio/7d800fbf3b89.mp3",
-      "wordAudio": "assets/audio/429faddb947f.mp3",
-      "status": "known"
+    "刚": {
+      "pinyin": "gāng",
+      "word": "刚才",
+      "audio": "assets/audio/26c22d07597a.mp3",
+      "wordAudio": "assets/audio/3c4ba2a5c84f.mp3",
+      "status": "planned"
+    },
+    "亮": {
+      "pinyin": "liàng",
+      "word": "天亮",
+      "audio": "assets/audio/0e349b017aa7.mp3",
+      "wordAudio": "assets/audio/92c643b173f5.mp3",
+      "status": "planned"
+    },
+    "农": {
+      "pinyin": "nóng",
+      "word": "农夫",
+      "audio": "assets/audio/974808f23e26.mp3",
+      "wordAudio": "assets/audio/5f37d8bc2997.mp3",
+      "status": "planned"
+    },
+    "夫": {
+      "pinyin": "fū",
+      "word": "农夫",
+      "audio": "assets/audio/836c3e726006.mp3",
+      "wordAudio": "assets/audio/5f37d8bc2997.mp3",
+      "status": "planned"
+    },
+    "就": {
+      "pinyin": "jiù",
+      "word": "就是",
+      "audio": "assets/audio/70a89e9caedb.mp3",
+      "wordAudio": "assets/audio/f7afd72121c2.mp3",
+      "status": "planned"
+    },
+    "到": {
+      "pinyin": "dào",
+      "word": "来到",
+      "audio": "assets/audio/77f21e7bc557.mp3",
+      "wordAudio": "assets/audio/7bce5e930a87.mp3",
+      "status": "planned"
+    },
+    "田": {
+      "pinyin": "tián",
+      "word": "田地",
+      "audio": "assets/audio/64f54dbda9ca.mp3",
+      "wordAudio": "assets/audio/ce67bb6fa740.mp3",
+      "status": "planned"
+    },
+    "里": {
+      "pinyin": "lǐ",
+      "word": "里面",
+      "audio": "assets/audio/f86c1f7575bb.mp3",
+      "wordAudio": "assets/audio/71a98078f771.mp3",
+      "status": "planned"
+    },
+    "挥": {
+      "pinyin": "huī",
+      "word": "挥手",
+      "audio": "assets/audio/50788065050a.mp3",
+      "wordAudio": "assets/audio/6a5764ec5cbc.mp3",
+      "status": "planned"
+    },
+    "着": {
+      "pinyin": "zhe",
+      "word": "住着",
+      "audio": "assets/audio/3f7d51a8cfe1.mp3",
+      "wordAudio": "assets/audio/add1acaf25a4.mp3",
+      "status": "planned"
+    },
+    "锄": {
+      "pinyin": "chú",
+      "word": "锄头",
+      "audio": "assets/audio/2e5eab1a57ba.mp3",
+      "wordAudio": "assets/audio/8e01a125a09b.mp3",
+      "status": "planned"
+    },
+    "头": {
+      "pinyin": "tóu",
+      "word": "锄头",
+      "audio": "assets/audio/daeaa38f9639.mp3",
+      "wordAudio": "assets/audio/8e01a125a09b.mp3",
+      "status": "planned"
+    },
+    "一": {
+      "pinyin": "yī",
+      "word": "一个",
+      "audio": "assets/audio/3db0a231c27d.mp3",
+      "wordAudio": "assets/audio/e42739e63902.mp3",
+      "status": "planned"
+    },
+    "下": {
+      "pinyin": "xià",
+      "word": "下来",
+      "audio": "assets/audio/f596aa9f9929.mp3",
+      "wordAudio": "assets/audio/e2090d9be69b.mp3",
+      "status": "planned"
+    },
+    "草": {
+      "pinyin": "cǎo",
+      "word": "小草",
+      "audio": "assets/audio/f34eb8a0f0b7.mp3",
+      "wordAudio": "assets/audio/1ed37aea2dff.mp3",
+      "status": "planned"
+    },
+    "忽": {
+      "pinyin": "hū",
+      "word": "忽然",
+      "audio": "assets/audio/440f245023c4.mp3",
+      "wordAudio": "assets/audio/152f497f24a4.mp3",
+      "status": "planned"
+    },
+    "然": {
+      "pinyin": "rán",
+      "word": "忽然",
+      "audio": "assets/audio/2e440a9ecf5f.mp3",
+      "wordAudio": "assets/audio/152f497f24a4.mp3",
+      "status": "planned"
+    },
+    "只": {
+      "pinyin": "zhī",
+      "word": "一只",
+      "audio": "assets/audio/0313fa4e5dd2.mp3",
+      "wordAudio": "assets/audio/64a643c4e5d9.mp3",
+      "status": "planned"
+    },
+    "白": {
+      "pinyin": "bái",
+      "word": "白色",
+      "audio": "assets/audio/3bc4ed9414a8.mp3",
+      "wordAudio": "assets/audio/6a2eccaeb0c2.mp3",
+      "status": "planned"
+    },
+    "从": {
+      "pinyin": "cóng",
+      "word": "从来",
+      "audio": "assets/audio/8c6c98dd8900.mp3",
+      "wordAudio": "assets/audio/9a2c479b52e4.mp3",
+      "status": "planned"
+    },
+    "林": {
+      "pinyin": "lín",
+      "word": "树林",
+      "audio": "assets/audio/5441ece0d7d4.mp3",
+      "wordAudio": "assets/audio/5a77d14a4398.mp3",
+      "status": "planned"
+    },
+    "出": {
+      "pinyin": "chū",
+      "word": "出来",
+      "audio": "assets/audio/04241dc66610.mp3",
+      "wordAudio": "assets/audio/3a7765f1cda3.mp3",
+      "status": "planned"
+    },
+    "得": {
+      "pinyin": "de",
+      "word": "跑得快",
+      "audio": "assets/audio/3a3e1b2385db.mp3",
+      "wordAudio": "assets/audio/b9531d0ad154.mp3",
+      "status": "planned"
+    },
+    "飞": {
+      "pinyin": "fēi",
+      "word": "飞快",
+      "audio": "assets/audio/f482fa4a88fe.mp3",
+      "wordAudio": "assets/audio/917a5eaeba7e.mp3",
+      "status": "planned"
+    },
+    "快": {
+      "pinyin": "kuài",
+      "word": "飞快",
+      "audio": "assets/audio/d287f087589e.mp3",
+      "wordAudio": "assets/audio/917a5eaeba7e.mp3",
+      "status": "planned"
+    },
+    "子": {
+      "pinyin": "zǐ",
+      "word": "兔子",
+      "audio": "assets/audio/ad9ba70487f2.mp3",
+      "wordAudio": "assets/audio/af7eea29047e.mp3",
+      "status": "planned"
+    },
+    "看": {
+      "pinyin": "kàn",
+      "word": "看见",
+      "audio": "assets/audio/caf0bea463f3.mp3",
+      "wordAudio": "assets/audio/e59c233b0f3c.mp3",
+      "status": "planned"
+    },
+    "路": {
+      "pinyin": "lù",
+      "word": "走路",
+      "audio": "assets/audio/81b026c34411.mp3",
+      "wordAudio": "assets/audio/311f6f21f307.mp3",
+      "status": "planned"
+    },
+    "在": {
+      "pinyin": "zài",
+      "word": "现在",
+      "audio": "assets/audio/d0a68d810d9e.mp3",
+      "wordAudio": "assets/audio/5b0260278e8a.mp3",
+      "status": "planned"
+    },
+    "桩": {
+      "pinyin": "zhuāng",
+      "word": "树桩",
+      "audio": "assets/audio/3385007f004e.mp3",
+      "wordAudio": "assets/audio/58bc68d68905.mp3",
+      "status": "planned"
+    },
+    "倒": {
+      "pinyin": "dǎo",
+      "word": "倒下",
+      "audio": "assets/audio/f4901bc3f1ea.mp3",
+      "wordAudio": "assets/audio/162057a67340.mp3",
+      "status": "planned"
+    },
+    "地": {
+      "pinyin": "dì",
+      "word": "地上",
+      "audio": "assets/audio/a5ae7f848456.mp3",
+      "wordAudio": "assets/audio/57977e141e6e.mp3",
+      "status": "planned"
+    },
+    "不": {
+      "pinyin": "bù",
+      "word": "不要",
+      "audio": "assets/audio/54da86acee43.mp3",
+      "wordAudio": "assets/audio/96de14b1a941.mp3",
+      "status": "planned"
+    },
+    "动": {
+      "pinyin": "dòng",
+      "word": "不动",
+      "audio": "assets/audio/3583fef0df21.mp3",
+      "wordAudio": "assets/audio/b1753f45b247.mp3",
+      "status": "planned"
+    },
+    "了": {
+      "pinyin": "le",
+      "word": "好了",
+      "audio": "assets/audio/971f9791cb4b.mp3",
+      "wordAudio": "assets/audio/737cd539dae9.mp3",
+      "status": "planned"
+    },
+    "过": {
+      "pinyin": "guò",
+      "word": "过来",
+      "audio": "assets/audio/155d758e198d.mp3",
+      "wordAudio": "assets/audio/c8a81245173b.mp3",
+      "status": "planned"
+    },
+    "去": {
+      "pinyin": "qù",
+      "word": "回去",
+      "audio": "assets/audio/21ddfab01d6f.mp3",
+      "wordAudio": "assets/audio/18a83b1487d2.mp3",
+      "status": "planned"
+    },
+    "捡": {
+      "pinyin": "jiǎn",
+      "word": "捡起",
+      "audio": "assets/audio/0213d4d8e976.mp3",
+      "wordAudio": "assets/audio/56f14bec8ec8.mp3",
+      "status": "planned"
+    },
+    "起": {
+      "pinyin": "qǐ",
+      "word": "起来",
+      "audio": "assets/audio/ca7ab928654e.mp3",
+      "wordAudio": "assets/audio/c82ecc192f15.mp3",
+      "status": "planned"
+    },
+    "抱": {
+      "pinyin": "bào",
+      "word": "抱起",
+      "audio": "assets/audio/8d9d3cf1f2b8.mp3",
+      "wordAudio": "assets/audio/a6218f2be618.mp3",
+      "status": "planned"
+    },
+    "怀": {
+      "pinyin": "huái",
+      "word": "怀里",
+      "audio": "assets/audio/29b9cd64551c.mp3",
+      "wordAudio": "assets/audio/ce6d1222bb14.mp3",
+      "status": "planned"
+    },
+    "笑": {
+      "pinyin": "xiào",
+      "word": "笑脸",
+      "audio": "assets/audio/d48a0a05510f.mp3",
+      "wordAudio": "assets/audio/ae9c845703d8.mp3",
+      "status": "planned"
+    },
+    "合": {
+      "pinyin": "hé",
+      "word": "合上",
+      "audio": "assets/audio/1d0fd2bf0d97.mp3",
+      "wordAudio": "assets/audio/63f137eb7049.mp3",
+      "status": "planned"
+    },
+    "嘴": {
+      "pinyin": "zuǐ",
+      "word": "嘴巴",
+      "audio": "assets/audio/d22a41e1d7d2.mp3",
+      "wordAudio": "assets/audio/aa2ade26a2ed.mp3",
+      "status": "planned"
+    },
+    "把": {
+      "pinyin": "bǎ",
+      "word": "把门",
+      "audio": "assets/audio/01b77e7ede3d.mp3",
+      "wordAudio": "assets/audio/fd3ea608bea8.mp3",
+      "status": "planned"
+    },
+    "放": {
+      "pinyin": "fàng",
+      "word": "放下",
+      "audio": "assets/audio/2237c13a78b4.mp3",
+      "wordAudio": "assets/audio/a560819e3975.mp3",
+      "status": "planned"
+    },
+    "坐": {
+      "pinyin": "zuò",
+      "word": "坐下",
+      "audio": "assets/audio/98242b87175d.mp3",
+      "wordAudio": "assets/audio/423e95a5f81a.mp3",
+      "status": "planned"
+    },
+    "旁": {
+      "pinyin": "páng",
+      "word": "旁边",
+      "audio": "assets/audio/90d11a701669.mp3",
+      "wordAudio": "assets/audio/6caccaaa93a2.mp3",
+      "status": "planned"
+    },
+    "再": {
+      "pinyin": "zài",
+      "word": "再来",
+      "audio": "assets/audio/c290d469b20d.mp3",
+      "wordAudio": "assets/audio/839e22c635af.mp3",
+      "status": "planned"
+    },
+    "也": {
+      "pinyin": "yě",
+      "word": "也好",
+      "audio": "assets/audio/15f58d6a1dca.mp3",
+      "wordAudio": "assets/audio/1d5af9341fa3.mp3",
+      "status": "planned"
+    },
+    "长": {
+      "pinyin": "zhǎng",
+      "word": "长高",
+      "audio": "assets/audio/5371ebc0b445.mp3",
+      "wordAudio": "assets/audio/24a31ac91af7.mp3",
+      "status": "planned"
+    },
+    "满": {
+      "pinyin": "mǎn",
+      "word": "满身",
+      "audio": "assets/audio/2d8bcbeb94a4.mp3",
+      "wordAudio": "assets/audio/393dac0814c7.mp3",
+      "status": "planned"
+    },
+    "野": {
+      "pinyin": "yě",
+      "word": "野草",
+      "audio": "assets/audio/f01dae0f0e96.mp3",
+      "wordAudio": "assets/audio/76fa747a1393.mp3",
+      "status": "planned"
+    },
+    "邻": {
+      "pinyin": "lín",
+      "word": "邻居",
+      "audio": "assets/audio/475776f07e2c.mp3",
+      "wordAudio": "assets/audio/ae79ea74f7ac.mp3",
+      "status": "planned"
+    },
+    "居": {
+      "pinyin": "jū",
+      "word": "邻居",
+      "audio": "assets/audio/c780f61a49c7.mp3",
+      "wordAudio": "assets/audio/ae79ea74f7ac.mp3",
+      "status": "planned"
+    },
+    "都": {
+      "pinyin": "dōu",
+      "word": "都是",
+      "audio": "assets/audio/1c5034ca1f18.mp3",
+      "wordAudio": "assets/audio/918c31c04539.mp3",
+      "status": "planned"
+    },
+    "傻": {
+      "pinyin": "shǎ",
+      "word": "傻笑",
+      "audio": "assets/audio/8c64c59e0dae.mp3",
+      "wordAudio": "assets/audio/d12a62b42770.mp3",
+      "status": "planned"
+    },
+    "红": {
+      "pinyin": "hóng",
+      "word": "红脸",
+      "audio": "assets/audio/de40d7a9422f.mp3",
+      "wordAudio": "assets/audio/366ea698b99b.mp3",
+      "status": "planned"
+    },
+    "脸": {
+      "pinyin": "liǎn",
+      "word": "红脸",
+      "audio": "assets/audio/8bac26c62432.mp3",
+      "wordAudio": "assets/audio/366ea698b99b.mp3",
+      "status": "planned"
+    },
+    "重": {
+      "pinyin": "chóng",
+      "word": "重新",
+      "audio": "assets/audio/195701dbbf10.mp3",
+      "wordAudio": "assets/audio/f605facf2ac5.mp3",
+      "status": "planned"
+    },
+    "新": {
+      "pinyin": "xīn",
+      "word": "重新",
+      "audio": "assets/audio/a0a22882c160.mp3",
+      "wordAudio": "assets/audio/f605facf2ac5.mp3",
+      "status": "planned"
+    },
+    "拿": {
+      "pinyin": "ná",
+      "word": "拿起",
+      "audio": "assets/audio/bb4d07ab3845.mp3",
+      "wordAudio": "assets/audio/900803d22add.mp3",
+      "status": "planned"
     },
     "清": {
       "pinyin": "qīng",
@@ -847,32 +1526,11 @@ window.SHIZI = {
       "wordAudio": "assets/audio/d72a0c33beaa.mp3",
       "status": "planned"
     },
-    "里": {
-      "pinyin": "lǐ",
-      "word": "里面",
-      "audio": "assets/audio/f86c1f7575bb.mp3",
-      "wordAudio": "assets/audio/71a98078f771.mp3",
-      "status": "planned"
-    },
     "住": {
       "pinyin": "zhù",
       "word": "住下",
       "audio": "assets/audio/1924f22c80aa.mp3",
       "wordAudio": "assets/audio/6309082c81b3.mp3",
-      "status": "planned"
-    },
-    "着": {
-      "pinyin": "zhe",
-      "word": "住着",
-      "audio": "assets/audio/3f7d51a8cfe1.mp3",
-      "wordAudio": "assets/audio/add1acaf25a4.mp3",
-      "status": "planned"
-    },
-    "一": {
-      "pinyin": "yī",
-      "word": "一个",
-      "audio": "assets/audio/3db0a231c27d.mp3",
-      "wordAudio": "assets/audio/e42739e63902.mp3",
       "status": "planned"
     },
     "条": {
@@ -896,25 +1554,11 @@ window.SHIZI = {
       "wordAudio": "assets/audio/547f69624ece.mp3",
       "status": "planned"
     },
-    "天": {
-      "pinyin": "tiān",
-      "word": "天空",
-      "audio": "assets/audio/6a659085ea90.mp3",
-      "wordAudio": "assets/audio/4355245d54a6.mp3",
-      "status": "planned"
-    },
     "游": {
       "pinyin": "yóu",
       "word": "游水",
       "audio": "assets/audio/24a4aab96970.mp3",
       "wordAudio": "assets/audio/5b7afea43de8.mp3",
-      "status": "planned"
-    },
-    "去": {
-      "pinyin": "qù",
-      "word": "回去",
-      "audio": "assets/audio/21ddfab01d6f.mp3",
-      "wordAudio": "assets/audio/18a83b1487d2.mp3",
       "status": "planned"
     },
     "妈": {
@@ -938,6 +1582,13 @@ window.SHIZI = {
       "wordAudio": "assets/audio/046458361d1f.mp3",
       "status": "planned"
     },
+    "山": {
+      "pinyin": "shān",
+      "word": "大山",
+      "audio": "assets/audio/4f19ef15f520.mp3",
+      "wordAudio": "assets/audio/c8e3aeb01b29.mp3",
+      "status": "known"
+    },
     "龙": {
       "pinyin": "lóng",
       "word": "龙门",
@@ -957,20 +1608,6 @@ window.SHIZI = {
       "word": "跳高",
       "audio": "assets/audio/f4fcc8b98043.mp3",
       "wordAudio": "assets/audio/7db6e28fcd93.mp3",
-      "status": "planned"
-    },
-    "过": {
-      "pinyin": "guò",
-      "word": "过来",
-      "audio": "assets/audio/155d758e198d.mp3",
-      "wordAudio": "assets/audio/c8a81245173b.mp3",
-      "status": "planned"
-    },
-    "就": {
-      "pinyin": "jiù",
-      "word": "就是",
-      "audio": "assets/audio/70a89e9caedb.mp3",
-      "wordAudio": "assets/audio/f7afd72121c2.mp3",
       "status": "planned"
     },
     "能": {
@@ -994,13 +1631,6 @@ window.SHIZI = {
       "wordAudio": "assets/audio/7080175b5c52.mp3",
       "status": "planned"
     },
-    "了": {
-      "pinyin": "le",
-      "word": "好了",
-      "audio": "assets/audio/971f9791cb4b.mp3",
-      "wordAudio": "assets/audio/737cd539dae9.mp3",
-      "status": "planned"
-    },
     "别": {
       "pinyin": "bié",
       "word": "告别",
@@ -1014,6 +1644,13 @@ window.SHIZI = {
       "audio": "assets/audio/c0d99983ace7.mp3",
       "wordAudio": "assets/audio/ee1658835eb2.mp3",
       "status": "planned"
+    },
+    "水": {
+      "pinyin": "shuǐ",
+      "word": "河水",
+      "audio": "assets/audio/7d800fbf3b89.mp3",
+      "wordAudio": "assets/audio/429faddb947f.mp3",
+      "status": "known"
     },
     "直": {
       "pinyin": "zhí",
@@ -1076,20 +1713,6 @@ window.SHIZI = {
       "word": "一点",
       "audio": "assets/audio/e78751e72c3a.mp3",
       "wordAudio": "assets/audio/d2ccc1304007.mp3",
-      "status": "planned"
-    },
-    "也": {
-      "pinyin": "yě",
-      "word": "也好",
-      "audio": "assets/audio/15f58d6a1dca.mp3",
-      "wordAudio": "assets/audio/1d5af9341fa3.mp3",
-      "status": "planned"
-    },
-    "不": {
-      "pinyin": "bù",
-      "word": "不要",
-      "audio": "assets/audio/54da86acee43.mp3",
-      "wordAudio": "assets/audio/96de14b1a941.mp3",
       "status": "planned"
     },
     "怕": {
@@ -1191,5 +1814,5 @@ window.SHIZI = {
       "status": "planned"
     }
   },
-  "totalChars": 66
+  "totalChars": 119
 };

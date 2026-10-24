@@ -37,14 +37,19 @@ def main() -> int:
 
         frame = next(f for f in pg.frames if f != pg.main_frame)
         assert frame.evaluate("!!window.SHIZI"), "单文件里没有数据，脚本没跑起来"
-        frame.locator('button.ch[data-ch="山"]').first.click()
+        target = frame.evaluate("""() => {
+          const els = [...document.querySelectorAll('#textline .ch')];
+          return els.length ? els[0].dataset.ch : null;
+        }""")
+        assert target, "首屏没有可点的字"
+        frame.locator('button.ch[data-ch="%s"]' % target).first.click()
         pg.wait_for_timeout(1000)
 
         events = frame.evaluate("ShiziTrack.events()")
         taps = [e for e in events if e["kind"] == "tap"]
         assert taps and taps[-1].get("lat") is not None, f"没有播放成功：{events}"
         assert not errors, f"页面报错：{errors}"
-        print(f"✓ 沙箱 srcdoc：点击「山」→ 播放延迟 {taps[-1]['lat']}ms，无外部请求、无报错")
+        print(f"✓ 沙箱 srcdoc：点击「{target}」→ 播放延迟 {taps[-1]['lat']}ms，无外部请求、无报错")
         b.close()
         return 0
 

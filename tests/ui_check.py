@@ -32,7 +32,8 @@ def main() -> int:
 
         n_lessons = pg.evaluate("SHIZI.lessons.length")
         assert pg.locator(".tab").count() == n_lessons, f"应有 {n_lessons} 节课"
-        assert "山边有树" in pg.locator("#textline").inner_text().replace("\n", ""), "第一页文案不对"
+        first = pg.evaluate("SHIZI.lessons.find(l => l.kind === 'story').pages[0].text")
+        assert first[:8] in pg.locator("#textline").inner_text().replace("\n", ""), f"第一页文案不对：{first}"
         assert pg.locator("#scene svg, #scene img.art").count() == 1, "场景没有渲染"
         print(f"✓ 首屏：{n_lessons} 节课 / 插画或回退场景已渲染")
 
@@ -47,16 +48,16 @@ def main() -> int:
         pg.screenshot(path=str(SHOTS / "01-story.png"), full_page=True)
 
         # 轻点单字：只出声，不出大字
-        pg.locator('button.ch[data-ch="山"]').click()
+        pg.locator('button.ch[data-ch="田"]').first.click()
         pg.wait_for_timeout(500)
         assert not pg.locator("#bigWrap").is_visible(), "轻点不应该出大字"
         events = pg.evaluate("ShiziTrack.events()")
-        tap = [e for e in events if e["kind"] == "tap" and e["ch"] == "山"]
+        tap = [e for e in events if e["kind"] == "tap" and e["ch"] == "田"]
         assert tap, "没有记录点击"
         print("✓ 轻点：记录 tap，延迟", tap[-1].get("lat"), "ms，未弹大字")
 
         # 长按：出大字，且不重复计入点击
-        el = pg.locator('button.ch[data-ch="树"]').first
+        el = pg.locator('button.ch[data-ch="草"]').first
         box = el.bounding_box()
         pg.mouse.move(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
         pg.mouse.down()
@@ -64,8 +65,8 @@ def main() -> int:
         pg.mouse.up()
         pg.wait_for_timeout(200)
         assert pg.locator("#bigWrap").is_visible(), "长按没有弹出大字"
-        assert pg.locator("#bigGlyph").inner_text() == "树"
-        n_tap = len([e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "tap" and e["ch"] == "树"])
+        assert pg.locator("#bigGlyph").inner_text() == "草"
+        n_tap = len([e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "tap" and e["ch"] == "草"])
         assert n_tap == 0, "长按不应产生 tap"
         print("✓ 长按：出大字，tap 数仍为 0")
         pg.screenshot(path=str(SHOTS / "02-bigchar.png"))
@@ -75,7 +76,8 @@ def main() -> int:
         # 翻页
         pg.locator("#next").click()
         pg.wait_for_timeout(400)
-        assert "小兔跑来" in pg.locator("#textline").inner_text().replace("\n", "")
+        second = pg.evaluate("SHIZI.lessons.find(l => l.kind === 'story').pages[1].text")
+        assert second[:8] in pg.locator("#textline").inner_text().replace("\n", ""), f"第 2 页文案不对：{second}"
         print("✓ 翻页：第 2 页文案正确")
         pg.locator("#prev").click()
         pg.wait_for_timeout(300)
