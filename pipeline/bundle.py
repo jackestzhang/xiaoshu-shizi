@@ -31,7 +31,7 @@ def main() -> None:
     data_js = (common.APP / "data.js").read_text(encoding="utf-8")
 
     # 音频与插画 → base64 data URI（先收集，再一次性替换）
-    paths = sorted(set(re.findall(r'assets/(?:audio/[a-f0-9]+\.mp3|art/[^"]+\.webp)', data_js)))
+    paths = sorted(set(re.findall(r'assets/(?:audio/[a-f0-9]+\.mp3|art/[^"]+\.webp|picto/[a-z]+\.webp)', data_js)))
     total = 0
     n_img = 0
     for rel in paths:

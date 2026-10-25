@@ -9,6 +9,7 @@ check:
 ui:
 	python3 tests/ui_check.py
 	python3 tests/bundle_check.py
+	python3 tests/picto_check.py
 
 demo: build
 	python3 pipeline/bundle.py

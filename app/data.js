@@ -1820,7 +1820,8 @@ window.SHIZI = {
       "word": "大山",
       "audio": "assets/audio/4f19ef15f520.mp3",
       "wordAudio": "assets/audio/c8e3aeb01b29.mp3",
-      "status": "known"
+      "status": "known",
+      "pictograph": "assets/picto/shan.webp"
     },
     "龙": {
       "pinyin": "lóng",
@@ -1883,7 +1884,8 @@ window.SHIZI = {
       "word": "河水",
       "audio": "assets/audio/7d800fbf3b89.mp3",
       "wordAudio": "assets/audio/429faddb947f.mp3",
-      "status": "known"
+      "status": "known",
+      "pictograph": "assets/picto/shui.webp"
     },
     "直": {
       "pinyin": "zhí",
@@ -2121,7 +2123,8 @@ window.SHIZI = {
       "word": "下雨",
       "audio": "assets/audio/db6f60aaa83b.mp3",
       "wordAudio": "assets/audio/6dfe7066f782.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "assets/picto/yu.webp"
     },
     "声": {
       "pinyin": "shēng",

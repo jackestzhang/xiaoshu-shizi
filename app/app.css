@@ -293,6 +293,18 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 }
 .overlay.on .bigcard{transform:none}
 .b-glyph{font-family:var(--hanzi);font-size:150px;line-height:1;color:var(--ink)}
+.b-face{display:flex;align-items:center;justify-content:center;min-height:150px}
+.b-pic{
+  display:block;width:min(46vw,232px);height:min(46vw,232px);object-fit:contain;
+  border-radius:18px;background:transparent;
+  -webkit-mask-image:radial-gradient(ellipse 74% 72% at 50% 50%, #000 64%, transparent 88%);
+  mask-image:radial-gradient(ellipse 74% 72% at 50% 50%, #000 64%, transparent 88%);
+  animation:picIn .28s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes picIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.b-hint{font-size:12px;color:#B0A48E;margin-top:12px;letter-spacing:.04em}
+.bigcard{cursor:pointer}
+.bigcard.show-pic{padding:18px 26px 16px}
 .b-py{font-size:24px;color:#8A7A5E;letter-spacing:.06em;margin-top:2px}
 .b-word{font-size:16px;color:#A29784;margin-top:8px}
 
@@ -347,6 +359,7 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
   .judge{font-size:10px;padding:2px 5px}
   .lab{font-size:10px;padding:2px 3px}
   .bigcard{padding:20px 32px 16px}
+  .b-pic{width:min(58vw,208px);height:min(58vw,208px)}
   .option{font-size:46px}
   .foot{padding-top:18px}
 }

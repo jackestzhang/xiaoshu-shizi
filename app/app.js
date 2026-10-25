@@ -16,6 +16,10 @@
   const drawerBody = document.getElementById("drawerBody");
 
   const bigWrap = document.getElementById("bigWrap");
+  const bigCard = document.getElementById("bigCard");
+  const bigFace = document.getElementById("bigFace");
+  const bigPic = document.getElementById("bigPic");
+  const bigHint = document.getElementById("bigHint");
   const bigGlyph = document.getElementById("bigGlyph");
   const bigPy = document.getElementById("bigPy");
   const bigWord = document.getElementById("bigWord");
@@ -246,20 +250,51 @@
     T.log("word", { lesson: current().id, page: pageNo(), ch });
   }
 
+  let bigCh = null;
+  let bigMode = "char";   // char | pic
+
+  function renderBig() {
+    const meta = bigCh ? audioFor(bigCh) : {};
+    const hasPic = !!meta.pictograph;
+    const showPic = bigMode === "pic" && hasPic;
+    bigFace.hidden = showPic;
+    bigPic.hidden = !showPic;
+    if (showPic) bigPic.src = meta.pictograph;
+    bigHint.hidden = !hasPic || showPic;
+    bigCard.classList.toggle("show-pic", showPic);
+  }
+
+  function toggleBig() {
+    const meta = bigCh ? audioFor(bigCh) : {};
+    if (!meta.pictograph) return;
+    bigMode = bigMode === "pic" ? "char" : "pic";
+    renderBig();
+    // 已经动手了，就别急着收
+    clearTimeout(state.bigTimer);
+    state.bigTimer = setTimeout(hideBig, 6000);
+  }
+
   function showBig(ch) {
     const meta = audioFor(ch);
     if (!meta.pinyin) return;
     T.log("long", { lesson: current().id, page: pageNo(), ch });
+    bigCh = ch;
+    bigMode = "char";
     bigGlyph.textContent = ch;
     bigPy.textContent = meta.pinyin || "";
     bigWord.textContent = meta.word || "";
+    renderBig();
     bigWrap.hidden = false;
     requestAnimationFrame(() => bigWrap.classList.add("on"));
     clearTimeout(state.bigTimer);
-    state.bigTimer = setTimeout(hideBig, 1800);
+    // 有象形图的字，多留时间让孩子去点；没有的还是快速收起
+    state.bigTimer = setTimeout(hideBig, meta.pictograph ? 5000 : 1800);
   }
 
   function hideBig() {
+    bigMode = "char";
+    bigPic.hidden = true;
+    bigPic.removeAttribute("src");
     clearTimeout(state.bigTimer);
     bigWrap.classList.remove("on");
     setTimeout(() => { bigWrap.hidden = true; }, 180);
@@ -719,6 +754,7 @@
   document.getElementById("soundBtn").addEventListener("click", testSound);
   document.getElementById("resetBtn").addEventListener("click", resetAll);
   document.getElementById("closeQuiz").addEventListener("click", closeQuiz);
+  bigCard.addEventListener("click", e => { e.stopPropagation(); toggleBig(); });
   bigWrap.addEventListener("click", hideBig);
 
   document.addEventListener("keydown", e => {

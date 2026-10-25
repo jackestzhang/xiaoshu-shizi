@@ -21,6 +21,9 @@ import validate
 
 def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
     used = common.unique([ch for l in lessons for ch in common.lesson_chars(l)])
+    picto_path = common.ROOT / "data" / "pictographs.json"
+    PICTO = json.loads(picto_path.read_text(encoding="utf-8")) if picto_path.exists() else {}
+
     char_meta, jobs = {}, []
     for ch in used:
         meta = curriculum[ch]
@@ -36,6 +39,9 @@ def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
             "wordAudio": f"assets/audio/{p2.name}",
             "status": curriculum[ch]["status"],
         }
+        pic = PICTO.get(ch)
+        if pic:
+            char_meta[ch]["pictograph"] = pic
         total_chars += 2
         print(f"  · {ch} / {word}", end="\r", flush=True)
         time.sleep(0.15)

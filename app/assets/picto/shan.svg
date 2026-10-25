@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="山的象形图">
+  <defs>
+    <linearGradient id="g-main" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EBB768"/><stop offset="100%" stop-color="#C9822F"/></linearGradient>
+    <linearGradient id="g-side" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#93BCA2"/><stop offset="100%" stop-color="#5F8A70"/></linearGradient>
+    <linearGradient id="g-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#AFC98C"/><stop offset="100%" stop-color="#8AA76A"/></linearGradient>
+    <linearGradient id="g-light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    
+  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#6B5636" flood-opacity="0.16"/>
+  </filter>
+
+  </defs>
+
+  <g filter="url(#soft)">
+    <!-- 底横：整条地面，对应“山”的最后一横 -->
+    <rect x="88" y="392" width="336" height="26" rx="13" fill="url(#g-ground)"/>
+
+    <!-- 左右两峰：矮，青绿 -->
+    <path d="M144,212 C168,282 190,344 212,392 L78,392 C102,338 124,276 144,212 Z" fill="url(#g-side)"/>
+    <path d="M368,212 C392,276 414,338 434,392 L300,392 C322,344 344,282 368,212 Z" fill="url(#g-side)"/>
+    <path d="M150,244 C166,296 180,340 194,370 L166,352 Z" fill="url(#g-light)"/>
+    <path d="M362,244 C378,296 392,340 406,370 L378,352 Z" fill="url(#g-light)"/>
+
+    <!-- 中峰：高，赭黄，侧边是缓曲线 -->
+    <path d="M256,106 C286,180 318,278 344,392 L168,392 C194,278 226,180 256,106 Z" fill="url(#g-main)"/>
+    <path d="M256,106 C256,200 256,320 256,392 L168,392 C194,278 226,180 256,106 Z" fill="#FFFFFF" opacity="0.09"/>
+    <path d="M256,112 C272,168 288,222 300,264 L276,246 Z" fill="url(#g-light)"/>
+    <!-- 雪顶：盖住峰尖三分之一，让它读作“山”而不是三角 -->
+    <path d="M256,106 C270,152 284,196 296,232 L256,252 L216,228 C228,192 242,148 256,106 Z"
+          fill="#FFFDF6" opacity="0.94"/>
+    <path d="M256,106 C262,134 268,162 274,186 L256,200 L238,184 C244,158 250,130 256,106 Z"
+          fill="#FFFFFF"/>
+
+    <!-- 山脚的一点点草，只贴地，不碰轮廓 -->
+    <g stroke="#7D9A5D" stroke-width="4" stroke-linecap="round" opacity="0.55" fill="none">
+      <path d="M126,392 q4,-16 10,-22 M126,392 q-2,-14 3,-20"/>
+      <path d="M392,392 q4,-15 10,-21 M392,392 q-2,-13 3,-19"/>
+    </g>
+  </g>
+</svg>
