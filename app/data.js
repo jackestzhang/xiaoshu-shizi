@@ -1218,7 +1218,8 @@ window.SHIZI = {
       "word": "小兔",
       "audio": "assets/audio/a44a90f2e5e3.mp3",
       "wordAudio": "assets/audio/a78cd8c96408.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(19.67,8.00) scale(2.3333)\"><path d=\"M 11 4 L 19 9\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 7 L 11 13 L 19 10\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 9 L 13 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 13 L 8 18 L 7 23 L 8 30 L 14 32 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 11 L 14 15 L 13 20 L 17 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 10 L 21 16 L 20 19 L 18 18 L 14 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 16 L 7 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 30 L 7 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "树": {
       "pinyin": "shù",
@@ -1246,14 +1247,16 @@ window.SHIZI = {
       "word": "小兔",
       "audio": "assets/audio/8b4e9b0c753a.mp3",
       "wordAudio": "assets/audio/a78cd8c96408.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.59,8.00) scale(2.4706)\"><path d=\"M 12 4 L 12 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 14 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 12 L 19 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "上": {
       "pinyin": "shàng",
       "word": "上面",
       "audio": "assets/audio/2bddc5c632a5.mp3",
       "wordAudio": "assets/audio/da2ef721c89c.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,27.69) scale(2.6250)\"><path d=\"M 9 4 L 23 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 9 L 12 13 L 21 13 L 28 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "边": {
       "pinyin": "biān",
@@ -1351,7 +1354,8 @@ window.SHIZI = {
       "word": "田地",
       "audio": "assets/audio/64f54dbda9ca.mp3",
       "wordAudio": "assets/audio/ce67bb6fa740.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.60,8.00) scale(2.8000)\"><path d=\"M 4 4 L 4 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 4 L 17 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 5 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 26 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 11 L 17 11\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 18 L 17 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 5 L 7 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 5 L 12 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "里": {
       "pinyin": "lǐ",
@@ -1400,7 +1404,8 @@ window.SHIZI = {
       "word": "下来",
       "audio": "assets/audio/f596aa9f9929.mp3",
       "wordAudio": "assets/audio/e2090d9be69b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,28.32) scale(2.7097)\"><path d=\"M 4 8 L 12 4 L 20 4 L 27 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.033\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 12 L 21 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.033\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "草": {
       "pinyin": "cǎo",
@@ -1449,7 +1454,8 @@ window.SHIZI = {
       "word": "树林",
       "audio": "assets/audio/5441ece0d7d4.mp3",
       "wordAudio": "assets/audio/5a77d14a4398.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(17.60,8.00) scale(2.4000)\"><path d=\"M 9 7 L 9 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 10 L 9 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 7 L 9 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 16 L 4 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 16 L 14 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 4 L 17 30 L 17 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 6 L 17 13\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 5 L 17 13\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 20 L 13 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 20 L 22 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "出": {
       "pinyin": "chū",
@@ -1785,7 +1791,8 @@ window.SHIZI = {
       "word": "小鱼",
       "audio": "assets/audio/b74793c03818.mp3",
       "wordAudio": "assets/audio/547f69624ece.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.92,8.00) scale(2.1538)\"><path d=\"M 10 4 L 10 7\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 6 L 16 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 9 L 18 7 L 18 8 L 12 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 14 L 11 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 13 L 15 18 L 11 22 L 8 24 L 8 28 L 9 33 L 10 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 18 L 19 24 L 18 27 L 17 31 L 20 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 23 L 18 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 27 L 19 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 30 L 17 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 22 L 13 31 L 11 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 31 L 16 33 L 18 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 25 L 5 27 L 4 33\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 31 L 8 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 19 25 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 26 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 29 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "游": {
       "pinyin": "yóu",
@@ -1821,7 +1828,7 @@ window.SHIZI = {
       "audio": "assets/audio/4f19ef15f520.mp3",
       "wordAudio": "assets/audio/c8e3aeb01b29.mp3",
       "status": "known",
-      "pictograph": "assets/picto/shan.webp"
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,18.14) scale(2.8966)\"><path d=\"M 4 18 L 25 18 L 24 4 L 18 17 L 13 5 L 10 17 L 6 9 L 5 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"0.967\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "龙": {
       "pinyin": "lóng",
@@ -1835,7 +1842,8 @@ window.SHIZI = {
       "word": "大门",
       "audio": "assets/audio/32d830d3ebf5.mp3",
       "wordAudio": "assets/audio/107b8eb94827.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.12,8.00) scale(2.6250)\"><path d=\"M 4 4 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 28 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 8 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 13 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 4 L 18 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 8 L 9 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 15 L 9 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 22 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 18 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 15 L 18 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 22 L 18 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "跳": {
       "pinyin": "tiào",
@@ -1885,7 +1893,7 @@ window.SHIZI = {
       "audio": "assets/audio/7d800fbf3b89.mp3",
       "wordAudio": "assets/audio/429faddb947f.mp3",
       "status": "known",
-      "pictograph": "assets/picto/shui.webp"
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 6 7 L 5 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 4 L 9 12 L 13 21 L 9 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 20 L 4 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 8 L 15 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 16 22 L 15 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "直": {
       "pinyin": "zhí",
@@ -1920,7 +1928,8 @@ window.SHIZI = {
       "word": "大海",
       "audio": "assets/audio/7064b14aa907.mp3",
       "wordAudio": "assets/audio/80305216091b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(18.50,8.00) scale(2.3333)\"><path d=\"M 13 4 L 13 20 L 8 24 L 6 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 18 23 L 19 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 16 L 13 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 8 L 19 11 L 23 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "浪": {
       "pinyin": "làng",
@@ -2102,7 +2111,8 @@ window.SHIZI = {
       "word": "小鸟",
       "audio": "assets/audio/3eefa1a1e075.mp3",
       "wordAudio": "assets/audio/731764cb06a9.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.33,8.00) scale(2.3333)\"><path d=\"M 10 5 L 10 8 L 12 9 L 13 7 L 13 5 L 10 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 4 L 6 5 L 5 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 5 L 10 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 7 L 13 14 L 18 20 L 18 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 8 L 7 18 L 11 23 L 11 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 13 L 11 15 L 10 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 17 L 11 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 14 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 18 L 6 21 L 9 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 23 L 4 27 L 5 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 26 L 7 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "夜": {
       "pinyin": "yè",
@@ -2124,7 +2134,7 @@ window.SHIZI = {
       "audio": "assets/audio/db6f60aaa83b.mp3",
       "wordAudio": "assets/audio/6dfe7066f782.mp3",
       "status": "planned",
-      "pictograph": "assets/picto/yu.webp"
+      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 7 4 L 14 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 15 L 7 6 L 14 6 L 16 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 6 L 11 18\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 14 L 4 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 13 L 16 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 22 L 11 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
     },
     "声": {
       "pinyin": "shēng",

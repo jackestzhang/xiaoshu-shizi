@@ -41,7 +41,9 @@ def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
         }
         pic = PICTO.get(ch)
         if pic:
-            char_meta[ch]["pictograph"] = pic
+            pic_path = common.ROOT / "app" / pic
+            if pic_path.exists():
+                char_meta[ch]["pictograph"] = pic_path.read_text(encoding="utf-8")
         total_chars += 2
         print(f"  · {ch} / {word}", end="\r", flush=True)
         time.sleep(0.15)

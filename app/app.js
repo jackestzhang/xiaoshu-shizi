@@ -259,7 +259,7 @@
     const showPic = bigMode === "pic" && hasPic;
     bigFace.hidden = showPic;
     bigPic.hidden = !showPic;
-    if (showPic) bigPic.src = meta.pictograph;
+    if (showPic) bigPic.innerHTML = meta.pictograph;
     bigHint.hidden = !hasPic || showPic;
     bigCard.classList.toggle("show-pic", showPic);
   }
@@ -294,7 +294,7 @@
   function hideBig() {
     bigMode = "char";
     bigPic.hidden = true;
-    bigPic.removeAttribute("src");
+    bigPic.innerHTML = "";
     clearTimeout(state.bigTimer);
     bigWrap.classList.remove("on");
     setTimeout(() => { bigWrap.hidden = true; }, 180);

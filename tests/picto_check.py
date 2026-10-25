@@ -48,14 +48,15 @@ def main() -> int:
         pg.wait_for_timeout(450)
         assert pg.locator("#bigPic").is_visible(), "点击后没有显示象形图"
         assert not pg.locator("#bigGlyph").is_visible(), "显示象形图时大字应隐藏"
-        nat = pg.eval_on_selector("#bigPic", "el => [el.naturalWidth, el.complete]")
-        assert nat[1] and nat[0] >= 320, f"象形图没加载好：{nat}"
+        assert pg.locator("#bigPic svg").count() == 1, "象形图没有内联进来"
+        size = pg.locator("#bigPic svg").bounding_box()
+        assert size and size["width"] >= 120, f"象形图尺寸异常：{size}"
         assert not pg.locator("#bigHint").is_visible(), "看图时不应再显示提示"
 
         pg.locator("#bigCard").click()
         pg.wait_for_timeout(300)
         assert pg.locator("#bigGlyph").is_visible(), "再点一下没有回到大字"
-        print(f"✓ 象形卡：长按「山」→ 点一下出图（{nat[0]}px）→ 再点回字")
+        print(f"✓ 象形卡：长按「山」→ 点一下出图（{round(size['width'])}px）→ 再点回字")
 
         pg.mouse.click(20, 20)
         pg.wait_for_timeout(250)

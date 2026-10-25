@@ -180,6 +180,7 @@ if __name__ == "__main__":
     import sys
 
     root = Path(__file__).resolve().parent.parent
-    files = build(root / "app" / "assets" / "picto")
+    # 骨架是“给 AI 补质感”的中间件，不进 app；最终字形由 oracle.py 从开源库取
+    files = build(root / "art" / "picto-skeleton")
     for f in files:
         print(f"✓ {f.relative_to(root)}  {f.stat().st_size} B")

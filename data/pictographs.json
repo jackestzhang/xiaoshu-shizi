@@ -1,5 +1,16 @@
 {
-  "山": "assets/picto/shan.webp",
-  "雨": "assets/picto/yu.webp",
-  "水": "assets/picto/shui.webp"
+  "山": "assets/picto/shan.svg",
+  "水": "assets/picto/shui.svg",
+  "雨": "assets/picto/yu.svg",
+  "田": "assets/picto/tian.svg",
+  "门": "assets/picto/men.svg",
+  "鸟": "assets/picto/niao.svg",
+  "鱼": "assets/picto/yu2.svg",
+  "兔": "assets/picto/tu.svg",
+  "林": "assets/picto/lin.svg",
+  "明": "assets/picto/ming.svg",
+  "大": "assets/picto/da.svg",
+  "小": "assets/picto/xiao.svg",
+  "上": "assets/picto/shang.svg",
+  "下": "assets/picto/xia.svg"
 }
