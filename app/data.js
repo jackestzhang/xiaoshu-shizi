@@ -1477,11 +1477,7 @@ window.SHIZI = {
       "word": "一个",
       "audio": "assets/audio/3db0a231c27d.mp3",
       "wordAudio": "assets/audio/e42739e63902.mp3",
-      "status": "planned",
-      "pictograph": {
-        "kind": "img",
-        "src": "assets/cards/u4e00.webp"
-      }
+      "status": "planned"
     },
     "下": {
       "pinyin": "xià",
@@ -1546,7 +1542,7 @@ window.SHIZI = {
       "status": "planned",
       "pictograph": {
         "kind": "img",
-        "src": "assets/cards/u767d.webp"
+        "src": "assets/cards/bai.webp"
       }
     },
     "从": {
@@ -1623,7 +1619,7 @@ window.SHIZI = {
       "status": "planned",
       "pictograph": {
         "kind": "img",
-        "src": "assets/cards/u5b50.webp"
+        "src": "assets/cards/zi.webp"
       }
     },
     "看": {
@@ -2152,8 +2148,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/107b8eb94827.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "img",
-        "src": "assets/cards/men.webp"
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.12,8.00) scale(2.6250)\"><path d=\"M 4 4 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 28 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 8 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 13 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 4 L 18 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 8 L 9 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 15 L 9 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 22 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 18 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 15 L 18 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 22 L 18 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
       }
     },
     "跳": {
@@ -2478,11 +2474,7 @@ window.SHIZI = {
       "word": "睡眠",
       "audio": "assets/audio/7cf6fb41f385.mp3",
       "wordAudio": "assets/audio/a26af602155e.mp3",
-      "status": "planned",
-      "pictograph": {
-        "kind": "img",
-        "src": "assets/cards/u7720.webp"
-      }
+      "status": "planned"
     },
     "觉": {
       "pinyin": "jué",
