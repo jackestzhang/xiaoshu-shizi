@@ -259,7 +259,10 @@
     const showPic = bigMode === "pic" && hasPic;
     bigFace.hidden = showPic;
     bigPic.hidden = !showPic;
-    if (showPic) bigPic.innerHTML = meta.pictograph;
+    if (showPic) {
+      const g = meta.pictograph;
+      bigPic.innerHTML = g.kind === "svg" ? g.src : '<img src="' + esc(g.src) + '" alt="">';
+    }
     bigHint.hidden = !hasPic || showPic;
     bigCard.classList.toggle("show-pic", showPic);
   }

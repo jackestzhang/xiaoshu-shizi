@@ -43,7 +43,12 @@ def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
         if pic:
             pic_path = common.ROOT / "app" / pic
             if pic_path.exists():
-                char_meta[ch]["pictograph"] = pic_path.read_text(encoding="utf-8")
+                if pic.endswith(".svg"):
+                    # 甲骨文：内联 SVG，可用 CSS 控制颜色与缩放
+                    char_meta[ch]["pictograph"] = {"kind": "svg",
+                                                   "src": pic_path.read_text(encoding="utf-8")}
+                else:
+                    char_meta[ch]["pictograph"] = {"kind": "img", "src": pic}
         total_chars += 2
         print(f"  · {ch} / {word}", end="\r", flush=True)
         time.sleep(0.15)

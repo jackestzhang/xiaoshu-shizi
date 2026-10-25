@@ -48,8 +48,8 @@ def main() -> int:
         pg.wait_for_timeout(450)
         assert pg.locator("#bigPic").is_visible(), "点击后没有显示象形图"
         assert not pg.locator("#bigGlyph").is_visible(), "显示象形图时大字应隐藏"
-        assert pg.locator("#bigPic svg").count() == 1, "象形图没有内联进来"
-        size = pg.locator("#bigPic svg").bounding_box()
+        assert pg.locator("#bigPic svg, #bigPic img").count() == 1, "象形图没有渲染"
+        size = pg.locator("#bigPic svg, #bigPic img").bounding_box()
         assert size and size["width"] >= 120, f"象形图尺寸异常：{size}"
         assert not pg.locator("#bigHint").is_visible(), "看图时不应再显示提示"
 
@@ -62,10 +62,10 @@ def main() -> int:
         pg.wait_for_timeout(250)
         assert not pg.locator("#bigWrap").is_visible(), "点空白没有关闭卡片"
 
-        # ---- 没有象形图：清（第 1 页）----
+        # ---- 没有象形图：鲤（第 1 页，这套卡里没有）----
         pg.locator(".dot").nth(0).click()
         pg.wait_for_timeout(300)
-        longpress(pg, 'button.ch[data-ch="清"]')
+        longpress(pg, 'button.ch[data-ch="鲤"]')
         assert pg.locator("#bigWrap").is_visible(), "长按没有出现大字卡"
         assert not pg.locator("#bigHint").is_visible(), "无象形图的字不应显示提示"
         pg.locator("#bigCard").click()

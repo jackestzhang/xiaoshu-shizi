@@ -1219,28 +1219,43 @@ window.SHIZI = {
       "audio": "assets/audio/a44a90f2e5e3.mp3",
       "wordAudio": "assets/audio/a78cd8c96408.mp3",
       "status": "teaching",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(19.67,8.00) scale(2.3333)\"><path d=\"M 11 4 L 19 9\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 7 L 11 13 L 19 10\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 9 L 13 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 13 L 8 18 L 7 23 L 8 30 L 14 32 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 11 L 14 15 L 13 20 L 17 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 10 L 21 16 L 20 19 L 18 18 L 14 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 16 L 7 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 30 L 7 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/tu.webp"
+      }
     },
     "树": {
       "pinyin": "shù",
       "word": "大树",
       "audio": "assets/audio/88df3fb45dad.mp3",
       "wordAudio": "assets/audio/7648ac8eddfd.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6811.webp"
+      }
     },
     "跑": {
       "pinyin": "pǎo",
       "word": "跑来",
       "audio": "assets/audio/f0da7f68ec18.mp3",
       "wordAudio": "assets/audio/27245a50cacf.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8dd1.webp"
+      }
     },
     "来": {
       "pinyin": "lái",
       "word": "跑来",
       "audio": "assets/audio/e4dc66df1016.mp3",
       "wordAudio": "assets/audio/27245a50cacf.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6765.webp"
+      }
     },
     "小": {
       "pinyin": "xiǎo",
@@ -1248,7 +1263,10 @@ window.SHIZI = {
       "audio": "assets/audio/8b4e9b0c753a.mp3",
       "wordAudio": "assets/audio/a78cd8c96408.mp3",
       "status": "teaching",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.59,8.00) scale(2.4706)\"><path d=\"M 12 4 L 12 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 14 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 12 L 19 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.59,8.00) scale(2.4706)\"><path d=\"M 12 4 L 12 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 14 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 12 L 19 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      }
     },
     "上": {
       "pinyin": "shàng",
@@ -1256,49 +1274,76 @@ window.SHIZI = {
       "audio": "assets/audio/2bddc5c632a5.mp3",
       "wordAudio": "assets/audio/da2ef721c89c.mp3",
       "status": "teaching",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,27.69) scale(2.6250)\"><path d=\"M 9 4 L 23 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 9 L 12 13 L 21 13 L 28 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/shang.webp"
+      }
     },
     "边": {
       "pinyin": "biān",
       "word": "边上",
       "audio": "assets/audio/7e7e48c6a0e2.mp3",
       "wordAudio": "assets/audio/18f191d2e1cb.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8fb9.webp"
+      }
     },
     "有": {
       "pinyin": "yǒu",
       "word": "有人",
       "audio": "assets/audio/069cd32344c4.mp3",
       "wordAudio": "assets/audio/5b8907d154f6.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6709.webp"
+      }
     },
     "撞": {
       "pinyin": "zhuàng",
       "word": "撞树",
       "audio": "assets/audio/11bb0c7b7a73.mp3",
       "wordAudio": "assets/audio/7a53db39af08.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u649e.webp"
+      }
     },
     "他": {
       "pinyin": "tā",
       "word": "他们",
       "audio": "assets/audio/3518ca24226a.mp3",
       "wordAudio": "assets/audio/f43eb9b482b6.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4ed6.webp"
+      }
     },
     "等": {
       "pinyin": "děng",
       "word": "等等",
       "audio": "assets/audio/41c07c3c49bf.mp3",
       "wordAudio": "assets/audio/4a8aa91e8ea4.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7b49.webp"
+      }
     },
     "没": {
       "pinyin": "méi",
       "word": "没有",
       "audio": "assets/audio/2ae1f74dd71c.mp3",
       "wordAudio": "assets/audio/a3a1409aa7e0.mp3",
-      "status": "teaching"
+      "status": "teaching",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6ca1.webp"
+      }
     },
     "天": {
       "pinyin": "tiān",
@@ -1319,35 +1364,55 @@ window.SHIZI = {
       "word": "天亮",
       "audio": "assets/audio/0e349b017aa7.mp3",
       "wordAudio": "assets/audio/92c643b173f5.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4eae.webp"
+      }
     },
     "农": {
       "pinyin": "nóng",
       "word": "农夫",
       "audio": "assets/audio/974808f23e26.mp3",
       "wordAudio": "assets/audio/5f37d8bc2997.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u519c.webp"
+      }
     },
     "夫": {
       "pinyin": "fū",
       "word": "农夫",
       "audio": "assets/audio/836c3e726006.mp3",
       "wordAudio": "assets/audio/5f37d8bc2997.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u592b.webp"
+      }
     },
     "就": {
       "pinyin": "jiù",
       "word": "就是",
       "audio": "assets/audio/70a89e9caedb.mp3",
       "wordAudio": "assets/audio/f7afd72121c2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5c31.webp"
+      }
     },
     "到": {
       "pinyin": "dào",
       "word": "来到",
       "audio": "assets/audio/77f21e7bc557.mp3",
       "wordAudio": "assets/audio/7bce5e930a87.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5230.webp"
+      }
     },
     "田": {
       "pinyin": "tián",
@@ -1355,28 +1420,43 @@ window.SHIZI = {
       "audio": "assets/audio/64f54dbda9ca.mp3",
       "wordAudio": "assets/audio/ce67bb6fa740.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.60,8.00) scale(2.8000)\"><path d=\"M 4 4 L 4 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 4 L 17 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 5 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 26 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 11 L 17 11\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 18 L 17 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 5 L 7 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 5 L 12 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.60,8.00) scale(2.8000)\"><path d=\"M 4 4 L 4 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 4 L 17 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 5 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 26 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 11 L 17 11\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 18 L 17 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 5 L 7 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 5 L 12 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      }
     },
     "里": {
       "pinyin": "lǐ",
       "word": "里面",
       "audio": "assets/audio/f86c1f7575bb.mp3",
       "wordAudio": "assets/audio/71a98078f771.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u91cc.webp"
+      }
     },
     "挥": {
       "pinyin": "huī",
       "word": "挥手",
       "audio": "assets/audio/50788065050a.mp3",
       "wordAudio": "assets/audio/6a5764ec5cbc.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6325.webp"
+      }
     },
     "着": {
       "pinyin": "zhe",
       "word": "住着",
       "audio": "assets/audio/3f7d51a8cfe1.mp3",
       "wordAudio": "assets/audio/add1acaf25a4.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7740.webp"
+      }
     },
     "锄": {
       "pinyin": "chú",
@@ -1397,7 +1477,11 @@ window.SHIZI = {
       "word": "一个",
       "audio": "assets/audio/3db0a231c27d.mp3",
       "wordAudio": "assets/audio/e42739e63902.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4e00.webp"
+      }
     },
     "下": {
       "pinyin": "xià",
@@ -1405,49 +1489,76 @@ window.SHIZI = {
       "audio": "assets/audio/f596aa9f9929.mp3",
       "wordAudio": "assets/audio/e2090d9be69b.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,28.32) scale(2.7097)\"><path d=\"M 4 8 L 12 4 L 20 4 L 27 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.033\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 12 L 21 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.033\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/xia.webp"
+      }
     },
     "草": {
       "pinyin": "cǎo",
       "word": "小草",
       "audio": "assets/audio/f34eb8a0f0b7.mp3",
       "wordAudio": "assets/audio/1ed37aea2dff.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/cao.webp"
+      }
     },
     "忽": {
       "pinyin": "hū",
       "word": "忽然",
       "audio": "assets/audio/440f245023c4.mp3",
       "wordAudio": "assets/audio/152f497f24a4.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5ffd.webp"
+      }
     },
     "然": {
       "pinyin": "rán",
       "word": "忽然",
       "audio": "assets/audio/2e440a9ecf5f.mp3",
       "wordAudio": "assets/audio/152f497f24a4.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7136.webp"
+      }
     },
     "只": {
       "pinyin": "zhī",
       "word": "一只",
       "audio": "assets/audio/0313fa4e5dd2.mp3",
       "wordAudio": "assets/audio/64a643c4e5d9.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u53ea.webp"
+      }
     },
     "白": {
       "pinyin": "bái",
       "word": "白色",
       "audio": "assets/audio/3bc4ed9414a8.mp3",
       "wordAudio": "assets/audio/6a2eccaeb0c2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u767d.webp"
+      }
     },
     "从": {
       "pinyin": "cóng",
       "word": "从来",
       "audio": "assets/audio/8c6c98dd8900.mp3",
       "wordAudio": "assets/audio/9a2c479b52e4.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4ece.webp"
+      }
     },
     "林": {
       "pinyin": "lín",
@@ -1455,63 +1566,98 @@ window.SHIZI = {
       "audio": "assets/audio/5441ece0d7d4.mp3",
       "wordAudio": "assets/audio/5a77d14a4398.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(17.60,8.00) scale(2.4000)\"><path d=\"M 9 7 L 9 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 10 L 9 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 7 L 9 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 16 L 4 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 16 L 14 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 4 L 17 30 L 17 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 6 L 17 13\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 5 L 17 13\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 20 L 13 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 20 L 22 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.167\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/lin.webp"
+      }
     },
     "出": {
       "pinyin": "chū",
       "word": "出来",
       "audio": "assets/audio/04241dc66610.mp3",
       "wordAudio": "assets/audio/3a7765f1cda3.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u51fa.webp"
+      }
     },
     "得": {
       "pinyin": "de",
       "word": "跑得快",
       "audio": "assets/audio/3a3e1b2385db.mp3",
       "wordAudio": "assets/audio/b9531d0ad154.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5f97.webp"
+      }
     },
     "飞": {
       "pinyin": "fēi",
       "word": "飞快",
       "audio": "assets/audio/f482fa4a88fe.mp3",
       "wordAudio": "assets/audio/917a5eaeba7e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u98de.webp"
+      }
     },
     "快": {
       "pinyin": "kuài",
       "word": "飞快",
       "audio": "assets/audio/d287f087589e.mp3",
       "wordAudio": "assets/audio/917a5eaeba7e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5feb.webp"
+      }
     },
     "子": {
       "pinyin": "zǐ",
       "word": "兔子",
       "audio": "assets/audio/ad9ba70487f2.mp3",
       "wordAudio": "assets/audio/af7eea29047e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5b50.webp"
+      }
     },
     "看": {
       "pinyin": "kàn",
       "word": "看见",
       "audio": "assets/audio/caf0bea463f3.mp3",
       "wordAudio": "assets/audio/e59c233b0f3c.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u770b.webp"
+      }
     },
     "路": {
       "pinyin": "lù",
       "word": "走路",
       "audio": "assets/audio/81b026c34411.mp3",
       "wordAudio": "assets/audio/311f6f21f307.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8def.webp"
+      }
     },
     "在": {
       "pinyin": "zài",
       "word": "现在",
       "audio": "assets/audio/d0a68d810d9e.mp3",
       "wordAudio": "assets/audio/5b0260278e8a.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5728.webp"
+      }
     },
     "桩": {
       "pinyin": "zhuāng",
@@ -1525,84 +1671,132 @@ window.SHIZI = {
       "word": "倒下",
       "audio": "assets/audio/f4901bc3f1ea.mp3",
       "wordAudio": "assets/audio/162057a67340.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5012.webp"
+      }
     },
     "地": {
       "pinyin": "dì",
       "word": "地上",
       "audio": "assets/audio/a5ae7f848456.mp3",
       "wordAudio": "assets/audio/57977e141e6e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5730.webp"
+      }
     },
     "不": {
       "pinyin": "bù",
       "word": "不要",
       "audio": "assets/audio/54da86acee43.mp3",
       "wordAudio": "assets/audio/96de14b1a941.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4e0d.webp"
+      }
     },
     "动": {
       "pinyin": "dòng",
       "word": "不动",
       "audio": "assets/audio/3583fef0df21.mp3",
       "wordAudio": "assets/audio/b1753f45b247.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u52a8.webp"
+      }
     },
     "了": {
       "pinyin": "le",
       "word": "好了",
       "audio": "assets/audio/971f9791cb4b.mp3",
       "wordAudio": "assets/audio/737cd539dae9.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4e86.webp"
+      }
     },
     "过": {
       "pinyin": "guò",
       "word": "过来",
       "audio": "assets/audio/155d758e198d.mp3",
       "wordAudio": "assets/audio/c8a81245173b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8fc7.webp"
+      }
     },
     "去": {
       "pinyin": "qù",
       "word": "回去",
       "audio": "assets/audio/21ddfab01d6f.mp3",
       "wordAudio": "assets/audio/18a83b1487d2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u53bb.webp"
+      }
     },
     "捡": {
       "pinyin": "jiǎn",
       "word": "捡起",
       "audio": "assets/audio/0213d4d8e976.mp3",
       "wordAudio": "assets/audio/56f14bec8ec8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6361.webp"
+      }
     },
     "起": {
       "pinyin": "qǐ",
       "word": "起来",
       "audio": "assets/audio/ca7ab928654e.mp3",
       "wordAudio": "assets/audio/c82ecc192f15.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8d77.webp"
+      }
     },
     "抱": {
       "pinyin": "bào",
       "word": "抱起",
       "audio": "assets/audio/8d9d3cf1f2b8.mp3",
       "wordAudio": "assets/audio/a6218f2be618.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u62b1.webp"
+      }
     },
     "怀": {
       "pinyin": "huái",
       "word": "怀里",
       "audio": "assets/audio/29b9cd64551c.mp3",
       "wordAudio": "assets/audio/ce6d1222bb14.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6000.webp"
+      }
     },
     "笑": {
       "pinyin": "xiào",
       "word": "笑脸",
       "audio": "assets/audio/d48a0a05510f.mp3",
       "wordAudio": "assets/audio/ae9c845703d8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7b11.webp"
+      }
     },
     "合": {
       "pinyin": "hé",
@@ -1616,91 +1810,143 @@ window.SHIZI = {
       "word": "嘴巴",
       "audio": "assets/audio/d22a41e1d7d2.mp3",
       "wordAudio": "assets/audio/aa2ade26a2ed.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5634.webp"
+      }
     },
     "把": {
       "pinyin": "bǎ",
       "word": "把门",
       "audio": "assets/audio/01b77e7ede3d.mp3",
       "wordAudio": "assets/audio/fd3ea608bea8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u628a.webp"
+      }
     },
     "放": {
       "pinyin": "fàng",
       "word": "放下",
       "audio": "assets/audio/2237c13a78b4.mp3",
       "wordAudio": "assets/audio/a560819e3975.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u653e.webp"
+      }
     },
     "坐": {
       "pinyin": "zuò",
       "word": "坐下",
       "audio": "assets/audio/98242b87175d.mp3",
       "wordAudio": "assets/audio/423e95a5f81a.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5750.webp"
+      }
     },
     "旁": {
       "pinyin": "páng",
       "word": "旁边",
       "audio": "assets/audio/90d11a701669.mp3",
       "wordAudio": "assets/audio/6caccaaa93a2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u65c1.webp"
+      }
     },
     "再": {
       "pinyin": "zài",
       "word": "再来",
       "audio": "assets/audio/c290d469b20d.mp3",
       "wordAudio": "assets/audio/839e22c635af.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u518d.webp"
+      }
     },
     "也": {
       "pinyin": "yě",
       "word": "也好",
       "audio": "assets/audio/15f58d6a1dca.mp3",
       "wordAudio": "assets/audio/1d5af9341fa3.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4e5f.webp"
+      }
     },
     "长": {
       "pinyin": "zhǎng",
       "word": "长高",
       "audio": "assets/audio/5371ebc0b445.mp3",
       "wordAudio": "assets/audio/24a31ac91af7.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u957f.webp"
+      }
     },
     "满": {
       "pinyin": "mǎn",
       "word": "满身",
       "audio": "assets/audio/2d8bcbeb94a4.mp3",
       "wordAudio": "assets/audio/393dac0814c7.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6ee1.webp"
+      }
     },
     "野": {
       "pinyin": "yě",
       "word": "野草",
       "audio": "assets/audio/f01dae0f0e96.mp3",
       "wordAudio": "assets/audio/76fa747a1393.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u91ce.webp"
+      }
     },
     "邻": {
       "pinyin": "lín",
       "word": "邻居",
       "audio": "assets/audio/475776f07e2c.mp3",
       "wordAudio": "assets/audio/ae79ea74f7ac.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u90bb.webp"
+      }
     },
     "居": {
       "pinyin": "jū",
       "word": "邻居",
       "audio": "assets/audio/c780f61a49c7.mp3",
       "wordAudio": "assets/audio/ae79ea74f7ac.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5c45.webp"
+      }
     },
     "都": {
       "pinyin": "dōu",
       "word": "都是",
       "audio": "assets/audio/1c5034ca1f18.mp3",
       "wordAudio": "assets/audio/918c31c04539.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u90fd.webp"
+      }
     },
     "傻": {
       "pinyin": "shǎ",
@@ -1714,70 +1960,110 @@ window.SHIZI = {
       "word": "红脸",
       "audio": "assets/audio/de40d7a9422f.mp3",
       "wordAudio": "assets/audio/366ea698b99b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7ea2.webp"
+      }
     },
     "脸": {
       "pinyin": "liǎn",
       "word": "红脸",
       "audio": "assets/audio/8bac26c62432.mp3",
       "wordAudio": "assets/audio/366ea698b99b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8138.webp"
+      }
     },
     "重": {
       "pinyin": "chóng",
       "word": "重新",
       "audio": "assets/audio/195701dbbf10.mp3",
       "wordAudio": "assets/audio/f605facf2ac5.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u91cd.webp"
+      }
     },
     "新": {
       "pinyin": "xīn",
       "word": "重新",
       "audio": "assets/audio/a0a22882c160.mp3",
       "wordAudio": "assets/audio/f605facf2ac5.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u65b0.webp"
+      }
     },
     "拿": {
       "pinyin": "ná",
       "word": "拿起",
       "audio": "assets/audio/bb4d07ab3845.mp3",
       "wordAudio": "assets/audio/900803d22add.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u62ff.webp"
+      }
     },
     "清": {
       "pinyin": "qīng",
       "word": "清水",
       "audio": "assets/audio/fd32e28665d1.mp3",
       "wordAudio": "assets/audio/b2fd90c7f2b8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6e05.webp"
+      }
     },
     "的": {
       "pinyin": "de",
       "word": "我的",
       "audio": "assets/audio/aad9f589abee.mp3",
       "wordAudio": "assets/audio/44cc7d0de9fc.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7684.webp"
+      }
     },
     "河": {
       "pinyin": "hé",
       "word": "小河",
       "audio": "assets/audio/3e1d1d48b972.mp3",
       "wordAudio": "assets/audio/d72a0c33beaa.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6cb3.webp"
+      }
     },
     "住": {
       "pinyin": "zhù",
       "word": "住下",
       "audio": "assets/audio/1924f22c80aa.mp3",
       "wordAudio": "assets/audio/6309082c81b3.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4f4f.webp"
+      }
     },
     "条": {
       "pinyin": "tiáo",
       "word": "一条",
       "audio": "assets/audio/29a3fcddbb14.mp3",
       "wordAudio": "assets/audio/92e1216a907d.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6761.webp"
+      }
     },
     "鲤": {
       "pinyin": "lǐ",
@@ -1792,21 +2078,32 @@ window.SHIZI = {
       "audio": "assets/audio/b74793c03818.mp3",
       "wordAudio": "assets/audio/547f69624ece.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.92,8.00) scale(2.1538)\"><path d=\"M 10 4 L 10 7\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 6 L 16 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 9 L 18 7 L 18 8 L 12 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 14 L 11 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 13 L 15 18 L 11 22 L 8 24 L 8 28 L 9 33 L 10 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 18 L 19 24 L 18 27 L 17 31 L 20 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 23 L 18 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 27 L 19 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 30 L 17 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 22 L 13 31 L 11 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 31 L 16 33 L 18 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 25 L 5 27 L 4 33\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 31 L 8 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 19 25 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 26 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 29 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.92,8.00) scale(2.1538)\"><path d=\"M 10 4 L 10 7\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 6 L 16 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 9 L 18 7 L 18 8 L 12 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 14 L 11 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 13 L 15 18 L 11 22 L 8 24 L 8 28 L 9 33 L 10 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 18 L 19 24 L 18 27 L 17 31 L 20 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 23 L 18 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 27 L 19 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 30 L 17 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 22 L 13 31 L 11 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 31 L 16 33 L 18 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 25 L 5 27 L 4 33\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 31 L 8 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 19 25 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 26 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 29 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      }
     },
     "游": {
       "pinyin": "yóu",
       "word": "游水",
       "audio": "assets/audio/24a4aab96970.mp3",
       "wordAudio": "assets/audio/5b7afea43de8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6e38.webp"
+      }
     },
     "妈": {
       "pinyin": "mā",
       "word": "妈妈",
       "audio": "assets/audio/d247aa89a849.mp3",
       "wordAudio": "assets/audio/e91d1732bf41.mp3",
-      "status": "known"
+      "status": "known",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5988.webp"
+      }
     },
     "告": {
       "pinyin": "gào",
@@ -1820,7 +2117,11 @@ window.SHIZI = {
       "word": "告诉",
       "audio": "assets/audio/fb164e790667.mp3",
       "wordAudio": "assets/audio/046458361d1f.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8bc9.webp"
+      }
     },
     "山": {
       "pinyin": "shān",
@@ -1828,14 +2129,21 @@ window.SHIZI = {
       "audio": "assets/audio/4f19ef15f520.mp3",
       "wordAudio": "assets/audio/c8e3aeb01b29.mp3",
       "status": "known",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(8.00,18.14) scale(2.8966)\"><path d=\"M 4 18 L 25 18 L 24 4 L 18 17 L 13 5 L 10 17 L 6 9 L 5 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"0.967\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/shan.webp"
+      }
     },
     "龙": {
       "pinyin": "lóng",
       "word": "龙门",
       "audio": "assets/audio/c51934cbacf8.mp3",
       "wordAudio": "assets/audio/55c656552968.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u9f99.webp"
+      }
     },
     "门": {
       "pinyin": "mén",
@@ -1843,14 +2151,21 @@ window.SHIZI = {
       "audio": "assets/audio/32d830d3ebf5.mp3",
       "wordAudio": "assets/audio/107b8eb94827.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.12,8.00) scale(2.6250)\"><path d=\"M 4 4 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 28 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 8 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 13 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 4 L 18 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 8 L 9 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 15 L 9 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 22 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 18 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 15 L 18 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 22 L 18 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/men.webp"
+      }
     },
     "跳": {
       "pinyin": "tiào",
       "word": "跳高",
       "audio": "assets/audio/f4fcc8b98043.mp3",
       "wordAudio": "assets/audio/7db6e28fcd93.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u8df3.webp"
+      }
     },
     "能": {
       "pinyin": "néng",
@@ -1864,28 +2179,44 @@ window.SHIZI = {
       "word": "变化",
       "audio": "assets/audio/35b1c1828ef7.mp3",
       "wordAudio": "assets/audio/e77bc8199dbc.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u53d8.webp"
+      }
     },
     "成": {
       "pinyin": "chéng",
       "word": "变成",
       "audio": "assets/audio/7033661d9ee2.mp3",
       "wordAudio": "assets/audio/7080175b5c52.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6210.webp"
+      }
     },
     "别": {
       "pinyin": "bié",
       "word": "告别",
       "audio": "assets/audio/737a7386cf52.mp3",
       "wordAudio": "assets/audio/ec0bdc6ed1a2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u522b.webp"
+      }
     },
     "顺": {
       "pinyin": "shùn",
       "word": "顺着",
       "audio": "assets/audio/c0d99983ace7.mp3",
       "wordAudio": "assets/audio/ee1658835eb2.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u987a.webp"
+      }
     },
     "水": {
       "pinyin": "shuǐ",
@@ -1893,35 +2224,54 @@ window.SHIZI = {
       "audio": "assets/audio/7d800fbf3b89.mp3",
       "wordAudio": "assets/audio/429faddb947f.mp3",
       "status": "known",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 6 7 L 5 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 4 L 9 12 L 13 21 L 9 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 20 L 4 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 8 L 15 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 16 22 L 15 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/shui.webp"
+      }
     },
     "直": {
       "pinyin": "zhí",
       "word": "一直",
       "audio": "assets/audio/9e0e596a6f5c.mp3",
       "wordAudio": "assets/audio/5ff4f15ca20a.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u76f4.webp"
+      }
     },
     "用": {
       "pinyin": "yòng",
       "word": "用力",
       "audio": "assets/audio/ffe6a3e69ba9.mp3",
       "wordAudio": "assets/audio/a95766c8f87e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7528.webp"
+      }
     },
     "力": {
       "pinyin": "lì",
       "word": "力气",
       "audio": "assets/audio/21b4d88c6be5.mp3",
       "wordAudio": "assets/audio/793c1d9eaee3.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u529b.webp"
+      }
     },
     "往": {
       "pinyin": "wǎng",
       "word": "往前",
       "audio": "assets/audio/3262c470be8f.mp3",
       "wordAudio": "assets/audio/be9d074aaf74.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5f80.webp"
+      }
     },
     "大": {
       "pinyin": "dà",
@@ -1929,7 +2279,10 @@ window.SHIZI = {
       "audio": "assets/audio/7064b14aa907.mp3",
       "wordAudio": "assets/audio/80305216091b.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(18.50,8.00) scale(2.3333)\"><path d=\"M 13 4 L 13 20 L 8 24 L 6 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 18 23 L 19 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 16 L 13 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 8 L 19 11 L 23 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/da.webp"
+      }
     },
     "浪": {
       "pinyin": "làng",
@@ -1943,28 +2296,44 @@ window.SHIZI = {
       "word": "打水",
       "audio": "assets/audio/cabeca792710.mp3",
       "wordAudio": "assets/audio/42391af22bb5.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6253.webp"
+      }
     },
     "次": {
       "pinyin": "cì",
       "word": "一次",
       "audio": "assets/audio/d270a73bedf0.mp3",
       "wordAudio": "assets/audio/6a5a7f0b87fe.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6b21.webp"
+      }
     },
     "点": {
       "pinyin": "diǎn",
       "word": "一点",
       "audio": "assets/audio/e78751e72c3a.mp3",
       "wordAudio": "assets/audio/d2ccc1304007.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u70b9.webp"
+      }
     },
     "怕": {
       "pinyin": "pà",
       "word": "不怕",
       "audio": "assets/audio/65d7e3ea0609.mp3",
       "wordAudio": "assets/audio/605a3ce30ce7.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6015.webp"
+      }
     },
     "尽": {
       "pinyin": "jìn",
@@ -1978,7 +2347,11 @@ window.SHIZI = {
       "word": "全部",
       "audio": "assets/audio/72870bac7f07.mp3",
       "wordAudio": "assets/audio/239886dcea3e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5168.webp"
+      }
     },
     "身": {
       "pinyin": "shēn",
@@ -1992,21 +2365,33 @@ window.SHIZI = {
       "word": "力气",
       "audio": "assets/audio/e2d6a0a02c00.mp3",
       "wordAudio": "assets/audio/793c1d9eaee3.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6c14.webp"
+      }
     },
     "向": {
       "pinyin": "xiàng",
       "word": "向前",
       "audio": "assets/audio/44bcef3a2e20.mp3",
       "wordAudio": "assets/audio/835d32566463.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5411.webp"
+      }
     },
     "前": {
       "pinyin": "qián",
       "word": "前面",
       "audio": "assets/audio/a41e2adcb7ef.mp3",
       "wordAudio": "assets/audio/b6681aa271da.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u524d.webp"
+      }
     },
     "纵": {
       "pinyin": "zòng",
@@ -2020,21 +2405,33 @@ window.SHIZI = {
       "word": "终于",
       "audio": "assets/audio/435686cbf112.mp3",
       "wordAudio": "assets/audio/3a6222b5417b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7ec8.webp"
+      }
     },
     "于": {
       "pinyin": "yú",
       "word": "终于",
       "audio": "assets/audio/7cc0acb0f585.mp3",
       "wordAudio": "assets/audio/3a6222b5417b.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u4e8e.webp"
+      }
     },
     "那": {
       "pinyin": "nà",
       "word": "那边",
       "audio": "assets/audio/ed5f83e6eca0.mp3",
       "wordAudio": "assets/audio/a1681af0c971.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u90a3.webp"
+      }
     },
     "很": {
       "pinyin": "hěn",
@@ -2048,35 +2445,55 @@ window.SHIZI = {
       "word": "蓝天",
       "audio": "assets/audio/64199df014e8.mp3",
       "wordAudio": "assets/audio/2d3a4d822dc8.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u84dd.webp"
+      }
     },
     "真": {
       "pinyin": "zhēn",
       "word": "真的",
       "audio": "assets/audio/89c70d2e2b73.mp3",
       "wordAudio": "assets/audio/ddfa63c1054a.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u771f.webp"
+      }
     },
     "春": {
       "pinyin": "chūn",
       "word": "春天",
       "audio": "assets/audio/a8d085755e10.mp3",
       "wordAudio": "assets/audio/a5fa2a28e584.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u6625.webp"
+      }
     },
     "眠": {
       "pinyin": "mián",
       "word": "睡眠",
       "audio": "assets/audio/7cf6fb41f385.mp3",
       "wordAudio": "assets/audio/a26af602155e.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u7720.webp"
+      }
     },
     "觉": {
       "pinyin": "jué",
       "word": "觉得",
       "audio": "assets/audio/e60a77bdd6a0.mp3",
       "wordAudio": "assets/audio/556a2444cefe.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u89c9.webp"
+      }
     },
     "晓": {
       "pinyin": "xiǎo",
@@ -2090,14 +2507,22 @@ window.SHIZI = {
       "word": "处处",
       "audio": "assets/audio/dc8da5f6f83e.mp3",
       "wordAudio": "assets/audio/73a9de3c4f59.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5904.webp"
+      }
     },
     "闻": {
       "pinyin": "wén",
       "word": "闻见",
       "audio": "assets/audio/5b9a1b778015.mp3",
       "wordAudio": "assets/audio/a4fad592d25c.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u95fb.webp"
+      }
     },
     "啼": {
       "pinyin": "tí",
@@ -2112,14 +2537,21 @@ window.SHIZI = {
       "audio": "assets/audio/3eefa1a1e075.mp3",
       "wordAudio": "assets/audio/731764cb06a9.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.33,8.00) scale(2.3333)\"><path d=\"M 10 5 L 10 8 L 12 9 L 13 7 L 13 5 L 10 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 4 L 6 5 L 5 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 5 L 10 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 7 L 13 14 L 18 20 L 18 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 8 L 7 18 L 11 23 L 11 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 13 L 11 15 L 10 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 17 L 11 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 14 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 18 L 6 21 L 9 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 23 L 4 27 L 5 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 26 L 7 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.33,8.00) scale(2.3333)\"><path d=\"M 10 5 L 10 8 L 12 9 L 13 7 L 13 5 L 10 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 4 L 6 5 L 5 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 5 L 10 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 7 L 13 14 L 18 20 L 18 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 8 L 7 18 L 11 23 L 11 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 13 L 11 15 L 10 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 17 L 11 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 14 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 18 L 6 21 L 9 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 23 L 4 27 L 5 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 26 L 7 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      }
     },
     "夜": {
       "pinyin": "yè",
       "word": "夜里",
       "audio": "assets/audio/2e06c7fc87d3.mp3",
       "wordAudio": "assets/audio/4f957c82b5ad.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u591c.webp"
+      }
     },
     "风": {
       "pinyin": "fēng",
@@ -2134,49 +2566,76 @@ window.SHIZI = {
       "audio": "assets/audio/db6f60aaa83b.mp3",
       "wordAudio": "assets/audio/6dfe7066f782.mp3",
       "status": "planned",
-      "pictograph": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 7 4 L 14 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 15 L 7 6 L 14 6 L 16 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 6 L 11 18\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 14 L 4 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 13 L 16 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 22 L 11 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      "pictograph": {
+        "kind": "svg",
+        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 7 4 L 14 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 15 L 7 6 L 14 6 L 16 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 6 L 11 18\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 14 L 4 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 13 L 16 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 22 L 11 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+      }
     },
     "声": {
       "pinyin": "shēng",
       "word": "声音",
       "audio": "assets/audio/d75e7ab8c080.mp3",
       "wordAudio": "assets/audio/26c1ef1be642.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u58f0.webp"
+      }
     },
     "花": {
       "pinyin": "huā",
       "word": "花朵",
       "audio": "assets/audio/cc10dac70727.mp3",
       "wordAudio": "assets/audio/ee42c46e4b16.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/hua.webp"
+      }
     },
     "落": {
       "pinyin": "luò",
       "word": "落下",
       "audio": "assets/audio/ef5e042a4b69.mp3",
       "wordAudio": "assets/audio/0c6adca6c030.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u843d.webp"
+      }
     },
     "知": {
       "pinyin": "zhī",
       "word": "知道",
       "audio": "assets/audio/bc710d392e83.mp3",
       "wordAudio": "assets/audio/49d1dd4d3552.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u77e5.webp"
+      }
     },
     "多": {
       "pinyin": "duō",
       "word": "多少",
       "audio": "assets/audio/86ff72e1e1cc.mp3",
       "wordAudio": "assets/audio/d5e9fb73ab3f.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u591a.webp"
+      }
     },
     "少": {
       "pinyin": "shǎo",
       "word": "多少",
       "audio": "assets/audio/8b58ed302d7d.mp3",
       "wordAudio": "assets/audio/d5e9fb73ab3f.mp3",
-      "status": "planned"
+      "status": "planned",
+      "pictograph": {
+        "kind": "img",
+        "src": "assets/cards/u5c11.webp"
+      }
     }
   },
   "totalChars": 136

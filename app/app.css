@@ -295,10 +295,11 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 .b-glyph{font-family:var(--hanzi);font-size:150px;line-height:1;color:var(--ink)}
 .b-face{display:flex;align-items:center;justify-content:center;min-height:150px}
 .b-pic{
-  display:block;width:min(46vw,232px);height:min(46vw,232px);
+  display:flex;align-items:center;justify-content:center;
   animation:picIn .28s cubic-bezier(.2,.8,.2,1) both;
 }
-.b-pic svg{display:block;width:100%;height:100%}
+.b-pic svg{display:block;width:min(42vw,210px);height:min(42vw,210px)}
+.b-pic img{display:block;width:min(48vw,236px);height:auto;border-radius:14px}
 @keyframes picIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
 .b-hint{font-size:12px;color:#B0A48E;margin-top:12px;letter-spacing:.04em}
 .bigcard{cursor:pointer}
@@ -357,7 +358,8 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
   .judge{font-size:10px;padding:2px 5px}
   .lab{font-size:10px;padding:2px 3px}
   .bigcard{padding:20px 32px 16px}
-  .b-pic{width:min(58vw,208px);height:min(58vw,208px)}
+  .b-pic svg{width:min(52vw,180px);height:min(52vw,180px)}
+  .b-pic img{width:min(58vw,196px)}
   .option{font-size:46px}
   .foot{padding-top:18px}
 }
