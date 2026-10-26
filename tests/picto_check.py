@@ -74,6 +74,20 @@ def main() -> int:
         assert not pg.locator("#bigPic").is_visible(), "无图时不该显示空图片"
         print("✓ 无象形图的字：不显示提示，点击也不切换")
 
+        # ---- 补齐的 6 个字必须都是卡片图，不能再退回甲骨文 ----
+        kinds = pg.evaluate("""() => {
+          const out = {};
+          for (const ch of ['小','雨','门','田','鸟','鱼']) {
+            const p = SHIZI.chars[ch] && SHIZI.chars[ch].pictograph;
+            if (p) out[ch] = p.kind;
+          }
+          return out;
+        }""")
+        assert len(kinds) == 6, f"这 6 个字应都有象形图，实际 {kinds}"
+        bad = [ch for ch, k in kinds.items() if k != "img"]
+        assert not bad, f"这些字仍是甲骨文兜底：{bad}"
+        print(f"✓ 补卡：{' '.join(kinds)} 均为图片卡")
+
         assert not errors, f"页面报错：{errors}"
         b.close()
         return 0

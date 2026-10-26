@@ -1264,8 +1264,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/a78cd8c96408.mp3",
       "status": "teaching",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.59,8.00) scale(2.4706)\"><path d=\"M 12 4 L 12 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 14 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 12 L 19 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.133\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/xiao.webp"
       }
     },
     "上": {
@@ -1421,8 +1421,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/ce67bb6fa740.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.60,8.00) scale(2.8000)\"><path d=\"M 4 4 L 4 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 4 L 17 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 5 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 26 L 17 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 11 L 17 11\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 18 L 17 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 5 L 7 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 12 5 L 12 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.000\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/tian.webp"
       }
     },
     "里": {
@@ -2075,8 +2075,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/547f69624ece.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(20.92,8.00) scale(2.1538)\"><path d=\"M 10 4 L 10 7\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 6 L 16 12\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 9 L 18 7 L 18 8 L 12 16\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 14 L 11 19\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 13 L 15 18 L 11 22 L 8 24 L 8 28 L 9 33 L 10 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 15 18 L 19 24 L 18 27 L 17 31 L 20 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 23 L 18 23\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 27 L 19 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 30 L 17 30\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 22 L 13 31 L 11 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 31 L 16 33 L 18 35\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 25 L 5 27 L 4 33\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 31 L 8 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 19 25 L 22 27\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 23 26 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 17 29 L 22 31\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.300\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/yu2.webp"
       }
     },
     "游": {
@@ -2148,8 +2148,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/107b8eb94827.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(21.12,8.00) scale(2.6250)\"><path d=\"M 4 4 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 28 L 4 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 9 8 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 13 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 18 4 L 18 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 8 L 9 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 15 L 9 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 4 22 L 9 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 8 L 18 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 15 L 18 15\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 22 L 18 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.067\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/men.webp"
       }
     },
     "跳": {
@@ -2530,8 +2530,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/731764cb06a9.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.33,8.00) scale(2.3333)\"><path d=\"M 10 5 L 10 8 L 12 9 L 13 7 L 13 5 L 10 5\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 4 L 6 5 L 5 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 5 L 10 8\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 7 L 13 14 L 18 20 L 18 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 8 L 7 18 L 11 23 L 11 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 10 13 L 11 15 L 10 17\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 14 17 L 11 22\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 19 L 14 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 18 L 6 21 L 9 26\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 7 23 L 4 27 L 5 32\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 6 26 L 7 28\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.200\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/niao.webp"
       }
     },
     "夜": {
@@ -2559,8 +2559,8 @@ window.SHIZI = {
       "wordAudio": "assets/audio/6dfe7066f782.mp3",
       "status": "planned",
       "pictograph": {
-        "kind": "svg",
-        "src": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" role=\"img\" aria-hidden=\"true\"><g transform=\"translate(24.55,8.00) scale(2.5455)\"><path d=\"M 7 4 L 14 4\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 5 15 L 7 6 L 14 6 L 16 14\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 6 L 11 18\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 8 14 L 4 25\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 13 13 L 16 24\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 11 22 L 11 29\" fill=\"none\" stroke=\"#3B352C\" stroke-width=\"1.100\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g></svg>"
+        "kind": "img",
+        "src": "assets/cards/yu.webp"
       }
     },
     "声": {

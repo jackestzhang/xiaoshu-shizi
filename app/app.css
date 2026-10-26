@@ -298,7 +298,12 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
   display:flex;align-items:center;justify-content:center;
   animation:picIn .28s cubic-bezier(.2,.8,.2,1) both;
 }
-.b-pic svg{display:block;width:min(42vw,210px);height:min(42vw,210px)}
+.b-pic svg{
+  display:block;width:min(42vw,210px);height:min(42vw,210px);
+  /* 甲骨文兜底：加米色圆底，视觉上靠近卡片，避免黑白线条突兀 */
+  background:#FBF6EC;border-radius:16px;padding:9px;box-sizing:border-box;
+  box-shadow:inset 0 0 0 1px rgba(160,140,110,.16);
+}
 .b-pic img{display:block;width:min(48vw,236px);height:auto;border-radius:14px}
 @keyframes picIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
 .b-hint{font-size:12px;color:#B0A48E;margin-top:12px;letter-spacing:.04em}
