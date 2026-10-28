@@ -66,9 +66,14 @@ def main() -> int:
         pg.wait_for_timeout(200)
         assert pg.locator("#bigWrap").is_visible(), "长按没有弹出大字"
         assert pg.locator("#bigGlyph").inner_text() == "草"
-        n_tap = len([e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "tap" and e["ch"] == "草"])
-        assert n_tap == 0, "长按不应产生 tap"
-        print("✓ 长按：出大字，tap 数仍为 0")
+        # 按下即出声，所以长按会先落一条 tap；报表口径要把这条扣掉
+        row = pg.evaluate("""() => {
+          const rep = ShiziTrack.stats(SHIZI.lessons, SHIZI.chars, ShiziTrack.labels());
+          return rep.rows.find(r => r.ch === "草") || null;
+        }""")
+        assert row is not None, "报表里没有「草」"
+        assert row["taps"] == 0, f"长按不应计入点读，实际 taps={row['taps']}"
+        print("✓ 长按：出大字，报表里点读次数仍为 0")
         pg.screenshot(path=str(SHOTS / "02-bigchar.png"))
         pg.mouse.click(20, 20)
         pg.wait_for_timeout(300)

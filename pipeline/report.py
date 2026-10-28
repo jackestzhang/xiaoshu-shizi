@@ -36,13 +36,33 @@ def compute(lessons: list[dict], char_meta: dict, labels: dict, events: list[dic
     bad = {sid for sid, s in sess.items() if s["dur"] is not None and s["dur"] < 50 and s["taps"] == 0}
     kept = [e for e in events if not (e["kind"] == "exp" and e["sid"] in bad)]
 
+    # 长按前必然先有一次按下（已记 tap），那条不算点读，按 800ms 内同字配对扣掉。
+    # 口径必须和 app/track.js 完全一致，否则前后端报表比对会失败。
+    long_taps: set[int] = set()
+    pend: dict[str, list[tuple[int, float]]] = {}
+    for idx, e in enumerate(kept):
+        ch = e.get("ch")
+        if not ch:
+            continue
+        if e["kind"] == "tap":
+            pend.setdefault(ch, []).append((idx, e.get("ts", 0)))
+        elif e["kind"] == "long":
+            arr = pend.get(ch, [])
+            for i in range(len(arr) - 1, -1, -1):
+                if e.get("ts", 0) - arr[i][1] <= 800:
+                    long_taps.add(arr[i][0])
+                    arr.pop(i)
+                    break
+
     chars = common.unique([ch for l in lessons for ch in common.lesson_chars(l)])
     rows = {ch: {"ch": ch, "exp": 0, "taps": 0, "days": set(), "perSid": {}, "quizN": 0, "quizOK": 0, "last": 0}
             for ch in chars}
     lats = []
-    for e in kept:
+    for idx, e in enumerate(kept):
         ch = e.get("ch")
         if not ch or ch not in rows:
+            continue
+        if idx in long_taps:
             continue
         m = rows[ch]
         if e["kind"] == "exp":

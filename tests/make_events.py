@@ -70,6 +70,15 @@ def main() -> None:
     for ok in (False, False):
         add("quiz", "s5", d5 + timedelta(seconds=150), lesson="L03", page=0, ch="兔", ok=ok)
 
+    # 第 5 天：长按看大字。按下会先落一条 tap，420ms 后触发 long。
+    # 报表里这条 tap 要扣掉，否则点击率虚高——这里正好压住这条口径。
+    d6 = base + timedelta(days=4)
+    add("start", "s6", d6)
+    add("exp", "s6", d6 + timedelta(seconds=1), lesson="L03", page=1, ch="水")
+    add("tap", "s6", d6 + timedelta(seconds=2), lesson="L03", page=1, ch="水", lat=28)
+    add("long", "s6", d6 + timedelta(seconds=2, milliseconds=430), lesson="L03", page=1, ch="水")
+    add("end", "s6", d6 + timedelta(seconds=6), dur=6000)
+
     payload = {
         "version": 1,
         "exportedAt": "2026-10-18T12:00:00.000Z",

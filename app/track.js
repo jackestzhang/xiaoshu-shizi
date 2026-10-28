@@ -119,6 +119,22 @@
     const bad = new Set(Object.keys(sess).filter(s => sess[s].dur != null && sess[s].dur < 50 && sess[s].taps === 0));
     const kept = all.filter(e => !(e.kind === "exp" && bad.has(e.sid)));
 
+    // 长按前必然先有一次按下，也就是一条 tap。那条不是"点读"，是"按住看大字"，
+    // 要从点击里扣掉，否则点击率会虚高。按 800ms 内的同字配对。
+    const longTaps = new Set();
+    const pend = {};
+    kept.forEach(e => {
+      if (!e.ch) return;
+      if (e.kind === "tap") {
+        (pend[e.ch] = pend[e.ch] || []).push(e);
+      } else if (e.kind === "long") {
+        const arr = pend[e.ch] || [];
+        for (let i = arr.length - 1; i >= 0; i--) {
+          if (e.ts - arr[i].ts <= 800) { longTaps.add(arr[i]); arr.splice(i, 1); break; }
+        }
+      }
+    });
+
     const chars = allChars(lessons);
     const map = {};
     chars.forEach(ch => {
@@ -131,6 +147,7 @@
       const m = map[e.ch];
       if (e.kind === "exp") m.exp += 1;
       if (e.kind === "tap") {
+        if (longTaps.has(e)) return;
         m.taps += 1;
         m.perSid[e.sid] = (m.perSid[e.sid] || 0) + 1;
         if (typeof e.lat === "number") lats.push(e.lat);

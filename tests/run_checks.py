@@ -50,6 +50,10 @@ def main() -> int:
         data["events"],
     )
 
+    # 长按扣除口径：示例数据里 s6 是"按下 420ms 后长按"，那条 tap 不该算点读
+    shui = next(r for r in py["rows"] if r["ch"] == "水")
+    assert shui["taps"] == 3, f"长按对应的 tap 未扣除：水 taps={shui['taps']}，期望 3"
+
     if js == py:
         print(f"✓ 一致：{len(js['rows'])} 行 × 11 列，摘要 {js['summary']}")
     else:

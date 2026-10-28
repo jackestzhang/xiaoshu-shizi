@@ -161,43 +161,68 @@
 
   /* ---------------- 点击 / 长按 ---------------- */
 
-  function bindPress(el, onTap, onLong) {
-    let timer = null, sx = 0, sy = 0, fired = false, down = false;
+  function bindPress(el, onPress, onLong) {
+    const LONG = 420;
+    const MOVE = 24;          // 手指接触面积大，抖动容忍度比鼠标宽
+    const PALM = 80;          // 接触面积超过这个尺寸，判为手掌压屏
+    let timer = null, sx = 0, sy = 0;
+    let ownerId = null;       // 每个字各锁一个触点，互不干扰
 
-    const clear = () => { if (timer) { clearTimeout(timer); timer = null; } };
-    const cancel = () => { down = false; clear(); el.classList.remove("press"); };
+    const reset = () => {
+      if (timer) { clearTimeout(timer); timer = null; }
+      ownerId = null;
+      el.classList.remove("press");
+    };
 
     el.addEventListener("pointerdown", e => {
-      if (e.button != null && e.button > 0) return;
-      down = true; fired = false; sx = e.clientX; sy = e.clientY;
+      if (e.button != null && e.button > 0) return;      // 鼠标右键
+      // 不按 isPrimary 过滤：手掌先压到屏幕上时，后落的食指就成了非主触点，
+      // 那样孩子怎么点都没反应。改成每个字各自锁一个触点，手掌靠接触面积挡。
+      if (ownerId !== null) return;                      // 这个字已有手指在按
+      if (e.pointerType === "touch" && (e.width > PALM || e.height > PALM)) return;
+
+      ownerId = e.pointerId;
+      sx = e.clientX; sy = e.clientY;
       el.classList.add("press");
-      clear();
+
+      // 按下就出声，不等抬起。
+      // 多指触摸、手掌压屏、系统手势都会让 pointerup / pointercancel 收不到，
+      // 等抬起再播放就等于让孩子"点了没反应"。
+      if (onPress) onPress();
+
+      if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
-        fired = true; down = false; timer = null;
+        timer = null;
         el.classList.remove("press");
         if (onLong) onLong();
-      }, 420);
+      }, LONG);
     });
 
     el.addEventListener("pointermove", e => {
-      if (!down) return;
-      if (Math.abs(e.clientX - sx) > 10 || Math.abs(e.clientY - sy) > 10) cancel();
+      if (e.pointerId !== ownerId) return;
+      // 划走了就取消长按（声音已经出过，收不回来，但至少不会误弹大字卡）
+      if (Math.abs(e.clientX - sx) > MOVE || Math.abs(e.clientY - sy) > MOVE) reset();
     });
 
-    el.addEventListener("pointerup", () => {
-      if (!down) return;
-      down = false; clear(); el.classList.remove("press");
-      if (!fired) onTap();
+    el.addEventListener("pointerup", e => {
+      if (e.pointerId === ownerId) reset();
     });
 
-    el.addEventListener("pointercancel", cancel);
-    el.addEventListener("pointerleave", cancel);
+    el.addEventListener("pointercancel", e => {
+      if (e.pointerId === ownerId) reset();
+    });
+
+    // 只有鼠标才用 leave 收尾；触摸时手指稍微移出元素边界是常态
+    el.addEventListener("pointerleave", e => {
+      if (e.pointerType === "mouse" && e.pointerId === ownerId) reset();
+    });
+
     el.addEventListener("contextmenu", e => e.preventDefault());
 
     el.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        if (onTap) onTap();
+        if (onPress) onPress();
       }
     });
   }
