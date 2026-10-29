@@ -469,7 +469,7 @@
   // 文字实际占的方框（align-content:center 时 scrollHeight 不可靠，直接量子元素）
   function textExtent(box) {
     let top = Infinity, bottom = -Infinity, left = Infinity, right = -Infinity;
-    box.querySelectorAll(".phrase").forEach(p => {
+    box.querySelectorAll("button.ch,.punct").forEach(p => {
       const r = p.getBoundingClientRect();
       if (!r.width) return;
       top = Math.min(top, r.top); bottom = Math.max(bottom, r.bottom);

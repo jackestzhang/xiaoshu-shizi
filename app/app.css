@@ -191,10 +191,12 @@ button{font-family:inherit}
 @keyframes textIn{from{opacity:0}to{opacity:1}}
 .textline{
   flex:1;min-height:0;overflow:hidden;
-  display:flex;flex-wrap:wrap;align-content:center;justify-content:center;
-  gap:clamp(2px,.8vh,10px) clamp(6px,1.3vw,18px);
+  display:flex;flex-direction:column;justify-content:center;
+  text-align:center;
 }
-.phrase{display:flex;align-items:flex-end;flex-wrap:wrap;justify-content:center;column-gap:.05em}
+/* 短语不单独成块：整页按正常中文流排，行宽填满，断句才自然 */
+.phrase{display:inline}
+.phrase + .phrase{margin-left:.16em}
 button.ch,.punct{
   font-family:var(--hanzi);font-size:var(--fs,clamp(28px,4.4vh,54px));line-height:1.14;
 }
@@ -237,7 +239,7 @@ button.ch.lit{background:#F8E3B4;transform:translateY(-2px)}
 }
 @media (orientation:landscape){
   .story{
-    grid-template-columns:minmax(0,1.24fr) minmax(0,.76fr);
+    grid-template-columns:minmax(0,1fr) min(46%,560px);
     grid-template-rows:minmax(0,1fr);
   }
   .stage{grid-column:1;grid-row:1}
