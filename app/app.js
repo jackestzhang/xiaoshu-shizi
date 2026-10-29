@@ -302,10 +302,16 @@
     state.bigTimer = setTimeout(hideBig, 6000);
   }
 
+  // 长按弹卡时手指还压在字上，抬手的瞬间浏览器会补一个 click 落在浮层上，
+  // 卡片会当场被关掉。用「下一次 pointerdown」作为用户的新意图：同一次按压
+  // 补出来的 click 没有新的 pointerdown，就被吞掉。
+  let swallowBigClick = false;
+
   function showBig(ch) {
     const meta = audioFor(ch);
     if (!meta.pinyin) return;
     T.log("long", { lesson: current().id, page: pageNo(), ch });
+    swallowBigClick = true;
     bigCh = ch;
     bigMode = "char";
     bigGlyph.textContent = ch;
@@ -381,12 +387,20 @@
 
   function renderStory(lesson) {
     const page = lesson.pages[state.page];
+    // 标点跟着前一个字走：flex 布局下独立的标点会被挤到下一行开头，
+    // 变成「……田里 / ，」这种断句。塞进前一个字的按钮里就再也分不开了。
     const phrasesHtml = phrases(page.text).map(ph => {
-      const inner = Array.from(ph).map(ch => {
-        if (!HANZI.test(ch)) return '<span class="punct">' + esc(ch) + '</span>';
-        return '<button class="ch" data-ch="' + ch + '" aria-label="' + ch + '">' + ch + '</button>';
-      }).join("");
-      return '<span class="phrase">' + inner + '</span>';
+      const cs = Array.from(ph);
+      let out = "";
+      for (let i = 0; i < cs.length; i++) {
+        const ch = cs[i];
+        if (!HANZI.test(ch)) { out += '<span class="punct">' + esc(ch) + '</span>'; continue; }
+        let tail = "";
+        while (i + 1 < cs.length && !HANZI.test(cs[i + 1])) tail += cs[++i];
+        out += '<button class="ch" data-ch="' + ch + '" aria-label="' + ch + '">' + ch +
+          (tail ? '<span class="punct-in">' + esc(tail) + '</span>' : "") + '</button>';
+      }
+      return '<span class="phrase">' + out + '</span>';
     }).join("");
 
     const art = page.art && page.art.file;
@@ -394,22 +408,28 @@
       ? '<img class="art" src="' + esc(art) + '" alt="" draggable="false">'
       : artPlaceholder(page);
 
+    const nChars = charsOf(page.text).length;
+    // 一屏定版：图在舞台里等比缩放，字在文字卡里二分求字号，两边都不滚动
     view.innerHTML =
-      '<section class="story">' +
-        '<div class="scene-card">' +
-          '<div class="scene" id="scene">' + sceneHtml + '</div>' +
-          '<button class="nav prev" id="prev" aria-label="上一页"' + (state.page === 0 ? " disabled" : "") + '>‹</button>' +
-          '<button class="nav next" id="next" aria-label="下一页"' + (state.page === lesson.pages.length - 1 ? " disabled" : "") + '>›</button>' +
+      '<section class="story' + (nChars <= 8 ? " is-short" : "") + '">' +
+        '<div class="stage" id="stage">' +
+          '<div class="scene-card">' +
+            '<div class="scene" id="scene">' + sceneHtml + '</div>' +
+            '<div class="pageno">' + (state.page + 1) + " / " + lesson.pages.length + '</div>' +
+            '<button class="nav prev" id="prev" aria-label="上一页"' + (state.page === 0 ? " disabled" : "") + '>‹</button>' +
+            '<button class="nav next" id="next" aria-label="下一页"' + (state.page === lesson.pages.length - 1 ? " disabled" : "") + '>›</button>' +
+          '</div>' +
         '</div>' +
         '<div class="textcard">' +
-          '<div class="pageno">' + (state.page + 1) + " / " + lesson.pages.length + '</div>' +
           '<div class="textline" id="textline">' + phrasesHtml + '</div>' +
-          '<div class="pager" id="pager">' + lesson.pages.map((_, i) =>
-            '<button class="dot' + (i === state.page ? " on" : "") + '" data-p="' + i + '" aria-label="第 ' + (i + 1) + ' 页"></button>'
-          ).join("") + '</div>' +
+          '<div class="cardfoot">' +
+            '<div class="pager" id="pager">' + lesson.pages.map((_, i) =>
+              '<button class="dot' + (i === state.page ? " on" : "") + '" data-p="' + i + '" aria-label="第 ' + (i + 1) + ' 页"></button>'
+            ).join("") + '</div>' +
+            '<button class="readall" id="readall">' +
+              '<svg class="spk" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z" fill="currentColor"/></svg>读一遍</button>' +
+          '</div>' +
         '</div>' +
-        '<div class="storybar"><button class="readall" id="readall">' +
-          '<svg class="spk" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Z" fill="currentColor"/></svg>读一遍</button></div>' +
       '</section>';
 
     document.querySelectorAll("#textline .ch").forEach(el => {
@@ -426,56 +446,88 @@
 
     logExposure(state.page + 1);
     preload([page.audio].concat(charsOf(page.text).map(ch => audioFor(ch).audio)));
-    fitText();
+    relayout();
   }
 
+  /* ---------------- 一屏定版 ---------------- */
+
+  // 图框：在舞台里取最大的 4:3~5:3 矩形。
+  // 竖屏舞台偏方，用 5:3 左右；横屏舞台偏竖，退到 4:3，避免把画面裁太狠。
+  function fitStage() {
+    const stage = document.getElementById("stage");
+    const card = stage && stage.querySelector(".scene-card");
+    if (!stage || !card) return;
+    const w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) return;
+    const ratio = Math.min(5 / 3, Math.max(4 / 3, w / h));
+    let cw = w, ch = w / ratio;
+    if (ch > h) { ch = h; cw = h * ratio; }
+    card.style.width = Math.floor(cw) + "px";
+    card.style.height = Math.floor(ch) + "px";
+  }
+
+  // 文字实际占的方框（align-content:center 时 scrollHeight 不可靠，直接量子元素）
+  function textExtent(box) {
+    let top = Infinity, bottom = -Infinity, left = Infinity, right = -Infinity;
+    box.querySelectorAll(".phrase").forEach(p => {
+      const r = p.getBoundingClientRect();
+      if (!r.width) return;
+      top = Math.min(top, r.top); bottom = Math.max(bottom, r.bottom);
+      left = Math.min(left, r.left); right = Math.max(right, r.right);
+    });
+    if (!isFinite(top)) return null;
+    return { w: right - left, h: bottom - top };
+  }
+
+  function fits(box, w, h) {
+    const e = textExtent(box);
+    if (!e) return true;
+    // 宽度放宽 1px：长句自动折行后会正好铺满整行，那不是溢出
+    return e.w <= w + 1 && e.h <= h - 10 && box.scrollWidth <= w + 1;
+  }
+
+  // 字号：二分出「宽度和高度都放得下」的最大值，再往下留一点余量
   function fitText() {
     const box = document.getElementById("textline");
     if (!box) return;
-    box.style.removeProperty("--fs");
-    const avail = box.clientWidth;
-    if (!avail) return;
-    const first = box.querySelector(".ch") || box.querySelector(".punct");
-    if (!first) return;
-    const base = parseFloat(getComputedStyle(first).fontSize);
-    if (!isFinite(base)) return;
-
-    const widest = () => {
-      let w = 0;
-      box.querySelectorAll(".phrase").forEach(p => {
-        w = Math.max(w, p.getBoundingClientRect().width);
-      });
-      return w;
-    };
+    const w = box.clientWidth, h = box.clientHeight;
+    if (!w || !h) return;
 
     const n = box.querySelectorAll(".ch").length;
-    // 诗句这种极短页，字放大才有分量；20 字的故事页不放大，避免行数爆炸
-    const maxFs = n <= 8 ? (window.innerWidth <= 768 ? 68 : 88) : base;
+    // 诗句这种极短页，字可以很大；20 字的故事页按高度收着放，避免行数爆炸
+    const maxFs = Math.min(n <= 8 ? h * 0.6 : h * 0.28, n <= 8 ? 130 : 104);
+    const minFs = 14;
 
-    let fs = base;
-    let guard = 0;
-    while (fs < maxFs && guard++ < 90) {
-      const next = fs + 1;
-      box.style.setProperty("--fs", next + "px");
-      if (widest() > avail * 0.96) {                 // 再大就贴边了
-        box.style.setProperty("--fs", fs + "px");
-        break;
-      }
-      fs = next;
-    }
+    box.style.setProperty("--fs", maxFs + "px");
+    if (fits(box, w, h)) return;
 
-    // 再往下收，直到最长的一句也放得下；最多收到 20px
-    while (widest() > avail - 1 && fs > 20 && guard++ < 90) {
-      fs -= 1;
-      box.style.setProperty("--fs", fs + "px");
+    let lo = minFs, hi = maxFs;
+    for (let i = 0; i < 14; i++) {
+      const mid = (lo + hi) / 2;
+      box.style.setProperty("--fs", mid + "px");
+      if (fits(box, w, h)) lo = mid; else hi = mid;
     }
+    box.style.setProperty("--fs", Math.floor(lo * 10) / 10 + "px");
+  }
+
+  function relayout() {
+    fitStage();
+    fitText();
   }
 
   let fitTimer = null;
-  window.addEventListener("resize", () => {
+  function scheduleFit(delay) {
     clearTimeout(fitTimer);
-    fitTimer = setTimeout(fitText, 120);
+    fitTimer = setTimeout(relayout, delay == null ? 120 : delay);
+  }
+
+  window.addEventListener("resize", () => scheduleFit(120));
+  window.addEventListener("orientationchange", () => {
+    scheduleFit(60);
+    setTimeout(relayout, 320);   // iOS 转屏后尺寸会晚一拍才稳定
   });
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", () => scheduleFit(120));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => relayout());
 
   function renderCards(lesson) {
     const cards = lesson.cards || [];
@@ -782,8 +834,21 @@
   document.getElementById("soundBtn").addEventListener("click", testSound);
   document.getElementById("resetBtn").addEventListener("click", resetAll);
   document.getElementById("closeQuiz").addEventListener("click", closeQuiz);
-  bigCard.addEventListener("click", e => { e.stopPropagation(); toggleBig(); });
-  bigWrap.addEventListener("click", hideBig);
+  bigCard.addEventListener("click", e => { e.stopPropagation(); if (swallowBigClick) return; toggleBig(); });
+  bigWrap.addEventListener("click", () => { if (swallowBigClick) return; hideBig(); });
+  document.addEventListener("pointerdown", () => { swallowBigClick = false; }, true);
+
+  /* ---------------- 防误触：整页不滚、不缩放 ---------------- */
+
+  // 页内没有可滚的地方，touchmove 一律吃掉，顺手挡掉 iOS 的橡皮筋和下拉刷新。
+  // 只有家长面板和测验弹窗需要滚，那两个区域放行。
+  const scrollable = el => !!(el && el.closest && el.closest(".drawer-body,.quizcard"));
+  document.addEventListener("touchmove", e => {
+    if (scrollable(e.target)) return;
+    if (e.cancelable) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener("gesturestart", e => e.preventDefault());   // iOS 双指缩放
+  document.addEventListener("gesturechange", e => e.preventDefault());
 
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
