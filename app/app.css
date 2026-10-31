@@ -139,6 +139,59 @@ button{font-family:inherit}
   background:rgba(59,53,44,.32);border-radius:999px;padding:2px 9px;
   backdrop-filter:blur(3px);
 }
+/* 图上的角色/物品：透明热区 + 一颗会扩散的小圆点 */
+.spots{position:absolute;inset:0;z-index:2;pointer-events:none}
+.spot{
+  position:absolute;padding:0;border:none;background:transparent;border-radius:20px;
+  pointer-events:auto;cursor:pointer;touch-action:manipulation;
+  transition:background .15s;
+}
+.spot::before{
+  content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;
+  transform:translate(-50%,-50%);background:#EFA64D;
+  box-shadow:0 0 0 4px rgba(255,253,248,.92), 0 3px 8px rgba(60,45,25,.35);
+}
+.spot::after{
+  content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;
+  transform:translate(-50%,-50%);border:2.5px solid rgba(255,253,248,.95);
+  animation:spotPing 2.4s cubic-bezier(.2,.6,.3,1) infinite;
+}
+.spot.hit{background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.42),rgba(255,255,255,0) 62%)}
+.spot.seen::before{background:#93AC8C;box-shadow:0 0 0 3px rgba(255,253,248,.7)}
+.spot.seen::after{animation:none;opacity:0}
+@keyframes spotPing{
+  0%{transform:translate(-50%,-50%) scale(.7);opacity:.9}
+  70%{opacity:0}
+  100%{transform:translate(-50%,-50%) scale(4);opacity:0}
+}
+
+.bubble{
+  position:absolute;z-index:6;max-width:min(320px,84%);
+  background:#FFFDF8;border:1px solid #EADFC8;border-radius:16px;
+  padding:9px 14px 10px;color:var(--ink);
+  box-shadow:0 18px 34px -18px rgba(60,45,25,.55);
+  font-size:clamp(14px,2.1vh,19px);line-height:1.45;text-align:left;
+  animation:bubbleIn .18s cubic-bezier(.2,.8,.2,1) both;
+}
+.bubble b{
+  display:block;font-family:var(--ui);font-size:.7em;letter-spacing:.1em;
+  color:var(--sage-d);margin-bottom:1px;
+}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(4px) scale(.96)}to{opacity:1;transform:none}}
+
+.spot-chip{
+  position:absolute;left:clamp(9px,1.5vw,15px);top:clamp(7px,1.4vh,12px);z-index:2;
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:clamp(10px,1.4vh,12px);color:#6B5433;
+  background:rgba(255,253,248,.9);border-radius:999px;padding:3px 10px 3px 8px;
+  backdrop-filter:blur(3px);box-shadow:0 4px 12px rgba(60,45,25,.16);
+  pointer-events:none;transition:opacity .4s;
+}
+.spot-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ochre);box-shadow:0 0 0 3px rgba(217,154,78,.25)}
+.spot-chip.mute{opacity:0}
+.spot-chip.done{background:rgba(239,244,235,.94);color:var(--sage-d)}
+.spot-chip.done::before{background:var(--sage);box-shadow:0 0 0 3px rgba(111,143,106,.2)}
+
 .nav{
   position:absolute;top:50%;transform:translateY(-50%);z-index:3;
   width:clamp(34px,5.4vh,46px);height:clamp(34px,5.4vh,46px);border-radius:50%;border:none;

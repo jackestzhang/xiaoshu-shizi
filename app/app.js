@@ -387,6 +387,7 @@
 
   function renderStory(lesson) {
     const page = lesson.pages[state.page];
+    clearTimeout(bubbleTimer);
     // 标点跟着前一个字走：flex 布局下独立的标点会被挤到下一行开头，
     // 变成「……田里 / ，」这种断句。塞进前一个字的按钮里就再也分不开了。
     const phrasesHtml = phrases(page.text).map(ph => {
@@ -415,6 +416,10 @@
         '<div class="stage" id="stage">' +
           '<div class="scene-card">' +
             '<div class="scene" id="scene">' + sceneHtml + '</div>' +
+            '<div class="spots" id="spots"></div>' +
+            '<div class="bubble" id="bubble" hidden></div>' +
+            (page.hotspots && page.hotspots.length
+              ? '<div class="spot-chip" id="spotChip"></div>' : "") +
             '<div class="pageno">' + (state.page + 1) + " / " + lesson.pages.length + '</div>' +
             '<button class="nav prev" id="prev" aria-label="上一页"' + (state.page === 0 ? " disabled" : "") + '>‹</button>' +
             '<button class="nav next" id="next" aria-label="下一页"' + (state.page === lesson.pages.length - 1 ? " disabled" : "") + '>›</button>' +
@@ -447,6 +452,123 @@
     logExposure(state.page + 1);
     preload([page.audio].concat(charsOf(page.text).map(ch => audioFor(ch).audio)));
     relayout();
+  }
+
+  /* ---------------- 图上的角色与物品 ---------------- */
+
+  const spotsSeen = new Set();     // lessonId:page:spotId，本次打开内有效
+  let bubbleTimer = null;
+
+  const spotKey = hs => current().id + ":" + state.page + ":" + hs.id;
+
+  function updateSpotChip(list) {
+    const chip = document.getElementById("spotChip");
+    if (!chip) return;
+    const n = list.filter(hs => spotsSeen.has(spotKey(hs))).length;
+    chip.textContent = n === 0 ? "点一点图上的人和东西"
+      : n === list.length ? "都点过啦" : n + " / " + list.length;
+    chip.classList.toggle("done", n === list.length);
+  }
+
+  // 热点坐标是相对**原图**的百分比。插画用 object-fit:cover 会裁边，
+  // 所以要先算出图在卡片里的真实位置，再换算，否则裁得越多偏得越远。
+  function paintSpots(page) {
+    const wrap = document.getElementById("spots");
+    const card = document.querySelector(".scene-card");
+    const img = document.querySelector("#scene img.art");
+    const list = page.hotspots || [];
+    if (!wrap || !card || !list.length) return;
+    if (!img) return;                       // 回退场景没有热点
+
+    const paint = () => {
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const cw = card.clientWidth, ch = card.clientHeight;
+      if (!iw || !ih || !cw || !ch) return;
+      const s = Math.max(cw / iw, ch / ih);
+      const dw = iw * s, dh = ih * s;
+      const ox = (cw - dw) / 2, oy = (ch - dh) / 2;
+
+      wrap.innerHTML = "";
+      list.forEach(hs => {
+        const cx = ox + dw * hs.x / 100, cy = oy + dh * hs.y / 100;
+        const w = dw * hs.w / 100, h = dh * hs.h / 100;
+        if (cx + w / 2 < 0 || cx - w / 2 > cw || cy + h / 2 < 0 || cy - h / 2 > ch) return;
+
+        const b = document.createElement("button");
+        b.className = "spot" + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
+        b.style.left = (cx - w / 2) + "px";
+        b.style.top = (cy - h / 2) + "px";
+        b.style.width = w + "px";
+        b.style.height = h + "px";
+        b.dataset.id = hs.id;
+        b.setAttribute("aria-label", hs.label);
+        b.addEventListener("pointerdown", e => {
+          e.preventDefault();                   // 别再补一个 click 出去
+          e.stopPropagation();
+          tapSpot(hs, b);
+        });
+        b.addEventListener("contextmenu", e => e.preventDefault());
+        wrap.appendChild(b);
+      });
+      updateSpotChip(list);
+    };
+
+    if (img.complete && img.naturalWidth) paint();
+    else img.addEventListener("load", paint, { once: true });
+  }
+
+  function tapSpot(hs, el) {
+    const lesson = current();
+    spotsSeen.add(spotKey(hs));
+    el.classList.add("seen", "hit");
+    setTimeout(() => el.classList.remove("hit"), 420);
+    T.log("spot", { lesson: lesson.id, page: state.page + 1, ch: hs.id });
+    showBubble(hs, el);
+    updateSpotChip(lesson.pages[state.page].hotspots || []);
+
+    playAudio(hs.audio).then(ok => {
+      if (!ok && hs.line) speak(hs.line);
+    });
+  }
+
+  function showBubble(hs, el) {
+    const bubble = document.getElementById("bubble");
+    const card = document.querySelector(".scene-card");
+    if (!bubble || !card) return;
+    bubble.innerHTML = '<b>' + esc(hs.label) + '</b><span>' + esc(hs.line || "") + '</span>';
+    bubble.hidden = false;
+
+    const c = card.getBoundingClientRect(), r = el.getBoundingClientRect();
+    const bw = bubble.offsetWidth, bh = bubble.offsetHeight, pad = 10;
+    // 以圆点（热区中心）为锚，而不是盒子边缘：盒子可能很高，气泡会飘走
+    const cx = r.left - c.left + r.width / 2;
+    const cy = r.top - c.top + r.height / 2;
+    const gap = 34;
+    const above = cy - bh / 2 - gap;
+    const below = cy + bh / 2 + gap;
+    let top;
+    if (above >= pad) top = above;                                      // 上方放得下就放上面
+    else if (below + bh <= c.height - pad) top = below;                 // 放不下就贴到下面
+    else top = Math.max(pad, Math.min(c.height - bh - pad, above));
+    const left = Math.max(pad, Math.min(c.width - bw - pad, cx - bw / 2));
+    bubble.style.left = left + "px";
+    bubble.style.top = top + "px";
+
+    // 气泡是当前焦点，进度片先让一让
+    const chip = document.getElementById("spotChip");
+    if (chip) chip.classList.add("mute");
+
+    clearTimeout(bubbleTimer);
+    const ms = Math.min(6500, 1600 + (hs.line || "").length * 260);
+    bubbleTimer = setTimeout(hideBubble, ms);
+  }
+
+  function hideBubble() {
+    clearTimeout(bubbleTimer);
+    const bubble = document.getElementById("bubble");
+    if (bubble) bubble.hidden = true;
+    const chip = document.getElementById("spotChip");
+    if (chip) chip.classList.remove("mute");
   }
 
   /* ---------------- 一屏定版 ---------------- */
@@ -513,6 +635,11 @@
   function relayout() {
     fitStage();
     fitText();
+    // 图框尺寸变了，热点位置要跟着重算（坐标是相对原图百分比的）
+    const l = current();
+    if (l && l.kind === "story" && l.pages && l.pages[state.page]) {
+      paintSpots(l.pages[state.page]);
+    }
   }
 
   let fitTimer = null;

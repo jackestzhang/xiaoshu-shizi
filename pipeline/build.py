@@ -64,6 +64,15 @@ def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
             total_chars += 1
             print(f"  · 第{i}页整句", end="\r", flush=True)
             time.sleep(0.15)
+
+            # 图上的可点角色/物品：每句台词单独配音
+            for hs in page.get("hotspots", []):
+                if not hs.get("line"):
+                    continue
+                hs["audio"] = f"assets/audio/{tts.synth(hs['line']).name}"
+                total_chars += 1
+                print(f"  · 第{i}页 {hs.get('label','')}", end="\r", flush=True)
+                time.sleep(0.15)
     print(" " * 40, end="\r")
     return char_meta, page_audio, total_chars
 
@@ -131,6 +140,11 @@ def main() -> None:
     used = {Path(m["audio"]).name for m in char_meta.values()}
     used |= {Path(m["wordAudio"]).name for m in char_meta.values()}
     used |= {Path(p).name for p in page_audio.values()}
+    for l in lessons:
+        for page in l.get("pages", []):
+            for hs in page.get("hotspots", []):
+                if hs.get("audio"):
+                    used.add(Path(hs["audio"]).name)
     removed = 0
     for f in common.AUDIO.glob("*.mp3"):
         if f.name not in used:

@@ -131,6 +131,38 @@ window.SHIZI = {
       "pages": [
         {
           "text": "天刚亮，农夫就来到田里，挥着锄头一下一下锄草。",
+          "hotspots": [
+            {
+              "id": "farmer",
+              "label": "农夫",
+              "x": 42.5,
+              "y": 55,
+              "w": 30,
+              "h": 62,
+              "line": "天亮了，我得把草锄干净。",
+              "audio": "assets/audio/862705fe4e23.mp3"
+            },
+            {
+              "id": "hoe",
+              "label": "锄头",
+              "x": 59.4,
+              "y": 77,
+              "w": 20,
+              "h": 26,
+              "line": "咚、咚，草根都翻出来啦。",
+              "audio": "assets/audio/6dee37ab3dfb.mp3"
+            },
+            {
+              "id": "stump",
+              "label": "树桩",
+              "x": 13.7,
+              "y": 56.5,
+              "w": 15,
+              "h": 22,
+              "line": "我在这儿站了好多年啦。",
+              "audio": "assets/audio/005d42e1ee53.mp3"
+            }
+          ],
           "scene": {
             "bg": "day",
             "items": [
