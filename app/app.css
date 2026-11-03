@@ -281,7 +281,7 @@ button{font-family:inherit}
 /* 排字在 .flow 里做：textline 是 flex 容器，直接放 phrase 会把每个短语
    blockify 成独立一块，于是「农夫就来到田里，」永远单独起一行。
    多包一层之后，内部恢复成正常的中文流式排版，断句才跟着行宽走。 */
-.flow{text-align:center;line-height:1.14}
+.flow{text-align:left;line-height:1.14}
 .phrase{display:inline}
 .phrase + .phrase{margin-left:.16em}
 button.ch,.punct{
@@ -492,6 +492,12 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 .bigcard.show-pic{padding:clamp(10px,2vh,18px) clamp(18px,3vw,26px) clamp(8px,1.6vh,16px)}
 .b-py{font-size:clamp(16px,2.6vh,24px);color:#8A7A5E;letter-spacing:.06em;margin-top:2px}
 .b-word{font-size:clamp(12px,1.9vh,16px);color:#A29784;margin-top:6px}
+/* 大字卡不会自己消失，所以给一句明确的收尾提示：点空白处 */
+.b-tip{
+  position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom));
+  text-align:center;font-size:12px;letter-spacing:.08em;color:#FFF8E8;
+  opacity:.72;pointer-events:none;
+}
 
 .quizcard{
   width:min(440px,100%);max-height:94dvh;overflow:auto;overscroll-behavior:contain;

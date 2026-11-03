@@ -40,7 +40,6 @@
     lesson: 0,
     page: 0,
     expSeen: new Set(),
-    bigTimer: null,
     quiz: null,
     flashEls: [],
     flashTimer: null,
@@ -303,9 +302,6 @@
     if (!meta.pictograph) return;
     bigMode = bigMode === "pic" ? "char" : "pic";
     renderBig();
-    // 已经动手了，就别急着收
-    clearTimeout(state.bigTimer);
-    state.bigTimer = setTimeout(hideBig, 6000);
   }
 
   // 长按弹卡时手指还压在字上，抬手的瞬间浏览器会补一个 click 落在浮层上，
@@ -326,16 +322,14 @@
     renderBig();
     bigWrap.hidden = false;
     requestAnimationFrame(() => bigWrap.classList.add("on"));
-    clearTimeout(state.bigTimer);
-    // 有象形图的字，多留时间让孩子去点；没有的还是快速收起
-    state.bigTimer = setTimeout(hideBig, meta.pictograph ? 5000 : 1800);
+    // 不设定时器：长按弹出的卡片一直留着，孩子想看多久看多久，
+    // 收起只由「点旁边的空白」或 Esc 决定。
   }
 
   function hideBig() {
     bigMode = "char";
     bigPic.hidden = true;
     bigPic.innerHTML = "";
-    clearTimeout(state.bigTimer);
     bigWrap.classList.remove("on");
     setTimeout(() => { bigWrap.hidden = true; }, 180);
   }
@@ -403,6 +397,8 @@
 
   function render() {
     const lesson = current();
+    // 换课/翻页时把大字卡收掉，否则它会挡住整页
+    if (!bigWrap.hidden) hideBig();
     if (subtitle) subtitle.textContent = lesson.kind === "cards" ? "先认这几个字" : "点字听声音";
     footHint.textContent = lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
     if (lesson.kind === "cards") renderCards(lesson); else renderStory(lesson);
@@ -684,7 +680,7 @@
     probe.setAttribute("aria-hidden", "true");
     probe.style.cssText =
       "position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;" +
-      "display:flex;flex-direction:column;justify-content:center;text-align:center;" +
+      "display:flex;flex-direction:column;justify-content:center;text-align:left;" +
       "width:" + w + "px;height:" + h + "px;";
     document.body.appendChild(probe);
 
@@ -705,6 +701,11 @@
     // 取满格会顶到卡片边，一行只剩四五个字，翻页时像在挤牙膏。
     // 留一成余量，相当于按每页 23 个字来定，行宽和留白都舒服。
     fs = Math.floor(fs * 0.88 * 10) / 10;
+
+    // 一行至少要放得下 6 个字。横屏文字列只有 46% 宽，0.88 的余量仍然会让
+    // 一行掉到四五个字（「农夫跑过 / 去，捡起兔」），左对齐之后看着更碎。
+    // 竖屏本来就有一行 7 个字，这一条碰不到它。
+    fs = Math.min(fs, Math.floor((w / 6.4) * 10) / 10);
 
     fsCache = { key: key, fs: fs };
     return fs;
