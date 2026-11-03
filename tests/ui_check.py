@@ -18,6 +18,15 @@ SHOTS.mkdir(parents=True, exist_ok=True)
 CHROME = "/usr/bin/chromium"
 
 
+def pick_lesson(pg, i):
+    """顶栏胶囊 + 浮层选课（替代原来的标签栏）"""
+    if pg.locator("#pickerWrap").is_hidden():
+        pg.locator("#picker").click()
+        pg.wait_for_timeout(200)
+    pg.locator(".pick-item").nth(i).click()
+    pg.wait_for_timeout(380)
+
+
 def main() -> int:
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox", "--autoplay-policy=no-user-gesture-required"])
@@ -31,7 +40,11 @@ def main() -> int:
         pg.wait_for_timeout(700)
 
         n_lessons = pg.evaluate("SHIZI.lessons.length")
-        assert pg.locator(".tab").count() == n_lessons, f"应有 {n_lessons} 节课"
+        pg.locator("#picker").click()
+        pg.wait_for_timeout(250)
+        assert pg.locator(".pick-item").count() == n_lessons, f"应有 {n_lessons} 节课"
+        pg.locator("#pwClose").click()
+        pg.wait_for_timeout(220)
         first = pg.evaluate("SHIZI.lessons.find(l => l.kind === 'story').pages[0].text")
         assert first[:8] in pg.locator("#textline").inner_text().replace("\n", ""), f"第一页文案不对：{first}"
         assert pg.locator("#scene svg, #scene img.art").count() == 1, "场景没有渲染"
@@ -105,8 +118,7 @@ def main() -> int:
         pg.wait_for_timeout(300)
 
         # 字卡课
-        pg.locator(".tab").nth(0).click()
-        pg.wait_for_timeout(400)
+        pick_lesson(pg, 0)
         assert pg.locator(".card").count() == 6, "字卡数量不对"
         pg.locator('.card[data-ch="兔"] .glyph').click()
         pg.wait_for_timeout(400)
@@ -114,8 +126,7 @@ def main() -> int:
         pg.screenshot(path=str(SHOTS / "03-cards.png"), full_page=True)
 
         # 回到绘本，打开家长面板
-        pg.locator(".tab").nth(2).click()
-        pg.wait_for_timeout(300)
+        pick_lesson(pg, 2)
         pg.locator("#parentBtn").click()
         pg.wait_for_timeout(350)
         rows = pg.locator("table.stat tbody tr").count()
@@ -173,7 +184,7 @@ def main() -> int:
         m.reload(); m.wait_for_timeout(500)
 
         # 同一页有重复字时，只高亮被点的那一个
-        m.locator(".tab").nth(3).click(); m.wait_for_timeout(400)
+        pick_lesson(m, 3)
         idx = m.evaluate("""() => {
           const els = [...document.querySelectorAll('#textline .ch')];
           const seen = {};
@@ -193,7 +204,7 @@ def main() -> int:
 
         n_lessons = m.evaluate("SHIZI.lessons.length")
         for li in range(n_lessons):
-            m.locator(".tab").nth(li).click(); m.wait_for_timeout(250)
+            pick_lesson(m, li)
             if m.locator("#textline").count() == 0:
                 continue
             pages = m.evaluate("SHIZI.lessons[%d].pages.length" % li)

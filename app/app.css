@@ -38,7 +38,7 @@ button{font-family:inherit}
 .app{
   height:100%;
   display:grid;
-  grid-template-rows:auto auto minmax(0,1fr) auto;
+  grid-template-rows:auto minmax(0,1fr) auto;
   padding:
     calc(clamp(8px,1.5vh,16px) + env(safe-area-inset-top))
     calc(var(--pad-x) + env(safe-area-inset-right))
@@ -69,31 +69,63 @@ button{font-family:inherit}
 .ghost-btn:hover{background:#fff;border-color:#DFD0B4}
 .ghost-btn:active{transform:scale(.98)}
 
-/* 标签：永远一行，不横滑、不换行 —— 换行会吃掉正文高度，横滑又容易误触 */
-.tabs{
-  display:flex;flex-wrap:nowrap;justify-content:center;
-  gap:clamp(5px,.9vw,10px);
-  padding:0 2px clamp(6px,1vh,12px);
-  overflow:hidden;
+/* 故事切换：顶栏中间一颗胶囊，点开是浮层。不再常驻占一行 */
+.picker{
+  flex:1 1 auto;min-width:0;max-width:min(48vw,380px);
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:999px;padding:clamp(5px,1vh,9px) clamp(10px,1.6vw,16px);
+  cursor:pointer;box-shadow:0 8px 20px -18px rgba(60,45,25,.7);
+  transition:background .16s,border-color .16s,transform .16s;
 }
-.tab{
-  flex:1 1 0;min-width:0;max-width:230px;
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  border:1px solid var(--line);background:var(--card);color:#6C6355;
-  border-radius:999px;padding:clamp(5px,1vh,9px) clamp(8px,1.1vw,15px);
-  font-size:clamp(11px,1.6vh,13.5px);cursor:pointer;white-space:nowrap;
-  transition:background .18s,color .18s,border-color .18s,transform .18s;
+.picker:hover{background:#fff;border-color:#DFD0B4}
+.picker:active{transform:scale(.985)}
+.pk-kicker{
+  font-size:clamp(9px,1.3vh,11px);letter-spacing:.14em;color:#9A8A6C;
+  padding-right:9px;border-right:1px solid var(--line);flex:0 0 auto;
 }
-.tab:hover{border-color:#DCCCAF}
-.tab.on{background:var(--sage);border-color:var(--sage);color:#FFFDF8;box-shadow:0 8px 18px -12px rgba(85,112,79,.9)}
-.tab:active{transform:scale(.985)}
-.tabnum{
-  width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
-  background:#F3EAD8;color:#8A7A5E;font-size:10.5px;flex:0 0 auto;
+.pk-name{
+  font-family:var(--hanzi);font-size:clamp(15px,2.1vh,19px);letter-spacing:.06em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.tab.on .tabnum{background:rgba(255,255,255,.22);color:#FFFDF8}
-.tname{min-width:0;overflow:hidden;text-overflow:ellipsis}
-.tname .narrow{display:none}
+.pk-arw{color:#A2937A;flex:0 0 auto;transition:transform .2s}
+.picker[aria-expanded="true"] .pk-arw{transform:rotate(180deg)}
+
+.picker-wrap{
+  position:fixed;inset:0;z-index:45;
+  display:flex;justify-content:center;align-items:flex-start;
+  padding:calc(env(safe-area-inset-top) + clamp(52px,7vh,74px)) 16px 16px;
+}
+.pw-scrim{position:absolute;inset:0;border:none;padding:0;background:rgba(59,53,44,.26);backdrop-filter:blur(2px)}
+.pw-card{
+  position:relative;width:min(430px,100%);max-height:100%;
+  background:#FFFDF8;border:1px solid #EADFC8;border-radius:22px;
+  box-shadow:0 30px 70px -30px rgba(60,45,25,.62);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:pwIn .2s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes pwIn{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
+.pw-head{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 4px 18px;flex:0 0 auto}
+.pw-head h2{margin:0;font-size:clamp(15px,2vh,17px);letter-spacing:.1em;color:#6C6355}
+.pw-list{padding:4px 10px 12px;overflow-y:auto;min-height:0}
+.pick-item{
+  width:100%;display:flex;align-items:center;gap:12px;
+  padding:11px 12px;border:none;background:transparent;border-radius:14px;
+  text-align:left;cursor:pointer;color:var(--ink);font:inherit;
+  transition:background .15s;
+}
+.pick-item:hover{background:#FAF4E7}
+.pick-item.on{background:#EFEAE0}
+.pi-ic{
+  width:38px;height:38px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;
+  background:#F3EAD8;color:#8A7A5E;font-family:var(--hanzi);font-size:17px;
+}
+.pick-item.on .pi-ic{background:var(--sage);color:#FFF8E8}
+.pi-main{min-width:0;flex:1 1 auto}
+.pi-name{display:block;font-size:clamp(15px,2vh,17px);letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pi-meta{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;letter-spacing:.03em}
+.pi-tick{color:var(--sage);flex:0 0 auto;opacity:0;font-size:15px}
+.pick-item.on .pi-tick{opacity:1}
 
 .view{min-height:0;min-width:0;overflow:hidden;position:relative}
 
@@ -245,9 +277,11 @@ button{font-family:inherit}
 .textline{
   flex:1;min-height:0;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;
-  text-align:center;
 }
-/* 短语不单独成块：整页按正常中文流排，行宽填满，断句才自然 */
+/* 排字在 .flow 里做：textline 是 flex 容器，直接放 phrase 会把每个短语
+   blockify 成独立一块，于是「农夫就来到田里，」永远单独起一行。
+   多包一层之后，内部恢复成正常的中文流式排版，断句才跟着行宽走。 */
+.flow{text-align:center;line-height:1.14}
 .phrase{display:inline}
 .phrase + .phrase{margin-left:.16em}
 button.ch,.punct{
@@ -494,10 +528,9 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 /* ---------------- 窄屏 / 矮屏微调 ---------------- */
 @media (max-width:520px){
   :root{--pad-x:12px}
-  /* 手机上一行放不下五个课名，宁可折成两行也别把名字截成「兔树…」 */
-  .tabs{flex-wrap:wrap;justify-content:flex-start;gap:6px}
-  .tab{flex:1 1 30%;max-width:none;padding:6px 8px;font-size:11.5px}
-  .tabnum{display:none}
+  .pb-label{display:none}
+  .picker{max-width:none}
+  .pk-kicker{display:none}
   .foot{display:none}
   .cards-head p{display:none}
 }

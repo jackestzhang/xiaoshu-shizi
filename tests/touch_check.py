@@ -24,6 +24,15 @@ ROOT = Path(__file__).resolve().parent.parent
 URL = "file://" + str(ROOT / "dist" / "shizi-demo.html")
 
 
+def pick_lesson(pg, i):
+    """顶栏胶囊 + 浮层选课（替代原来的标签栏）"""
+    if pg.locator("#pickerWrap").is_hidden():
+        pg.locator("#picker").click()
+        pg.wait_for_timeout(200)
+    pg.locator(".pick-item").nth(i).click()
+    pg.wait_for_timeout(380)
+
+
 def run() -> int:
     with sync_playwright() as p:
         b = p.chromium.launch(executable_path="/usr/bin/chromium", args=["--no-sandbox"])
@@ -36,8 +45,7 @@ def run() -> int:
         pg.goto(URL)
         pg.wait_for_timeout(1000)
         # 鲤鱼跃龙门第 2 页有「山」
-        pg.locator(".tab").nth(3).click()
-        pg.wait_for_timeout(320)
+        pick_lesson(pg, 3)
         pg.locator(".dot").nth(1).click()
         pg.wait_for_timeout(400)
 

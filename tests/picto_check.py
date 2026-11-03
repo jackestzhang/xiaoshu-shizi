@@ -15,6 +15,15 @@ ROOT = Path(__file__).resolve().parent.parent
 URL = "file://" + str(ROOT / "dist" / "shizi-demo.html")
 
 
+def pick_lesson(pg, i):
+    """顶栏胶囊 + 浮层选课（替代原来的标签栏）"""
+    if pg.locator("#pickerWrap").is_hidden():
+        pg.locator("#picker").click()
+        pg.wait_for_timeout(200)
+    pg.locator(".pick-item").nth(i).click()
+    pg.wait_for_timeout(380)
+
+
 def longpress(pg, sel: str, ms: int = 520) -> None:
     box = pg.locator(sel).first.bounding_box()
     pg.mouse.move(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
@@ -34,8 +43,7 @@ def main() -> int:
         pg.wait_for_timeout(900)
 
         # ---- 有象形图：山（鲤鱼跃龙门第 2 页）----
-        pg.locator(".tab").nth(3).click()
-        pg.wait_for_timeout(350)
+        pick_lesson(pg, 3)
         pg.locator(".dot").nth(1).click()
         pg.wait_for_timeout(350)
         assert pg.locator('button.ch[data-ch="山"]').count() > 0, "该页没有「山」"

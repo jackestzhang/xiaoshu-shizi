@@ -81,6 +81,15 @@ PROBE = """() => {
 }"""
 
 
+def pick_lesson(pg, i):
+    """顶栏胶囊 + 浮层选课（替代原来的标签栏）"""
+    if pg.locator("#pickerWrap").is_hidden():
+        pg.locator("#picker").click()
+        pg.wait_for_timeout(200)
+    pg.locator(".pick-item").nth(i).click()
+    pg.wait_for_timeout(380)
+
+
 def check_page(pg, tag: str, w: int, h: int, wh: tuple[int, int]) -> list[str]:
     bad: list[str] = []
     r = pg.evaluate(PROBE)
@@ -157,8 +166,7 @@ def main() -> int:
             n = pg.evaluate("SHIZI.lessons.length")
             pages = 0
             for li in range(n):
-                pg.locator(".tab").nth(li).click()
-                pg.wait_for_timeout(160)
+                pick_lesson(pg, li)
                 if pg.locator("#textline").count() == 0:
                     bad = check_page(pg, name, w, h, (w, h))
                     if bad:
@@ -175,8 +183,7 @@ def main() -> int:
                         failures.append(f"[{name}] 第 {li+1} 课第 {pi+1} 页：" + "；".join(bad))
 
             # 截一张有代表性的：故事课第一页 + 字卡
-            pg.locator(".tab").nth(2).click()
-            pg.wait_for_timeout(260)
+            pick_lesson(pg, 2)
             pg.screenshot(path=str(SHOTS / f"layout-{w}x{h}.png"))
             fs = pg.evaluate("getComputedStyle(document.getElementById('textline')).getPropertyValue('--fs')")
             print(f"· {name:17s} {w}×{h}  故事课 {pages // n} 页均通过  字号"

@@ -13,18 +13,17 @@
   <header class="top">
     <div class="brand">
       <div class="mark" aria-hidden="true">小</div>
-      <div class="brand-text">
-        <h1>小书</h1>
-        <p id="subtitle">点字听声音</p>
-      </div>
     </div>
+    <button type="button" class="picker" id="picker" aria-haspopup="dialog" aria-expanded="false">
+      <span class="pk-kicker" id="pkKicker">故事</span>
+      <span class="pk-name" id="pkName">—</span>
+      <svg class="pk-arw" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
     <button id="parentBtn" class="ghost-btn" type="button" aria-label="打开家长面板">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z" fill="currentColor"/></svg>
-      家长
+      <span class="pb-label">家长</span>
     </button>
   </header>
-
-  <nav class="tabs" id="tabs" aria-label="课程"></nav>
 
   <main class="view" id="view"></main>
 
@@ -33,6 +32,17 @@
     <span class="dot-sep">·</span>
     <span id="footStat"></span>
   </footer>
+</div>
+
+<div class="picker-wrap" id="pickerWrap" hidden>
+  <button class="pw-scrim" id="pwScrim" type="button" aria-label="关闭选择"></button>
+  <div class="pw-card" role="dialog" aria-modal="true" aria-label="选择故事">
+    <div class="pw-head">
+      <h2>今天讲哪个</h2>
+      <button class="icon-btn" id="pwClose" type="button" aria-label="关闭">×</button>
+    </div>
+    <div class="pw-list" id="pwList"></div>
+  </div>
 </div>
 
 <div class="mask" id="mask" hidden></div>

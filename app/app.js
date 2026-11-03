@@ -5,7 +5,13 @@
   const HANZI = /[\u4e00-\u9fff]/;
 
   const view = document.getElementById("view");
-  const tabsEl = document.getElementById("tabs");
+  const picker = document.getElementById("picker");
+  const pkName = document.getElementById("pkName");
+  const pkKicker = document.getElementById("pkKicker");
+  const pickerWrap = document.getElementById("pickerWrap");
+  const pwList = document.getElementById("pwList");
+  const pwClose = document.getElementById("pwClose");
+  const pwScrim = document.getElementById("pwScrim");
   const subtitle = document.getElementById("subtitle");
   const footHint = document.getElementById("footHint");
   const footStat = document.getElementById("footStat");
@@ -341,33 +347,63 @@
     return l.title;
   }
 
-  function renderTabs() {
-    tabsEl.innerHTML = S.lessons.map((l, i) =>
-      '<button class="tab' + (i === state.lesson ? " on" : "") + '" data-i="' + i + '" role="tab" aria-selected="' + (i === state.lesson) + '">' +
-        '<span class="tabnum">' + (i + 1) + '</span>' +
-        '<span class="tname">' +
-          (l.kind === "cards"
-            ? '<span class="wide">' + esc(shortTitle(l)) + '</span><span class="narrow">字卡</span>'
-            : esc(shortTitle(l))) +
-        '</span>' +
-      '</button>'
-    ).join("");
-    tabsEl.querySelectorAll(".tab").forEach(btn => {
-      btn.addEventListener("click", () => selectLesson(Number(btn.dataset.i)));
+  // 顶栏胶囊只显示当前这本；所有课都收进浮层里，省下一整行
+  function renderPicker() {
+    const cur = current();
+    const curCards = cur.kind === "cards";
+    pkKicker.textContent = curCards ? "字卡" : "故事";
+    pkName.textContent = curCards ? "第 " + (cur.order || 1) + " 组" : shortTitle(cur);
+
+    pwList.innerHTML = S.lessons.map((l, i) => {
+      const isCards = l.kind === "cards";
+      // 字卡课没有故事名，用这一组里的字当名字，比「第 1 组」好认
+      const name = isCards ? (l.cards || []).map(c => c.ch).join("") : shortTitle(l);
+      const meta = isCards
+        ? "字卡 · " + (l.cards || []).length + " 个字"
+        : l.pages.length + " 页 · " + l.pages.reduce((n, p) => n + charsOf(p.text).length, 0) + " 字";
+      const ic = isCards ? "字" : (shortTitle(l)[0] || "书");
+      return '<button class="pick-item' + (i === state.lesson ? " on" : "") + '" data-i="' + i + '" role="option" aria-selected="' + (i === state.lesson) + '">' +
+          '<span class="pi-ic" aria-hidden="true">' + esc(ic) + '</span>' +
+          '<span class="pi-main">' +
+            '<span class="pi-name">' + esc(name) + '</span>' +
+            '<span class="pi-meta">' + esc(meta) + '</span>' +
+          '</span>' +
+          '<span class="pi-tick" aria-hidden="true">✓</span>' +
+        '</button>';
+    }).join("");
+
+    pwList.querySelectorAll(".pick-item").forEach(btn => {
+      btn.addEventListener("click", () => {
+        selectLesson(Number(btn.dataset.i));
+        closePicker();
+      });
     });
+  }
+
+  function openPicker() {
+    renderPicker();
+    pickerWrap.hidden = false;
+    picker.setAttribute("aria-expanded", "true");
+    const on = pwList.querySelector(".pick-item.on");
+    if (on) on.scrollIntoView({ block: "nearest" });
+  }
+
+  function closePicker() {
+    pickerWrap.hidden = true;
+    picker.setAttribute("aria-expanded", "false");
   }
 
   function selectLesson(i) {
     state.lesson = i;
     state.page = 0;
-    renderTabs();
+    renderPicker();
     render();
     try { localStorage.setItem("shizi.last", String(i)); } catch (e) { /* noop */ }
   }
 
   function render() {
     const lesson = current();
-    subtitle.textContent = lesson.kind === "cards" ? "先认这几个字" : "点字听声音";
+    if (subtitle) subtitle.textContent = lesson.kind === "cards" ? "先认这几个字" : "点字听声音";
     footHint.textContent = lesson.kind === "cards" ? "轻点听音 · 长按看大字" : "轻点字听声音 · 长按看大字";
     if (lesson.kind === "cards") renderCards(lesson); else renderStory(lesson);
     updateFoot();
@@ -385,12 +421,8 @@
     '</div>';
   }
 
-  function renderStory(lesson) {
-    const page = lesson.pages[state.page];
-    clearTimeout(bubbleTimer);
-    // 标点跟着前一个字走：flex 布局下独立的标点会被挤到下一行开头，
-    // 变成「……田里 / ，」这种断句。塞进前一个字的按钮里就再也分不开了。
-    const phrasesHtml = phrases(page.text).map(ph => {
+  function phrasesMarkup(text) {
+    return '<div class="flow">' + phrases(text).map(ph => {
       const cs = Array.from(ph);
       let out = "";
       for (let i = 0; i < cs.length; i++) {
@@ -402,7 +434,15 @@
           (tail ? '<span class="punct-in">' + esc(tail) + '</span>' : "") + '</button>';
       }
       return '<span class="phrase">' + out + '</span>';
-    }).join("");
+    }).join("") + '</div>';
+  }
+
+  function renderStory(lesson) {
+    const page = lesson.pages[state.page];
+    clearTimeout(bubbleTimer);
+    // 标点跟着前一个字走：flex 布局下独立的标点会被挤到下一行开头，
+    // 变成「……田里 / ，」这种断句。塞进前一个字的按钮里就再也分不开了。
+    const phrasesHtml = phrasesMarkup(page.text);
 
     const art = page.art && page.art.file;
     const sceneHtml = art
@@ -609,27 +649,89 @@
   }
 
   // 字号：二分出「宽度和高度都放得下」的最大值，再往下留一点余量
+  // 字号：同一本书所有页共用一个字号。
+  // 以前是逐页求最大值 —— 短短一句会撑到 130px，下一句 20 字立刻缩到 60px，
+  // 翻页时字号一跳，孩子的眼睛要重新对焦，认字的视觉经验也断了。
+  // 现在取「本书最长的一页能放下的最大字号」，全书统一。
+  let fsCache = { key: "", fs: 0 };
+
+  function maxFsFor(box, w, h, cap) {
+    box.style.setProperty("--fs", cap + "px");
+    if (fits(box, w, h)) return cap;
+    let lo = 13, hi = cap;
+    for (let i = 0; i < 14; i++) {
+      const mid = (lo + hi) / 2;
+      box.style.setProperty("--fs", mid + "px");
+      if (fits(box, w, h)) lo = mid; else hi = mid;
+    }
+    return Math.floor(lo * 10) / 10;
+  }
+
+  function bookFontSize(lesson, w, h) {
+    const key = lesson.id + "|" + w + "x" + h;
+    if (fsCache.key === key) return fsCache.fs;
+
+    // 找出字数最多的一页做起点（多数情况下它就是最难排的）
+    let worst = lesson.pages[0].text, wn = charsOf(worst).length;
+    for (const pg of lesson.pages) {
+      const n = charsOf(pg.text).length;
+      if (n > wn) { wn = n; worst = pg.text; }
+    }
+
+    // 离屏量：真 #textline 上的按钮已经绑了事件，不能替换它的内容
+    const probe = document.createElement("div");
+    probe.className = "textline";
+    probe.setAttribute("aria-hidden", "true");
+    probe.style.cssText =
+      "position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;" +
+      "display:flex;flex-direction:column;justify-content:center;text-align:center;" +
+      "width:" + w + "px;height:" + h + "px;";
+    document.body.appendChild(probe);
+
+    const cap = Math.min(wn <= 8 ? h * 0.6 : h * 0.28, wn <= 8 ? 130 : 104);
+    probe.innerHTML = phrasesMarkup(worst);
+    let fs = maxFsFor(probe, w, h, cap);
+
+    // 字数最多不等于最难排：断行落点不同，别的页也可能更挤。
+    // 逐页校一遍，谁放不下就把全书字号压到它能放下 —— 宁可小幅牺牲，也要全书一致。
+    for (const pg of lesson.pages) {
+      probe.innerHTML = phrasesMarkup(pg.text);
+      probe.style.setProperty("--fs", fs + "px");
+      if (!fits(probe, w, h)) fs = maxFsFor(probe, w, h, fs);
+    }
+
+    probe.remove();
+
+    // 取满格会顶到卡片边，一行只剩四五个字，翻页时像在挤牙膏。
+    // 留一成余量，相当于按每页 23 个字来定，行宽和留白都舒服。
+    fs = Math.floor(fs * 0.88 * 10) / 10;
+
+    fsCache = { key: key, fs: fs };
+    return fs;
+  }
+
   function fitText() {
     const box = document.getElementById("textline");
     if (!box) return;
     const w = box.clientWidth, h = box.clientHeight;
     if (!w || !h) return;
 
-    const n = box.querySelectorAll(".ch").length;
-    // 诗句这种极短页，字可以很大；20 字的故事页按高度收着放，避免行数爆炸
-    const maxFs = Math.min(n <= 8 ? h * 0.6 : h * 0.28, n <= 8 ? 130 : 104);
-    const minFs = 14;
+    const lesson = current();
+    if (!lesson || lesson.kind !== "story" || !lesson.pages) return;
 
-    box.style.setProperty("--fs", maxFs + "px");
-    if (fits(box, w, h)) return;
+    const fs = bookFontSize(lesson, w, h);
+    box.style.setProperty("--fs", fs + "px");
 
-    let lo = minFs, hi = maxFs;
-    for (let i = 0; i < 14; i++) {
-      const mid = (lo + hi) / 2;
-      box.style.setProperty("--fs", mid + "px");
-      if (fits(box, w, h)) lo = mid; else hi = mid;
+    // 兜底：万一某页标点特别密仍然放不下，只收这一页，不改全书字号
+    if (!fits(box, w, h)) {
+      let lo = 13, hi = fs;
+      for (let i = 0; i < 12; i++) {
+        const mid = (lo + hi) / 2;
+        box.style.setProperty("--fs", mid + "px");
+        if (fits(box, w, h)) lo = mid; else hi = mid;
+      }
+      box.style.setProperty("--fs", Math.floor(lo * 10) / 10 + "px");
     }
-    box.style.setProperty("--fs", Math.floor(lo * 10) / 10 + "px");
   }
 
   function relayout() {
@@ -961,6 +1063,14 @@
   document.getElementById("soundBtn").addEventListener("click", testSound);
   document.getElementById("resetBtn").addEventListener("click", resetAll);
   document.getElementById("closeQuiz").addEventListener("click", closeQuiz);
+  picker.addEventListener("click", () => {
+    if (pickerWrap.hidden) openPicker(); else closePicker();
+  });
+  pwClose.addEventListener("click", closePicker);
+  pwScrim.addEventListener("click", closePicker);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !pickerWrap.hidden) closePicker();
+  });
   bigCard.addEventListener("click", e => { e.stopPropagation(); if (swallowBigClick) return; toggleBig(); });
   bigWrap.addEventListener("click", () => { if (swallowBigClick) return; hideBig(); });
   document.addEventListener("pointerdown", () => { swallowBigClick = false; }, true);
@@ -1013,7 +1123,7 @@
       start = story >= 0 ? story : 0;
     }
     state.lesson = start;
-    renderTabs();
+    renderPicker();
     render();
   }
 
