@@ -78,11 +78,12 @@
         {
           "id": "farmer",
           "label": "农夫",
-          "x": 42.5,
-          "y": 55,
-          "w": 30,
-          "h": 62,
-          "line": "天亮了，我得把草锄干净。"
+          "x": 43.95,
+          "y": 60.92,
+          "w": 29.82,
+          "h": 49.8,
+          "line": "天亮了，我得把草锄干净。",
+          "actor": "assets/actors/L03_farmer.webp"
         },
         {
           "id": "hoe",
@@ -140,7 +141,7 @@
       },
       "visual": "清晨的田野，太阳刚升起来；农夫戴着草帽、穿蓝衣，双手挥着锄头一下一下锄草，草叶上还挂着露水；远处是青山和几棵树。",
       "art": {
-        "file": "assets/art/L03_p1.webp",
+        "file": "assets/art/L03_p1_bg.webp",
         "width": 1280,
         "height": 768,
         "status": "approved",

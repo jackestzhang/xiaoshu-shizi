@@ -150,6 +150,9 @@ button{font-family:inherit}
 }
 @keyframes cardIn{from{opacity:.6;transform:scale(.995)}to{opacity:1;transform:none}}
 .scene{position:absolute;inset:0}
+/* 图板：JS 按 cover 算出的真实插画矩形，可能比卡片大（被裁掉的部分在卡片外）。
+   贴纸和热点都挂在这上面，用原图百分比定位，不再各自换算裁切偏移。 */
+.plate{position:absolute;left:0;top:0;will-change:transform}
 .scene svg,.scene img{display:block;width:100%;height:100%}
 .scene .art{object-fit:cover;object-position:center 46%;pointer-events:none;user-select:none;animation:artIn 1.1s ease both}
 @keyframes artIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
@@ -173,6 +176,38 @@ button{font-family:inherit}
 }
 /* 图上的角色/物品：透明热区 + 一颗会扩散的小圆点 */
 .spots{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+/* ---------------- 会动的角色 ----------------
+   一张带透明通道的贴纸，贴在原来的位置上。没有关节，所以只有整体位移和
+   形变；呼吸的幅度按贴纸自高的千分之五算，转屏后自动等比。 */
+.actors{position:absolute;inset:0;z-index:1;pointer-events:none}
+.actor{
+  position:absolute;padding:0;margin:0;border:none;background:none;
+  cursor:pointer;touch-action:manipulation;pointer-events:auto;
+  -webkit-tap-highlight-color:transparent;
+}
+.actor .body{display:block;position:relative;transform-origin:50% 100%;will-change:transform}
+.actor img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
+.actor .skin{position:relative;z-index:1}
+/* 可交互提示：贴着轮廓的一圈暖光，慢呼吸。
+   必须两层以上，单层 drop-shadow 会变成一条硬描边；用暖橙而不是白色，
+   米色纸面上白光看不出来。最后一层是落影，别让它跟着呼吸抖动。 */
+.actor .skin{
+  animation:haloBreath 3.6s ease-in-out infinite;
+  will-change:filter;
+}
+@keyframes haloBreath{
+  0%,100%{filter:
+    drop-shadow(0 0 3.5px rgba(255,196,110,.26))
+    drop-shadow(0 0 .4px rgba(255,244,214,.55))
+    drop-shadow(0 6px 12px rgba(70,55,35,.18))}
+  50%{filter:
+    drop-shadow(0 0 9px rgba(255,184,96,.58))
+    drop-shadow(0 0 1.6px rgba(255,246,220,.95))
+    drop-shadow(0 6px 12px rgba(70,55,35,.18))}
+}
+.actor.press .skin{transform:translateY(1px)}
+
 .spot{
   position:absolute;padding:0;border:none;background:transparent;border-radius:20px;
   pointer-events:auto;cursor:pointer;touch-action:manipulation;
@@ -529,6 +564,8 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 
 @media (prefers-reduced-motion:reduce){
   .scene *,.scene-card,.textcard,.story,.cards{animation:none!important}
+  /* 光晕常亮，别一闪一闪 */
+  .actor .skin{animation:none!important;filter:drop-shadow(0 0 5px rgba(255,200,120,.45)) drop-shadow(0 6px 12px rgba(70,55,35,.18))}
 }
 
 /* ---------------- 窄屏 / 矮屏微调 ---------------- */

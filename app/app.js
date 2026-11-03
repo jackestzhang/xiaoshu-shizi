@@ -441,8 +441,14 @@
     const phrasesHtml = phrasesMarkup(page.text);
 
     const art = page.art && page.art.file;
+    // 舞台里先放一块「图板」：尺寸等于插画在卡片里被 cover 之后的真实矩形，
+    // 角色和热点都按原图百分比挂在这块板上，转屏、换尺寸都不用重算。
     const sceneHtml = art
-      ? '<img class="art" src="' + esc(art) + '" alt="" draggable="false">'
+      ? '<div class="plate" id="plate">' +
+          '<img class="art" src="' + esc(art) + '" alt="" draggable="false">' +
+          '<div class="actors" id="actors">' + actorsMarkup(page) + '</div>' +
+          '<div class="spots" id="spots"></div>' +
+        '</div>'
       : artPlaceholder(page);
 
     const nChars = charsOf(page.text).length;
@@ -452,7 +458,6 @@
         '<div class="stage" id="stage">' +
           '<div class="scene-card">' +
             '<div class="scene" id="scene">' + sceneHtml + '</div>' +
-            '<div class="spots" id="spots"></div>' +
             '<div class="bubble" id="bubble" hidden></div>' +
             (page.hotspots && page.hotspots.length
               ? '<div class="spot-chip" id="spotChip"></div>' : "") +
@@ -478,6 +483,18 @@
       bindPress(el, () => tapChar(ch, el), () => showBig(ch));
     });
 
+    document.querySelectorAll(".actor").forEach(el => {
+      const hs = (page.hotspots || []).find(h => h.id === el.dataset.id);
+      if (!hs) return;
+      el.addEventListener("pointerdown", e => {
+        e.preventDefault();                   // 别再补一个 click 出去
+        e.stopPropagation();
+        tapActor(hs, el);
+      });
+      el.addEventListener("contextmenu", e => e.preventDefault());
+      startIdle(el);
+    });
+
     document.getElementById("prev").addEventListener("click", () => turn(-1));
     document.getElementById("next").addEventListener("click", () => turn(1));
     document.querySelectorAll(".dot").forEach(d => {
@@ -487,7 +504,10 @@
 
     logExposure(state.page + 1);
     preload([page.audio].concat(charsOf(page.text).map(ch => audioFor(ch).audio)));
+    paintSpots(page);
     relayout();
+    const artImg = document.querySelector("#scene img.art");
+    if (artImg && !artImg.complete) artImg.addEventListener("load", relayout, { once: true });
   }
 
   /* ---------------- 图上的角色与物品 ---------------- */
@@ -506,51 +526,44 @@
     chip.classList.toggle("done", n === list.length);
   }
 
-  // 热点坐标是相对**原图**的百分比。插画用 object-fit:cover 会裁边，
-  // 所以要先算出图在卡片里的真实位置，再换算，否则裁得越多偏得越远。
+  // 图上可点的人和东西。带 actor 的不画圆点——它本身就是一张会动的贴纸，
+  // 直接贴在图上，按原图百分比定位，所以不需要换算 cover 的裁切偏移。
+  function actorsMarkup(page) {
+    return (page.hotspots || []).filter(hs => hs.actor).map(hs =>
+      '<button class="actor" data-id="' + esc(hs.id) + '" aria-label="' + esc(hs.label) + '"' +
+        ' style="left:' + round2(hs.x - hs.w / 2) + '%;top:' + round2(hs.y - hs.h / 2) +
+        '%;width:' + round2(hs.w) + '%">' +
+        '<span class="body">' +
+          '<img class="skin" src="' + esc(hs.actor) + '" alt="" draggable="false">' +
+        '</span>' +
+      '</button>').join("");
+  }
+
+  const round2 = v => Math.round(v * 100) / 100;
+
   function paintSpots(page) {
     const wrap = document.getElementById("spots");
-    const card = document.querySelector(".scene-card");
-    const img = document.querySelector("#scene img.art");
-    const list = page.hotspots || [];
-    if (!wrap || !card || !list.length) return;
-    if (!img) return;                       // 回退场景没有热点
-
-    const paint = () => {
-      const iw = img.naturalWidth, ih = img.naturalHeight;
-      const cw = card.clientWidth, ch = card.clientHeight;
-      if (!iw || !ih || !cw || !ch) return;
-      const s = Math.max(cw / iw, ch / ih);
-      const dw = iw * s, dh = ih * s;
-      const ox = (cw - dw) / 2, oy = (ch - dh) / 2;
-
-      wrap.innerHTML = "";
-      list.forEach(hs => {
-        const cx = ox + dw * hs.x / 100, cy = oy + dh * hs.y / 100;
-        const w = dw * hs.w / 100, h = dh * hs.h / 100;
-        if (cx + w / 2 < 0 || cx - w / 2 > cw || cy + h / 2 < 0 || cy - h / 2 > ch) return;
-
-        const b = document.createElement("button");
-        b.className = "spot" + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
-        b.style.left = (cx - w / 2) + "px";
-        b.style.top = (cy - h / 2) + "px";
-        b.style.width = w + "px";
-        b.style.height = h + "px";
-        b.dataset.id = hs.id;
-        b.setAttribute("aria-label", hs.label);
-        b.addEventListener("pointerdown", e => {
-          e.preventDefault();                   // 别再补一个 click 出去
-          e.stopPropagation();
-          tapSpot(hs, b);
-        });
-        b.addEventListener("contextmenu", e => e.preventDefault());
-        wrap.appendChild(b);
+    const list = (page.hotspots || []).filter(hs => !hs.actor);
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    list.forEach(hs => {
+      const b = document.createElement("button");
+      b.className = "spot" + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
+      b.style.left = round2(hs.x - hs.w / 2) + "%";
+      b.style.top = round2(hs.y - hs.h / 2) + "%";
+      b.style.width = round2(hs.w) + "%";
+      b.style.height = round2(hs.h) + "%";
+      b.dataset.id = hs.id;
+      b.setAttribute("aria-label", hs.label);
+      b.addEventListener("pointerdown", e => {
+        e.preventDefault();                   // 别再补一个 click 出去
+        e.stopPropagation();
+        tapSpot(hs, b);
       });
-      updateSpotChip(list);
-    };
-
-    if (img.complete && img.naturalWidth) paint();
-    else img.addEventListener("load", paint, { once: true });
+      b.addEventListener("contextmenu", e => e.preventDefault());
+      wrap.appendChild(b);
+    });
+    updateSpotChip(page.hotspots || []);
   }
 
   function tapSpot(hs, el) {
@@ -567,6 +580,72 @@
     });
   }
 
+  /* ---------------- 会动的角色：一张贴纸 + 形变 ----------------
+     没有关节，所以只能整体动：呼吸是纵向轻微拉伸 + 一点点上下浮动；
+     被点的时候用「压—弹」演一下锄地。幅度都不大，但足够让这张图活过来。 */
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const busyActors = new WeakSet();
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  function startIdle(el) {
+    if (reduceMotion.matches) return;
+    const body = el.querySelector(".body");
+    if (!body) return;
+    el._idle = body.animate([
+      { transform: "translateY(0) scaleY(1)" },
+      { transform: "translateY(-0.35%) scaleY(1.012)", offset: .5 },
+      { transform: "translateY(0) scaleY(1)" }
+    ], { duration: 4200, iterations: Infinity, easing: "ease-in-out" });
+  }
+
+  // 一张贴纸没有关节，能做的只有整体位移和形变。这里只用「压—弹」：
+  // 压下去是锄头落进土里，弹回来是人直了直腰。支点在脚底，两只脚始终
+  // 踩在地上，身后补出来的那块背景也一直被他挡住。
+  const CHOP = [
+    { transform: "none" },
+    { transform: "translateY(5px) scaleY(.94)", offset: .28 },
+    { transform: "translateY(-3px) scaleY(1.025)", offset: .64 },
+    { transform: "none" }
+  ];
+
+  function chop(body, ms) {
+    return body.animate(CHOP, { duration: ms, easing: "ease-in-out", fill: "forwards" });
+  }
+
+  async function tapActor(hs, el) {
+    const lesson = current();
+    const pageSpots = lesson.pages[state.page].hotspots || [];
+    const firstTime = !spotsSeen.has(spotKey(hs));
+    spotsSeen.add(spotKey(hs));
+    T.log("spot", { lesson: lesson.id, page: state.page + 1, ch: hs.id, first: firstTime });
+    updateSpotChip(pageSpots);
+    el.classList.add("seen");
+    // 已经说上了：再点就重说一遍，不叠动作
+    if (busyActors.has(el) || reduceMotion.matches) {
+      showBubble(hs, el);
+      playAudio(hs.audio).then(ok => { if (!ok && hs.line) speak(hs.line); });
+      return;
+    }
+    busyActors.add(el);
+    const body = el.querySelector(".body");
+    const idle = el._idle;
+    try {
+      if (idle) idle.pause();
+      const hit = chop(body, 620);            // 锄一下，再直起腰
+      await hit.finished.catch(() => {});
+      const ms = showBubble(hs, el);
+      playAudio(hs.audio).then(ok => {
+        if (!ok && hs.line) speak(hs.line);
+      });
+      await wait(ms + 400);
+      hit.cancel();
+    } finally {
+      if (idle) idle.play();
+      busyActors.delete(el);
+    }
+  }
+
   function showBubble(hs, el) {
     const bubble = document.getElementById("bubble");
     const card = document.querySelector(".scene-card");
@@ -576,12 +655,14 @@
 
     const c = card.getBoundingClientRect(), r = el.getBoundingClientRect();
     const bw = bubble.offsetWidth, bh = bubble.offsetHeight, pad = 10;
-    // 以圆点（热区中心）为锚，而不是盒子边缘：盒子可能很高，气泡会飘走
+    // 以圆点（热区中心）为锚，而不是盒子边缘：盒子可能很高，气泡会飘走。
+    // 贴纸是一个人，锚点改取他的头顶/脚底，气泡才不会压在他脸上。
     const cx = r.left - c.left + r.width / 2;
-    const cy = r.top - c.top + r.height / 2;
+    const topY = r.top - c.top, botY = r.bottom - c.top;
+    const anchorY = hs.actor ? topY : (topY + botY) / 2;
     const gap = 34;
-    const above = cy - bh / 2 - gap;
-    const below = cy + bh / 2 + gap;
+    const above = hs.actor ? topY - bh - gap : anchorY - bh / 2 - gap;
+    const below = hs.actor ? botY + gap : anchorY + bh / 2 + gap;
     let top;
     if (above >= pad) top = above;                                      // 上方放得下就放上面
     else if (below + bh <= c.height - pad) top = below;                 // 放不下就贴到下面
@@ -597,6 +678,7 @@
     clearTimeout(bubbleTimer);
     const ms = Math.min(6500, 1600 + (hs.line || "").length * 260);
     bubbleTimer = setTimeout(hideBubble, ms);
+    return ms;
   }
 
   function hideBubble() {
@@ -735,14 +817,29 @@
     }
   }
 
+  // 图板：插画被 object-fit:cover 之后的真实矩形。宽高都按 cover 算，
+  // 位置跟着 object-position:center 46% 走，和 CSS 里那条规则一致。
+  // 贴纸、热点都按原图百分比挂在这块板上，所以转屏时只要挪动图板本身。
+  function layoutPlate() {
+    const card = document.querySelector(".scene-card");
+    const img = document.querySelector("#scene img.art");
+    const plate = document.getElementById("plate");
+    if (!card || !img || !plate) return;
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const cw = card.clientWidth, ch = card.clientHeight;
+    if (!iw || !ih || !cw || !ch) return;
+    const s = Math.max(cw / iw, ch / ih);
+    const dw = iw * s, dh = ih * s;
+    plate.style.width = dw + "px";
+    plate.style.height = dh + "px";
+    plate.style.left = (cw - dw) * 0.5 + "px";
+    plate.style.top = (ch - dh) * 0.46 + "px";
+  }
+
   function relayout() {
     fitStage();
     fitText();
-    // 图框尺寸变了，热点位置要跟着重算（坐标是相对原图百分比的）
-    const l = current();
-    if (l && l.kind === "story" && l.pages && l.pages[state.page]) {
-      paintSpots(l.pages[state.page]);
-    }
+    layoutPlate();
   }
 
   let fitTimer = null;

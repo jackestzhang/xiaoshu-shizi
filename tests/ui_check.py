@@ -60,14 +60,15 @@ def main() -> int:
         assert before == after, "点插画不应产生 tap"
         print("✓ 插画：点击画面不触发点读")
 
-        # 图上的角色：点了要出台词气泡，但不计入点读
-        assert pg.locator(".spot").count() == 3, f"热点数量不对：{pg.locator('.spot').count()}"
-        sb = pg.locator('.spot[data-id="farmer"]').bounding_box()
-        pg.mouse.click(sb["x"] + sb["width"] / 2, sb["y"] + sb["height"] / 2)
-        pg.wait_for_timeout(400)
+        # 图上的角色：农夫是贴纸（.actor），锄头和树桩是圆点（.spot）
+        n_actor, n_spot = pg.locator(".actor").count(), pg.locator(".spot").count()
+        assert n_actor + n_spot == 3, f"可点对象数量不对：actor {n_actor} + spot {n_spot}"
+        sb = pg.locator('.actor[data-id="farmer"]').bounding_box()
+        pg.mouse.click(sb["x"] + sb["width"] / 2, sb["y"] + sb["height"] * 0.6)
+        pg.wait_for_timeout(1200)          # 先锄一下再说话
         assert pg.locator("#bubble").is_visible(), "点角色没有出台词气泡"
         assert "农夫" in pg.locator("#bubble").inner_text(), "气泡里没有人名"
-        assert pg.locator(".spot.seen").count() == 1, "点过的角色没有标记"
+        assert pg.locator(".actor.seen").count() == 1, "点过的角色没有标记"
         spots = [e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "spot"]
         assert len(spots) == 1 and spots[0]["ch"] == "farmer", f"没有记录 spot 事件：{spots}"
         assert not [e for e in pg.evaluate("ShiziTrack.events()") if e["kind"] == "tap"], "点角色不该计点读"
