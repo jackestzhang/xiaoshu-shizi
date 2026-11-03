@@ -1144,6 +1144,24 @@
     });
   }
 
+  // 家长问「怎么不动」时，这一下能分清是设备设置还是页面本身
+  function testMotion() {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const body = document.querySelector(".actor .body");
+    if (body) {
+      body.animate([
+        { transform: "translateY(0) scaleY(1)" },
+        { transform: "translateY(2.5%) scaleY(.93)", offset: .18 },
+        { transform: "translateY(-2.5%) scaleY(1.06)", offset: .55 },
+        { transform: "translateY(0) scaleY(1)" }
+      ], { duration: 1500, easing: "ease-in-out" });
+    }
+    const none = body ? "" : "（这页没有会动的人物，翻到故事页再试）";
+    toast(reduced
+      ? "系统开着「减弱动态效果」，动画被降到最轻" + none
+      : "动画正常：画面在缓慢推近，人物在呼吸" + none);
+  }
+
   function exportData() {
     const data = T.exportData();
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -1173,6 +1191,7 @@
   document.getElementById("quizBtn").addEventListener("click", startQuiz);
   document.getElementById("exportBtn").addEventListener("click", exportData);
   document.getElementById("soundBtn").addEventListener("click", testSound);
+  document.getElementById("motionBtn").addEventListener("click", testMotion);
   document.getElementById("resetBtn").addEventListener("click", resetAll);
   document.getElementById("closeQuiz").addEventListener("click", closeQuiz);
   picker.addEventListener("click", () => {
