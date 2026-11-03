@@ -152,7 +152,15 @@ button{font-family:inherit}
 .scene{position:absolute;inset:0}
 /* 图板：JS 按 cover 算出的真实插画矩形，可能比卡片大（被裁掉的部分在卡片外）。
    贴纸和热点都挂在这上面，用原图百分比定位，不再各自换算裁切偏移。 */
-.plate{position:absolute;left:0;top:0;will-change:transform}
+.plate{position:absolute;left:0;top:0;will-change:transform;
+  /* 整幅画面极缓慢地推近一点再退回来。人物贴纸、热区都挂在这块板上，
+     一起缩放，永远不会和背景错位；24 秒一个来回，看久了才察觉，
+     但「这幅画是活的」这件事一眼就能看出来。 */
+  animation:drift 12s ease-in-out infinite alternate}
+@keyframes drift{
+  from{transform:scale(1)}
+  to{transform:scale(1.042) translateY(-.7%)}
+}
 .scene svg,.scene img{display:block;width:100%;height:100%}
 .scene .art{object-fit:cover;object-position:center 46%;pointer-events:none;user-select:none;animation:artIn 1.1s ease both}
 @keyframes artIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
@@ -186,6 +194,7 @@ button{font-family:inherit}
   cursor:pointer;touch-action:manipulation;pointer-events:auto;
   -webkit-tap-highlight-color:transparent;
 }
+.actor{transform-origin:50% 100%}
 .actor .body{display:block;position:relative;transform-origin:50% 100%;will-change:transform}
 .actor img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
 .actor .skin{position:relative;z-index:1}
@@ -564,8 +573,10 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 
 @media (prefers-reduced-motion:reduce){
   .scene *,.scene-card,.textcard,.story,.cards{animation:none!important}
-  /* 光晕常亮，别一闪一闪 */
-  .actor .skin{animation:none!important;filter:drop-shadow(0 0 5px rgba(255,200,120,.45)) drop-shadow(0 6px 12px rgba(70,55,35,.18))}
+  /* 光晕是「这里可以点」的唯一提示，不彻底关掉，只放慢到几乎察觉不到 */
+  .actor .skin{animation:haloSoft 8s ease-in-out infinite!important;
+    filter:drop-shadow(0 0 5px rgba(255,200,120,.45)) drop-shadow(0 6px 12px rgba(70,55,35,.18))}
+  @keyframes haloSoft{0%,100%{opacity:.62}50%{opacity:1}}
 }
 
 /* ---------------- 窄屏 / 矮屏微调 ---------------- */

@@ -592,11 +592,23 @@
     if (reduceMotion.matches) return;
     const body = el.querySelector(".body");
     if (!body) return;
+    // 支点在脚底：拉长和侧身都不会让脚离地。幅度比第一版大一倍，
+    // 静止观察三五秒就能看出他在呼吸、重心在换脚。
     el._idle = body.animate([
-      { transform: "translateY(0) scaleY(1)" },
-      { transform: "translateY(-0.35%) scaleY(1.012)", offset: .5 },
-      { transform: "translateY(0) scaleY(1)" }
-    ], { duration: 4200, iterations: Infinity, easing: "ease-in-out" });
+      { transform: "translateY(0) scaleY(1) rotate(0deg)" },
+      { transform: "translateY(-.7%) scaleY(1.022) rotate(-.35deg)", offset: .5 },
+      { transform: "translateY(0) scaleY(1) rotate(0deg)" }
+    ], { duration: 3600, iterations: Infinity, easing: "ease-in-out" });
+
+    // 每八秒偏一下头，像在地里干活时抬眼看了看远处。呼吸是连续的小幅，
+    // 「偏头」是间歇的明显动作——只有前者，看十秒会觉得他在原地发呆。
+    el._peek = el.animate([
+      { transform: "rotate(0deg)", offset: 0 },
+      { transform: "rotate(.9deg)", offset: .10 },
+      { transform: "rotate(.9deg)", offset: .20 },
+      { transform: "rotate(0deg)", offset: .30 },
+      { transform: "rotate(0deg)", offset: 1 }
+    ], { duration: 8000, iterations: Infinity, easing: "ease-in-out" });
   }
 
   // 一张贴纸没有关节，能做的只有整体位移和形变。这里只用「压—弹」：
@@ -621,8 +633,10 @@
     T.log("spot", { lesson: lesson.id, page: state.page + 1, ch: hs.id, first: firstTime });
     updateSpotChip(pageSpots);
     el.classList.add("seen");
-    // 已经说上了：再点就重说一遍，不叠动作
-    if (busyActors.has(el) || reduceMotion.matches) {
+    // 已经说上了：再点就重说一遍，不叠动作。
+    // 减弱动态模式也照常锄一下——一次性动作是「我点到了」的反馈，
+    // 不是持续晃动，停掉它只会让孩子以为没点着。
+    if (busyActors.has(el)) {
       showBubble(hs, el);
       playAudio(hs.audio).then(ok => { if (!ok && hs.line) speak(hs.line); });
       return;
