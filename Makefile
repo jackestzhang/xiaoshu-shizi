@@ -1,4 +1,4 @@
-.PHONY: build demo check ui pack all clean
+.PHONY: build demo check ui pack all clean publish
 
 build:
 	python3 pipeline/build.py
@@ -18,6 +18,10 @@ demo: build
 
 pack: demo
 	python3 pipeline/pack.py
+
+# 传到资料库「识字绘本 · 演示」，标题带日期和提交号
+publish: demo
+	python3 pipeline/publish.py
 
 all: check ui pack
 

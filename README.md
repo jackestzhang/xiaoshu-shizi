@@ -34,6 +34,10 @@ python3 tests/bundle_check.py   # 单文件在沙箱 srcdoc 里也能出声
 
 导出给 Android：`python3 pipeline/pack.py` → `dist/shizi-web.zip`（266 KB）。
 
+想在手机或别的电脑上看最新版：`python3 pipeline/publish.py`（或 `make publish`）。
+它把 `dist/shizi-demo.html` 传成资料库里的一页，标题自动带日期和提交号，
+落在「识字绘本 · 演示」文件夹里，旧版本原地留着，随时能回去对比。
+
 > **预览里点了没声音？** 用 `dist/shizi-demo.html`。它把 29 段音频转成 base64 内联，
 > 运行时零外部请求，因此不受预览沙箱对相对路径的限制。
 > 打开后点「家长 → 测试声音」，会直接告诉你这台设备有没有放出声音。
