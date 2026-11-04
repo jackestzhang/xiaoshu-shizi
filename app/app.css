@@ -198,6 +198,13 @@ button{font-family:inherit}
 .actor .body{display:block;position:relative;transform-origin:50% 100%;will-change:transform}
 .actor img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
 .actor .skin{position:relative;z-index:1}
+/* 拆成上下两段的角色：下半身撑起高度，上半身绝对定位叠在上面，绕腰转。
+   光晕挂在整组上，两层合成后统一描边，接缝处不会各自发亮。 */
+.actor.rig .lower{position:relative;display:block;width:100%}
+.actor.rig .upper{position:absolute;left:0;top:0;width:100%;height:100%;display:block;
+  transform:rotate(-2deg);will-change:transform}
+.actor.rig .upper img{position:absolute;inset:0;width:100%;height:auto}
+.actor.rig .body{animation:haloBreath 3.6s ease-in-out infinite;will-change:filter}
 /* 可交互提示：贴着轮廓的一圈暖光，慢呼吸。
    必须两层以上，单层 drop-shadow 会变成一条硬描边；用暖橙而不是白色，
    米色纸面上白光看不出来。最后一层是落影，别让它跟着呼吸抖动。 */
@@ -218,7 +225,7 @@ button{font-family:inherit}
 .actor.press .skin{transform:translateY(1px)}
 
 .spot{
-  position:absolute;padding:0;border:none;background:transparent;border-radius:20px;
+  position:absolute;display:block;padding:0;border:none;background:transparent;border-radius:20px;
   pointer-events:auto;cursor:pointer;touch-action:manipulation;
   transition:background .15s;
 }
@@ -574,7 +581,7 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 @media (prefers-reduced-motion:reduce){
   .scene *,.scene-card,.textcard,.story,.cards{animation:none!important}
   /* 光晕是「这里可以点」的唯一提示，不彻底关掉，只放慢到几乎察觉不到 */
-  .actor .skin{animation:haloSoft 8s ease-in-out infinite!important;
+  .actor .skin,.actor.rig .body{animation:haloSoft 8s ease-in-out infinite!important;
     filter:drop-shadow(0 0 5px rgba(255,200,120,.45)) drop-shadow(0 6px 12px rgba(70,55,35,.18))}
   @keyframes haloSoft{0%,100%{opacity:.62}50%{opacity:1}}
 }

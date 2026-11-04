@@ -529,14 +529,22 @@
   // 图上可点的人和东西。带 actor 的不画圆点——它本身就是一张会动的贴纸，
   // 直接贴在图上，按原图百分比定位，所以不需要换算 cover 的裁切偏移。
   function actorsMarkup(page) {
-    return (page.hotspots || []).filter(hs => hs.actor).map(hs =>
-      '<button class="actor" data-id="' + esc(hs.id) + '" aria-label="' + esc(hs.label) + '"' +
+    return (page.hotspots || []).filter(hs => hs.actor).map(hs => {
+      // 有 rig 的角色拆成上下两段，绕腰转：上半身带着手臂和锄头一起俯仰。
+      // 没有 rig 的还是一张整贴纸。
+      const rig = hs.rig;
+      const inner = rig
+        ? '<img class="lower" src="' + esc(rig.lower) + '" alt="" draggable="false">' +
+          '<img class="upper" src="' + esc(rig.upper) + '" alt="" draggable="false"' +
+          ' style="transform-origin:' + rig.waist[0] + '% ' + rig.waist[1] + '%">'
+        : '<img class="skin" src="' + esc(hs.actor) + '" alt="" draggable="false">';
+      return '<button class="actor' + (rig ? " rig" : "") + '" data-id="' + esc(hs.id) +
+        '" aria-label="' + esc(hs.label) + '"' +
         ' style="left:' + round2(hs.x - hs.w / 2) + '%;top:' + round2(hs.y - hs.h / 2) +
         '%;width:' + round2(hs.w) + '%">' +
-        '<span class="body">' +
-          '<img class="skin" src="' + esc(hs.actor) + '" alt="" draggable="false">' +
-        '</span>' +
-      '</button>').join("");
+        '<span class="body">' + inner + '</span>' +
+      '</button>';
+    }).join("");
   }
 
   const round2 = v => Math.round(v * 100) / 100;
@@ -546,9 +554,16 @@
     const list = (page.hotspots || []).filter(hs => !hs.actor);
     if (!wrap) return;
     wrap.innerHTML = "";
+    // 挂在角色身上的热点（比如他手里那把锄头）会跟着上半身一起动，
+    // 否则锄头抡下去了，橙点还留在原地。
+    document.querySelectorAll(".actor .spot").forEach(e => e.remove());
     list.forEach(hs => {
-      const b = document.createElement("button");
-      b.className = "spot" + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
+      const inRig = hs.inRig
+        ? document.querySelector('.actor.rig[data-id="' + hs.inRig + '"] .upper')
+        : null;
+      const b = document.createElement(inRig ? "div" : "button");
+      if (inRig) { b.setAttribute("role", "button"); b.tabIndex = 0; b.style.display = "block"; }
+      b.className = "spot" + (inRig ? " in-rig" : "") + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
       b.style.left = round2(hs.x - hs.w / 2) + "%";
       b.style.top = round2(hs.y - hs.h / 2) + "%";
       b.style.width = round2(hs.w) + "%";
@@ -561,7 +576,7 @@
         tapSpot(hs, b);
       });
       b.addEventListener("contextmenu", e => e.preventDefault());
-      wrap.appendChild(b);
+      (inRig || wrap).appendChild(b);
     });
     updateSpotChip(page.hotspots || []);
   }
@@ -590,6 +605,19 @@
 
   function startIdle(el) {
     if (reduceMotion.matches) return;
+    // 两段式角色：腰是唯一的活动关节。慢呼吸，每五秒锄一下。
+    const up = el.querySelector(".upper");
+    if (up) {
+      el._idle = up.animate([
+        { transform: "rotate(-2deg)" },
+        { transform: "rotate(-2.7deg)", offset: .42 },
+        { transform: "rotate(-8.6deg)", offset: .60 },
+        { transform: "rotate(-7.9deg)", offset: .66 },
+        { transform: "rotate(-2deg)", offset: .80 },
+        { transform: "rotate(-2deg)" }
+      ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
+      return;
+    }
     const body = el.querySelector(".body");
     if (!body) return;
     // 支点在脚底：拉长和侧身都不会让脚离地。幅度比第一版大一倍，
@@ -625,6 +653,25 @@
     return body.animate(CHOP, { duration: ms, easing: "ease-in-out", fill: "forwards" });
   }
 
+  const angleOf = el => {
+    const m = new DOMMatrix(getComputedStyle(el).transform);
+    return Math.atan2(m.b, m.a) * 180 / Math.PI;
+  };
+
+  // 连着锄两下：第一下重，第二下轻，抬起来的时候正好开口说话
+  async function hoeTwice(up) {
+    const from = angleOf(up);
+    for (const [deep, ms] of [[-9.5, 760], [-8.8, 620]]) {
+      const a = up.animate([
+        { transform: "rotate(" + from + "deg)" },
+        { transform: "rotate(" + deep + "deg)", offset: .46 },
+        { transform: "rotate(" + (deep + .9) + "deg)", offset: .56 },
+        { transform: "rotate(-2deg)" }
+      ], { duration: ms, easing: "ease-in-out" });
+      await a.finished.catch(() => {});
+    }
+  }
+
   async function tapActor(hs, el) {
     const lesson = current();
     const pageSpots = lesson.pages[state.page].hotspots || [];
@@ -642,18 +689,21 @@
       return;
     }
     busyActors.add(el);
+    const up = el.querySelector(".upper");
     const body = el.querySelector(".body");
     const idle = el._idle;
     try {
       if (idle) idle.pause();
-      const hit = chop(body, 620);            // 锄一下，再直起腰
-      await hit.finished.catch(() => {});
+      // 锄头落进土里那一刻开口，别等整套动作演完——点了半天没反应最劝退
+      const act = up ? hoeTwice(up) : null;
+      if (act) await wait(520);
+      else await chop(body, 620).finished.catch(() => {});
       const ms = showBubble(hs, el);
       playAudio(hs.audio).then(ok => {
         if (!ok && hs.line) speak(hs.line);
       });
       await wait(ms + 400);
-      hit.cancel();
+      if (act) await act;
     } finally {
       if (idle) idle.play();
       busyActors.delete(el);

@@ -65,7 +65,7 @@ def main() -> int:
         assert n_actor + n_spot == 3, f"可点对象数量不对：actor {n_actor} + spot {n_spot}"
         sb = pg.locator('.actor[data-id="farmer"]').bounding_box()
         pg.mouse.click(sb["x"] + sb["width"] / 2, sb["y"] + sb["height"] * 0.6)
-        pg.wait_for_timeout(1200)          # 先锄一下再说话
+        pg.wait_for_timeout(1600)          # 锄头落下才开口
         assert pg.locator("#bubble").is_visible(), "点角色没有出台词气泡"
         assert "农夫" in pg.locator("#bubble").inner_text(), "气泡里没有人名"
         assert pg.locator(".actor.seen").count() == 1, "点过的角色没有标记"

@@ -141,6 +141,14 @@ window.SHIZI = {
               "h": 49.8,
               "line": "天亮了，我得把草锄干净。",
               "actor": "assets/actors/L03_farmer.webp",
+              "rig": {
+                "upper": "assets/actors/L03_farmer_up.webp",
+                "lower": "assets/actors/L03_farmer_lo.webp",
+                "waist": [
+                  39.27,
+                  65.97
+                ]
+              },
               "audio": "assets/audio/862705fe4e23.mp3"
             },
             {
