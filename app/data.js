@@ -142,30 +142,38 @@ window.SHIZI = {
               "line": "天亮了，我得把草锄干净。",
               "actor": "assets/actors/L03_farmer.webp",
               "rig": {
-                "upper": "assets/actors/L03_farmer_up.webp",
                 "lower": "assets/actors/L03_farmer_lo.webp",
+                "torso": "assets/actors/L03_farmer_torso.webp",
+                "arm": "assets/actors/L03_farmer_arm.webp",
                 "waist": [
                   39.27,
                   65.97
-                ]
+                ],
+                "shoulder": [
+                  51.31,
+                  27.75
+                ],
+                "pad": 11.52,
+                "zoom": 123.04
               },
               "audio": "assets/audio/862705fe4e23.mp3"
             },
             {
               "id": "hoe",
               "label": "锄头",
-              "x": 59.4,
-              "y": 77,
-              "w": 20,
-              "h": 26,
+              "x": 84.0,
+              "y": 86.0,
+              "w": 24,
+              "h": 22,
               "line": "咚、咚，草根都翻出来啦。",
+              "inRig": "farmer",
               "audio": "assets/audio/6dee37ab3dfb.mp3"
             },
             {
               "id": "stump",
               "label": "树桩",
               "x": 13.7,
-              "y": 56.5,
+              "y": 58.0,
               "w": 15,
               "h": 22,
               "line": "我在这儿站了好多年啦。",

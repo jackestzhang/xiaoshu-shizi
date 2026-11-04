@@ -198,12 +198,17 @@ button{font-family:inherit}
 .actor .body{display:block;position:relative;transform-origin:50% 100%;will-change:transform}
 .actor img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
 .actor .skin{position:relative;z-index:1}
-/* 拆成上下两段的角色：下半身撑起高度，上半身绝对定位叠在上面，绕腰转。
+/* 拆成两段的角色：下半身撑起高度，上半身绝对定位叠在上面，绕腰转。
    光晕挂在整组上，两层合成后统一描边，接缝处不会各自发亮。 */
 .actor.rig .lower{position:relative;display:block;width:100%}
-.actor.rig .upper{position:absolute;left:0;top:0;width:100%;height:100%;display:block;
-  transform:rotate(-2deg);will-change:transform}
+.actor.rig .upper{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1;
+  display:block;transform:rotate(-2deg);will-change:transform}
 .actor.rig .upper img{position:absolute;inset:0;width:100%;height:auto}
+/* 三段的角色：上身里再套一层「臂」，绕肩转。臂和它的图都要显式给宽高——
+   只靠 inset:0 的 span 量出来是 0×0，挂在它上面的热点会全挤到左上角。 */
+.actor.rig .arm{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1;
+  display:block;will-change:transform}
+.actor.rig .arm img{position:absolute;left:0;top:0;width:100%;height:auto;display:block}
 .actor.rig .body{animation:haloBreath 3.6s ease-in-out infinite;will-change:filter}
 /* 可交互提示：贴着轮廓的一圈暖光，慢呼吸。
    必须两层以上，单层 drop-shadow 会变成一条硬描边；用暖橙而不是白色，

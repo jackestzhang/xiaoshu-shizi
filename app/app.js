@@ -530,14 +530,31 @@
   // 直接贴在图上，按原图百分比定位，所以不需要换算 cover 的裁切偏移。
   function actorsMarkup(page) {
     return (page.hotspots || []).filter(hs => hs.actor).map(hs => {
-      // 有 rig 的角色拆成上下两段，绕腰转：上半身带着手臂和锄头一起俯仰。
+      // 带 rig 的角色拆成三段：下半身、上身（头+躯干）、臂（袖子+手+锄）。
+      // 上身绕腰转，臂在上身里再绕肩转——两级串联，锄头才甩得开。
       // 没有 rig 的还是一张整贴纸。
       const rig = hs.rig;
-      const inner = rig
-        ? '<img class="lower" src="' + esc(rig.lower) + '" alt="" draggable="false">' +
-          '<img class="upper" src="' + esc(rig.upper) + '" alt="" draggable="false"' +
-          ' style="transform-origin:' + rig.waist[0] + '% ' + rig.waist[1] + '%">'
-        : '<img class="skin" src="' + esc(hs.actor) + '" alt="" draggable="false">';
+      let inner;
+      if (rig && rig.arm) {
+        // 上身两层的画布比整图大一圈（锄头要甩得开），所以按 pad/zoom
+        // 把它放大、左上各外扩回去，内容才对得上原位。
+        const box = rig.zoom
+          ? ' style="width:' + rig.zoom + '%;left:-' + rig.pad + '%;top:-' + rig.pad + '%"'
+          : '';
+        inner = '<img class="lower" src="' + esc(rig.lower) + '" alt="" draggable="false">' +
+          '<span class="upper" style="transform-origin:' + rig.waist[0] + '% ' + rig.waist[1] + '%">' +
+            '<img class="torso" src="' + esc(rig.torso) + '" alt="" draggable="false"' + box + '>' +
+            '<span class="arm" style="transform-origin:' + rig.shoulder[0] + '% ' + rig.shoulder[1] + '%">' +
+              '<img class="armimg" src="' + esc(rig.arm) + '" alt="" draggable="false"' + box + '>' +
+            '</span>' +
+          '</span>';
+      } else if (rig) {
+        inner = '<img class="lower" src="' + esc(rig.lower) + '" alt="" draggable="false">' +
+          '<span class="upper" style="transform-origin:' + rig.waist[0] + '% ' + rig.waist[1] + '%">' +
+            '<img src="' + esc(rig.upper) + '" alt="" draggable="false"></span>';
+      } else {
+        inner = '<img class="skin" src="' + esc(hs.actor) + '" alt="" draggable="false">';
+      }
       return '<button class="actor' + (rig ? " rig" : "") + '" data-id="' + esc(hs.id) +
         '" aria-label="' + esc(hs.label) + '"' +
         ' style="left:' + round2(hs.x - hs.w / 2) + '%;top:' + round2(hs.y - hs.h / 2) +
@@ -554,16 +571,17 @@
     const list = (page.hotspots || []).filter(hs => !hs.actor);
     if (!wrap) return;
     wrap.innerHTML = "";
-    // 挂在角色身上的热点（比如他手里那把锄头）会跟着上半身一起动，
-    // 否则锄头抡下去了，橙点还留在原地。
+    // 挂在角色身上的热点（比如他手里那把锄头）会跟着关节一起动，
+    // 否则锄头抡下去了，橙点还留在原地。有臂关节就挂臂，没有再退回上身。
     document.querySelectorAll(".actor .spot").forEach(e => e.remove());
     list.forEach(hs => {
-      const inRig = hs.inRig
-        ? document.querySelector('.actor.rig[data-id="' + hs.inRig + '"] .upper')
-        : null;
+      const host = hs.inRig && document.querySelector('.actor.rig[data-id="' + hs.inRig + '"]');
+      const inRig = host ? (host.querySelector(".arm") || host.querySelector(".upper")) : null;
       const b = document.createElement(inRig ? "div" : "button");
       if (inRig) { b.setAttribute("role", "button"); b.tabIndex = 0; b.style.display = "block"; }
       b.className = "spot" + (inRig ? " in-rig" : "") + (spotsSeen.has(spotKey(hs)) ? " seen" : "");
+      // 挂在上身里的热点仍按整图的百分比写。上身的图虽然被放大并外扩过
+      // （给锄头留摆动空间），但外扩量和放大倍数刚好抵消，坐标不变。
       b.style.left = round2(hs.x - hs.w / 2) + "%";
       b.style.top = round2(hs.y - hs.h / 2) + "%";
       b.style.width = round2(hs.w) + "%";
@@ -605,17 +623,35 @@
 
   function startIdle(el) {
     if (reduceMotion.matches) return;
-    // 两段式角色：腰是唯一的活动关节。慢呼吸，每五秒锄一下。
+    // 三段式角色：腰和肩两级关节。腰负责整个人的俯仰，肩负责甩臂。
+    // 锄一下是一个完整的呼吸周期——慢慢抬起来、停一下、砸下去、直腰。
     const up = el.querySelector(".upper");
     if (up) {
+      const arm = el.querySelector(".arm");
       el._idle = up.animate([
         { transform: "rotate(-2deg)" },
-        { transform: "rotate(-2.7deg)", offset: .42 },
-        { transform: "rotate(-8.6deg)", offset: .60 },
-        { transform: "rotate(-7.9deg)", offset: .66 },
-        { transform: "rotate(-2deg)", offset: .80 },
+        { transform: "rotate(-3.4deg)", offset: .30 },
+        { transform: "rotate(-6.6deg)", offset: .52, easing: "cubic-bezier(.45,0,.9,.35)" },
+        { transform: "rotate(-6.6deg)", offset: .60, easing: "cubic-bezier(.5,0,1,.4)" },
+        { transform: "rotate(-1.2deg)", offset: .70 },
+        { transform: "rotate(-2.4deg)", offset: .78 },
+        { transform: "rotate(-2deg)", offset: .88 },
         { transform: "rotate(-2deg)" }
       ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
+      if (arm) {
+        // 臂比腰早一点点起、晚一点点收，两级关节错开才有「甩」的感觉；
+        // 完全同步就成了一根刚体。
+        el._idleArm = arm.animate([
+          { transform: "rotate(0deg)" },
+          { transform: "rotate(-2.6deg)", offset: .28 },
+          { transform: "rotate(-9.6deg)", offset: .52, easing: "cubic-bezier(.45,0,.9,.35)" },
+          { transform: "rotate(-9.6deg)", offset: .60, easing: "cubic-bezier(.5,0,1,.4)" },
+          { transform: "rotate(7.6deg)", offset: .70 },
+          { transform: "rotate(2.2deg)", offset: .79 },
+          { transform: "rotate(0deg)", offset: .90 },
+          { transform: "rotate(0deg)" }
+        ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
+      }
       return;
     }
     const body = el.querySelector(".body");
@@ -658,18 +694,38 @@
     return Math.atan2(m.b, m.a) * 180 / Math.PI;
   };
 
+  // 抬起来→停半拍→砸下去→直腰。腰和肩同时演，但肩的幅度更大一点，
+  // 这样锄头落点的那一下有「手腕甩出去」的重量感。
+  function swingOnce(up, arm, deepWaist, deepArm, ms) {
+    const w0 = angleOf(up), a0 = arm ? angleOf(arm) : 0;
+    const w = up.animate([
+      { transform: "rotate(" + w0 + "deg)" },
+      { transform: "rotate(" + deepWaist + "deg)", offset: .44, easing: "cubic-bezier(.4,0,.7,.5)" },
+      { transform: "rotate(" + (deepWaist + .5) + "deg)", offset: .52, easing: "cubic-bezier(.55,0,1,.4)" },
+      { transform: "rotate(-1.4deg)", offset: .62 },
+      { transform: "rotate(-2.4deg)", offset: .74 },
+      { transform: "rotate(-2deg)", offset: .88 },
+      { transform: "rotate(-2deg)" }
+    ], { duration: ms, easing: "ease-in-out" });
+    const a = arm ? arm.animate([
+      { transform: "rotate(" + a0 + "deg)" },
+      { transform: "rotate(" + deepArm + "deg)", offset: .44, easing: "cubic-bezier(.4,0,.7,.5)" },
+      { transform: "rotate(" + (deepArm + .6) + "deg)", offset: .52, easing: "cubic-bezier(.55,0,1,.4)" },
+      { transform: "rotate(9.4deg)", offset: .62 },
+      { transform: "rotate(1.4deg)", offset: .74 },
+      { transform: "rotate(0deg)", offset: .88 },
+      { transform: "rotate(0deg)" }
+    ], { duration: ms, easing: "ease-in-out" }) : null;
+    return Promise.all([
+      w.finished.catch(() => {}),
+      a ? a.finished.catch(() => {}) : Promise.resolve()
+    ]);
+  }
+
   // 连着锄两下：第一下重，第二下轻，抬起来的时候正好开口说话
-  async function hoeTwice(up) {
-    const from = angleOf(up);
-    for (const [deep, ms] of [[-9.5, 760], [-8.8, 620]]) {
-      const a = up.animate([
-        { transform: "rotate(" + from + "deg)" },
-        { transform: "rotate(" + deep + "deg)", offset: .46 },
-        { transform: "rotate(" + (deep + .9) + "deg)", offset: .56 },
-        { transform: "rotate(-2deg)" }
-      ], { duration: ms, easing: "ease-in-out" });
-      await a.finished.catch(() => {});
-    }
+  async function hoeTwice(up, arm) {
+    await swingOnce(up, arm, -7.4, -12.4, 780);
+    await swingOnce(up, arm, -6.6, -10.2, 640);
   }
 
   async function tapActor(hs, el) {
@@ -690,12 +746,15 @@
     }
     busyActors.add(el);
     const up = el.querySelector(".upper");
+    const arm = el.querySelector(".arm");
     const body = el.querySelector(".body");
     const idle = el._idle;
+    const idleArm = el._idleArm;
     try {
       if (idle) idle.pause();
+      if (idleArm) idleArm.pause();
       // 锄头落进土里那一刻开口，别等整套动作演完——点了半天没反应最劝退
-      const act = up ? hoeTwice(up) : null;
+      const act = up ? hoeTwice(up, arm) : null;
       if (act) await wait(520);
       else await chop(body, 620).finished.catch(() => {});
       const ms = showBubble(hs, el);
@@ -706,6 +765,7 @@
       if (act) await act;
     } finally {
       if (idle) idle.play();
+      if (idleArm) idleArm.play();
       busyActors.delete(el);
     }
   }
@@ -1197,8 +1257,14 @@
   // 家长问「怎么不动」时，这一下能分清是设备设置还是页面本身
   function testMotion() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const body = document.querySelector(".actor .body");
-    if (body) {
+    const el = document.querySelector(".actor");
+    const up = el && el.querySelector(".upper");
+    const arm = el && el.querySelector(".arm");
+    const body = el && el.querySelector(".body");
+    if (up) {
+      // 有关节的角色就演一遍真的锄地，比整体压弹更能说明问题
+      swingOnce(up, arm, -7.4, -12.4, 1100);
+    } else if (body) {
       body.animate([
         { transform: "translateY(0) scaleY(1)" },
         { transform: "translateY(2.5%) scaleY(.93)", offset: .18 },
@@ -1209,7 +1275,7 @@
     const none = body ? "" : "（这页没有会动的人物，翻到故事页再试）";
     toast(reduced
       ? "系统开着「减弱动态效果」，动画被降到最轻" + none
-      : "动画正常：画面在缓慢推近，人物在呼吸" + none);
+      : "动画正常：画面在缓慢推近，农夫在锄地" + none);
   }
 
   function exportData() {

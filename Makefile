@@ -1,7 +1,11 @@
-.PHONY: build demo check ui pack all clean publish
+.PHONY: build rig demo check ui pack all clean publish
 
 build:
 	python3 pipeline/build.py
+
+# 把农夫的上半身再拆成躯干 + 臂（腰、肩两级关节），产出两张新贴纸
+rig:
+	python3 pipeline/rig.py
 
 check:
 	python3 tests/run_checks.py
