@@ -4,6 +4,13 @@
 > 技术细节在 `README.md`（原有，偏设计决策），这里偏**状态、坑、下一步**。
 > 最后更新：2026-11-06
 
+**代码仓库**：<https://github.com/jackestzhang/xiaoshu-shizi>（public，直接 clone，不需要授权）
+
+```bash
+git clone https://github.com/jackestzhang/xiaoshu-shizi.git
+cd xiaoshu-shizi && make demo
+```
+
 ---
 
 ## 一句话
