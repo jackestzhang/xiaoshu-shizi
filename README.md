@@ -10,24 +10,33 @@
 
 ---
 
+> 第一次接手这个项目？先读 [HANDOFF.md](HANDOFF.md)：现状、七个坑、下一步。
+
+---
+
 ## 30 秒跑起来
 
 ```bash
-# 1. 直接看 Demo（单文件，音频内联，预览器里也能出声）
-open dist/shizi-demo.html    # macOS
-# xdg-open dist/shizi-demo.html
+git clone https://github.com/jackestzhang/xiaoshu-shizi.git
+cd xiaoshu-shizi
+
+# 1. 首次：合成语音 + 打包。dist/ 是构建产物，不进仓库，所以必须先跑这一步
+make demo
+
+# 2. 看 Demo（单文件，音频内联，预览器里也能出声）
+open dist/shizi-demo.html    # macOS；Linux 用 xdg-open
 
 # 开发时看多文件版（同样可双击）
 open app/index.html
 
-# 2. 改完内容后重新打包
+# 3. 改完内容后重新打包
 python3 pipeline/build.py    # 语音 + data.js
 python3 pipeline/bundle.py   # 单文件 Demo（内联全部音频）
 
-# 3. 一口气检查：课程校验 + 前后端口径一致
+# 4. 一口气检查：课程校验 + 前后端口径一致
 python3 tests/run_checks.py
 
-# 4. 真 DOM 回归 + 截图（需要 playwright + chromium）
+# 5. 真 DOM 回归 + 截图（需要 playwright + chromium）
 python3 tests/ui_check.py
 python3 tests/bundle_check.py   # 单文件在沙箱 srcdoc 里也能出声
 ```
