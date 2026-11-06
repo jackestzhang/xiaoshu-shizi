@@ -200,7 +200,9 @@ button{font-family:inherit}
 .actor .skin{position:relative;z-index:1}
 /* 拆成两段的角色：下半身撑起高度，上半身绝对定位叠在上面，绕腰转。
    光晕挂在整组上，两层合成后统一描边，接缝处不会各自发亮。 */
-.actor.rig .lower{position:relative;display:block;width:100%}
+/* 支点在脚底：下半身压缩时脚不离地，看起来是屈膝下蹲而不是整个人陷进土里。 */
+.actor.rig .lower{position:relative;display:block;width:100%;transform-origin:50% 100%;
+  will-change:transform}
 .actor.rig .upper{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1;
   display:block;transform:rotate(-2deg);will-change:transform}
 .actor.rig .upper img{position:absolute;inset:0;width:100%;height:auto}
@@ -228,6 +230,23 @@ button{font-family:inherit}
     drop-shadow(0 6px 12px rgba(70,55,35,.18))}
 }
 .actor.press .skin{transform:translateY(1px)}
+
+/* 锄刃入土那一下崩起来的一小撮土。没有它，锄头就是「摆」到地上，
+   而不是「砸」进地里——重量感全在这一点碎屑上。 */
+.dust{
+  position:absolute;width:1.7%;min-width:4px;aspect-ratio:1;border-radius:50%;
+  background:rgba(212,180,132,.72);box-shadow:0 0 3px rgba(214,182,134,.55);
+  pointer-events:none;z-index:2;transform:translate(-50%,-50%);
+  animation:dustUp .66s cubic-bezier(.15,.65,.4,1) forwards;
+}
+@keyframes dustUp{
+  0%{opacity:.9;transform:translate(-50%,-50%) scale(.5)}
+  30%{opacity:.8}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% - 15px)) scale(1.7)}
+}
+@media (prefers-reduced-motion: reduce){
+  .dust{animation-duration:.32s}
+}
 
 .spot{
   position:absolute;display:block;padding:0;border:none;background:transparent;border-radius:20px;

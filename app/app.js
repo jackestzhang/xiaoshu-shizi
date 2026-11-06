@@ -621,6 +621,68 @@
   const busyActors = new WeakSet();
   const wait = ms => new Promise(r => setTimeout(r, ms));
 
+  // 锄了一阵，直起腰看看远处有没有兔子，再弯下去接着锄。
+  // 这件事本身没什么，但它说明腰和肩是两级独立的关节：腰往上抬的同时，
+  // 肩得反过来压一点，锄头才不会跟着甩到天上去。
+  async function straighten(el) {
+    const up = el.querySelector(".upper");
+    const arm = el.querySelector(".arm");
+    const low = el.querySelector(".lower");
+    if (!up || !arm || busyActors.has(el) || !document.contains(el)) return;
+    busyActors.add(el);
+    const idle = el._idle, idleArm = el._idleArm, idleLow = el._idleLow;
+    try {
+      if (idle) idle.pause();
+      if (idleArm) idleArm.pause();
+      if (idleLow) idleLow.pause();
+      const w0 = angleOf(up), a0 = angleOf(arm);
+      // 4.6 秒里：抬（0-38%）→ 站着（38-70%）→ 弯回去（100%）。
+      // 三个动画等长，才不会出现「腰已经直了、手臂还在半路」的半截姿态。
+      const opts = { duration: 4600, easing: "ease-in-out" };
+      await Promise.all([
+        up.animate([
+          { transform: "rotate(" + w0 + "deg)" },
+          { transform: "rotate(3.2deg)", offset: .38 },
+          { transform: "rotate(3.2deg)", offset: .70 },
+          { transform: "rotate(-2deg)" }
+        ], opts).finished.catch(() => {}),
+        arm.animate([
+          { transform: "rotate(" + a0 + "deg)" },
+          { transform: "rotate(" + Math.max(a0 - 4, 0) + "deg)", offset: .38 },
+          { transform: "rotate(" + Math.max(a0 - 4, 0) + "deg)", offset: .70 },
+          { transform: "rotate(0deg)" }
+        ], opts).finished.catch(() => {}),
+        low ? low.animate([
+          { transform: "scaleY(1)" },
+          { transform: "scaleY(1)" }
+        ], opts).finished.catch(() => {}) : Promise.resolve()
+      ]);
+    } finally {
+      // 停在 -2°，正是待机循环里那五分之一秒的静止姿态，接回去无缝。
+      if (idle) idle.play();
+      if (idleArm) idleArm.play();
+      if (idleLow) idleLow.play();
+      busyActors.delete(el);
+    }
+  }
+
+  // 直腰只在待机循环的「静止段」起手，否则一暂停就卡在弯腰的最低点，
+  // 再从那儿弹回 -2° 会抖一下。9 秒后先探，没到静止段就每 0.4 秒再看。
+  function scheduleStraighten(el, delay) {
+    clearTimeout(el._straightenTimer);
+    el._straightenTimer = setTimeout(async () => {
+      if (!document.contains(el)) return;
+      const idle = el._idle;
+      const t = idle ? idle.currentTime % 5600 : 0;
+      if (idle && !(t > 4880 && t < 5500) || busyActors.has(el)) {
+        scheduleStraighten(el, 400);
+        return;
+      }
+      await straighten(el);
+      scheduleStraighten(el, 7000 + Math.random() * 6000);
+    }, delay);
+  }
+
   function startIdle(el) {
     if (reduceMotion.matches) return;
     // 三段式角色：腰和肩两级关节。腰负责整个人的俯仰，肩负责甩臂。
@@ -628,16 +690,30 @@
     const up = el.querySelector(".upper");
     if (up) {
       const arm = el.querySelector(".arm");
+      const low = el.querySelector(".lower");
+      // 腰沉多少、腿就压多少：translateY 的 2% 正好对上 scaleY 掉的 6%
+      // （上身盒子高 382、下半身内容高 130，6% × 130 ≈ 2% × 382）。
+      // 腿不压，人弯下去就成了「上半身插进裤子里」。
       el._idle = up.animate([
-        { transform: "rotate(-2deg)" },
-        { transform: "rotate(-3.4deg)", offset: .30 },
-        { transform: "rotate(-6.6deg)", offset: .52, easing: "cubic-bezier(.45,0,.9,.35)" },
-        { transform: "rotate(-6.6deg)", offset: .60, easing: "cubic-bezier(.5,0,1,.4)" },
-        { transform: "rotate(-1.2deg)", offset: .70 },
-        { transform: "rotate(-2.4deg)", offset: .78 },
-        { transform: "rotate(-2deg)", offset: .88 },
-        { transform: "rotate(-2deg)" }
+        { transform: "translateY(0%) rotate(-2deg)" },
+        { transform: "translateY(0%) rotate(-3.4deg)", offset: .30 },
+        { transform: "translateY(2%) rotate(-6.6deg)", offset: .52, easing: "cubic-bezier(.45,0,.9,.35)" },
+        { transform: "translateY(2%) rotate(-6.6deg)", offset: .60, easing: "cubic-bezier(.5,0,1,.4)" },
+        { transform: "translateY(0%) rotate(-1.2deg)", offset: .70 },
+        { transform: "translateY(0%) rotate(-2.4deg)", offset: .78 },
+        { transform: "translateY(0%) rotate(-2deg)", offset: .88 },
+        { transform: "translateY(0%) rotate(-2deg)" }
       ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
+      if (low) {
+        el._idleLow = low.animate([
+          { transform: "scaleY(1)" },
+          { transform: "scaleY(1)", offset: .30 },
+          { transform: "scaleY(.94)", offset: .52 },
+          { transform: "scaleY(.94)", offset: .60 },
+          { transform: "scaleY(1)", offset: .78 },
+          { transform: "scaleY(1)" }
+        ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
+      }
       if (arm) {
         // 臂比腰早一点点起、晚一点点收，两级关节错开才有「甩」的感觉；
         // 完全同步就成了一根刚体。
@@ -652,6 +728,7 @@
           { transform: "rotate(0deg)" }
         ], { duration: 5600, iterations: Infinity, easing: "ease-in-out" });
       }
+      scheduleStraighten(el, 6000);
       return;
     }
     const body = el.querySelector(".body");
@@ -693,19 +770,67 @@
     const m = new DOMMatrix(getComputedStyle(el).transform);
     return Math.atan2(m.b, m.a) * 180 / Math.PI;
   };
+  // 同一个元素上还有 translateY / scaleY，点下去的那一刻得从「现在停在哪」
+  // 接上，否则会先弹回原位再演——待机动画暂停时正卡在弯腰的低点上。
+  const tyOf = el => new DOMMatrix(getComputedStyle(el).transform).f;
+  const syOf = el => new DOMMatrix(getComputedStyle(el).transform).d || 1;
+
+  // 锄刃入土的位置：热点是挂在臂上的，臂转到哪儿它就跟到哪儿，
+  // 所以落地那一刻读它的实时位置最准，不用手算圆弧。
+  function dust(actor) {
+    const layer = document.querySelector(".actors");
+    const spot = actor.querySelector('.spot[data-id="hoe"]');
+    if (!layer || !spot) return;
+    const b = spot.getBoundingClientRect(), h = layer.getBoundingClientRect();
+    if (!h.width) return;
+    const x = (b.left + b.width / 2 - h.left) / h.width * 100;
+    const y = (b.top + b.height * .78 - h.top) / h.height * 100;
+    for (let i = 0; i < 4; i++) {
+      const d = document.createElement("span");
+      d.className = "dust";
+      d.style.left = x + "%";
+      d.style.top = y + "%";
+      d.style.setProperty("--dx", ((i - 1.5) * 9 + (Math.random() - .5) * 5).toFixed(1) + "px");
+      d.style.animationDelay = (i * 26) + "ms";
+      d.style.width = (1.1 + Math.random() * .9).toFixed(2) + "%";
+      layer.appendChild(d);
+      d.addEventListener("animationend", () => d.remove());
+    }
+  }
+
+  // 盯着腰的角度，走到最深的那一格就崩一下土。
+  function impactAt(up, deepWaist, ms) {
+    const actor = up.closest(".actor");
+    const t0 = performance.now();
+    let fired = false;
+    const tick = () => {
+      if (fired) return;
+      if (Math.abs(angleOf(up) - deepWaist) < .8) {
+        fired = true;
+        dust(actor);
+        return;
+      }
+      if (performance.now() - t0 < ms * .8) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
 
   // 抬起来→停半拍→砸下去→直腰。腰和肩同时演，但肩的幅度更大一点，
-  // 这样锄头落点的那一下有「手腕甩出去」的重量感。
-  function swingOnce(up, arm, deepWaist, deepArm, ms) {
+  // 这样锄头落点的那一下有「手腕甩出去」的重量感。腿跟着沉：锄刃入土，
+  // 重心必须一起下去，否则只是上半身在鞠躬。
+  function swingOnce(up, arm, low, deepWaist, deepArm, ms) {
     const w0 = angleOf(up), a0 = arm ? angleOf(arm) : 0;
+    const h = up.getBoundingClientRect().height || 1;
+    const t0 = tyOf(up) / h * 100, tDeep = 2.4;
+    const s0 = low ? syOf(low) : 1;
     const w = up.animate([
-      { transform: "rotate(" + w0 + "deg)" },
-      { transform: "rotate(" + deepWaist + "deg)", offset: .44, easing: "cubic-bezier(.4,0,.7,.5)" },
-      { transform: "rotate(" + (deepWaist + .5) + "deg)", offset: .52, easing: "cubic-bezier(.55,0,1,.4)" },
-      { transform: "rotate(-1.4deg)", offset: .62 },
-      { transform: "rotate(-2.4deg)", offset: .74 },
-      { transform: "rotate(-2deg)", offset: .88 },
-      { transform: "rotate(-2deg)" }
+      { transform: "translateY(" + t0 + "%) rotate(" + w0 + "deg)" },
+      { transform: "translateY(" + tDeep + "%) rotate(" + deepWaist + "deg)", offset: .44, easing: "cubic-bezier(.4,0,.7,.5)" },
+      { transform: "translateY(" + tDeep + "%) rotate(" + (deepWaist + .5) + "deg)", offset: .52, easing: "cubic-bezier(.55,0,1,.4)" },
+      { transform: "translateY(" + t0 + "%) rotate(-1.4deg)", offset: .62 },
+      { transform: "translateY(" + t0 + "%) rotate(-2.4deg)", offset: .74 },
+      { transform: "translateY(" + t0 + "%) rotate(-2deg)", offset: .88 },
+      { transform: "translateY(" + t0 + "%) rotate(-2deg)" }
     ], { duration: ms, easing: "ease-in-out" });
     const a = arm ? arm.animate([
       { transform: "rotate(" + a0 + "deg)" },
@@ -716,16 +841,28 @@
       { transform: "rotate(0deg)", offset: .88 },
       { transform: "rotate(0deg)" }
     ], { duration: ms, easing: "ease-in-out" }) : null;
+    const l = low ? low.animate([
+      { transform: "scaleY(" + s0 + ")" },
+      { transform: "scaleY(.93)", offset: .44, easing: "cubic-bezier(.4,0,.7,.5)" },
+      { transform: "scaleY(.93)", offset: .52 },
+      { transform: "scaleY(" + s0 + ")", offset: .64 },
+      { transform: "scaleY(" + s0 + ")" }
+    ], { duration: ms, easing: "ease-in-out" }) : null;
+    // 入土那一刻起尘。不按时间猜——缓动曲线让「最深」那一格的墙钟时间
+    // 每次都不太一样，盯着腰的角度走到最深再放，位置才对得上。
+    const actor = up.closest(".actor");
+    if (actor) impactAt(up, deepWaist, ms);
     return Promise.all([
       w.finished.catch(() => {}),
-      a ? a.finished.catch(() => {}) : Promise.resolve()
+      a ? a.finished.catch(() => {}) : Promise.resolve(),
+      l ? l.finished.catch(() => {}) : Promise.resolve()
     ]);
   }
 
   // 连着锄两下：第一下重，第二下轻，抬起来的时候正好开口说话
-  async function hoeTwice(up, arm) {
-    await swingOnce(up, arm, -7.4, -12.4, 780);
-    await swingOnce(up, arm, -6.6, -10.2, 640);
+  async function hoeTwice(up, arm, low) {
+    await swingOnce(up, arm, low, -7.4, -12.4, 780);
+    await swingOnce(up, arm, low, -6.6, -10.2, 640);
   }
 
   async function tapActor(hs, el) {
@@ -747,14 +884,17 @@
     busyActors.add(el);
     const up = el.querySelector(".upper");
     const arm = el.querySelector(".arm");
+    const low = el.querySelector(".lower");
     const body = el.querySelector(".body");
     const idle = el._idle;
     const idleArm = el._idleArm;
+    const idleLow = el._idleLow;
     try {
       if (idle) idle.pause();
       if (idleArm) idleArm.pause();
+      if (idleLow) idleLow.pause();
       // 锄头落进土里那一刻开口，别等整套动作演完——点了半天没反应最劝退
-      const act = up ? hoeTwice(up, arm) : null;
+      const act = up ? hoeTwice(up, arm, low) : null;
       if (act) await wait(520);
       else await chop(body, 620).finished.catch(() => {});
       const ms = showBubble(hs, el);
@@ -766,6 +906,7 @@
     } finally {
       if (idle) idle.play();
       if (idleArm) idleArm.play();
+      if (idleLow) idleLow.play();
       busyActors.delete(el);
     }
   }
