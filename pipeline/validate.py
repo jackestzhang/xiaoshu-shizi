@@ -47,6 +47,14 @@ def check_lesson(lesson: dict, lessons: list[dict], curriculum: dict, with_asset
     if not pages:
         errors.append(f"[{lid}] 故事课没有页面")
 
+    # 角色是课程级的：L03 只有第 1 页有 farmer 热区，台词却贯穿 7 页
+    actor_ids = {
+        hs.get("id")
+        for page in pages
+        for hs in (page.get("hotspots") or [])
+        if hs.get("actor")
+    }
+
     for i, page in enumerate(pages, 1):
         text = page.get("text", "")
         cs = common.chars(text)
@@ -96,6 +104,38 @@ def check_lesson(lesson: dict, lessons: list[dict], curriculum: dict, with_asset
             import tts
             if not (common.AUDIO / f"{tts.key_for(text)}.mp3").exists():
                 notes.append(f"[{lid}] 第{i}页缺整页语音（运行 build.py）")
+
+        dialog = page.get("dialog")
+        if dialog is not None:
+            if not dialog:
+                errors.append(f"[{lid}] 第{i}页：dialog 为空")
+            elif len(dialog) > 8:
+                errors.append(f"[{lid}] 第{i}页：dialog 有 {len(dialog)} 条，最多 8 条，请拆页")
+            for k, line in enumerate(dialog or [], 1):
+                line_text = (line.get("text") or "").strip()
+                if not line_text:
+                    errors.append(f"[{lid}] 第{i}页第{k}句：台词为空")
+                    continue
+                n_chars = len(common.chars(line_text))
+                if n_chars > 20:
+                    notes.append(f"[{lid}] 第{i}页第{k}句：{n_chars} 字，超过 20 字")
+
+                who = line.get("who")
+                if who != "narrator" and who not in actor_ids:
+                    errors.append(f"[{lid}] 第{i}页第{k}句：未知说话人 {who}")
+
+                # dialog 是听读文本，允许超纲；只提示，不阻断（SPEC v1.1 R2）
+                new_chars = [ch for ch in common.unique(common.chars(line_text)) if ch not in allowed]
+                if new_chars:
+                    notes.append(f"[{lid}] 第{i}页第{k}句：超纲字 {' '.join(new_chars)}")
+
+    portraits = lesson.get("portraits")
+    if portraits:
+        if "narrator" in portraits:
+            errors.append(f"[{lid}]：narrator 不能配置肖像")
+        for key in portraits:
+            if key != "narrator" and key not in actor_ids:
+                errors.append(f"[{lid}]：portraits 配置了不存在的角色 {key}")
 
     if with_assets:
         import tts

@@ -56,6 +56,15 @@
 
   function current() { return S.lessons[state.lesson]; }
 
+  // ?mode=dialog / ?mode=reader 强制切换呈现形态；其它值或没有参数时返回空串，
+  // 交给课程数据里的 presentation 决定。?mode=reader 优先级最高，dialog 课也能回退。
+  function forcedMode() {
+    try {
+      const m = new URLSearchParams(location.search).get("mode");
+      return m === "dialog" || m === "reader" ? m : "";
+    } catch (e) { return ""; }
+  }
+
   function charsOf(text) { return Array.from(text || "").filter(ch => HANZI.test(ch)); }
 
   function unique(arr) { return Array.from(new Set(arr)); }
@@ -434,6 +443,12 @@
   }
 
   function renderStory(lesson) {
+    // 唯一分派点：dialog 课或 ?mode=dialog 交给对话框运行时；
+    // ?mode=reader 优先，dialog 课也走下面原样的 reader 实现。
+    const mode = forcedMode();
+    if (mode !== "reader" && (lesson.presentation === "dialog" || mode === "dialog")) {
+      return renderDialog(lesson);
+    }
     const page = lesson.pages[state.page];
     clearTimeout(bubbleTimer);
     // 标点跟着前一个字走：flex 布局下独立的标点会被挤到下一行开头，
@@ -505,6 +520,62 @@
     logExposure(state.page + 1);
     preload([page.audio].concat(charsOf(page.text).map(ch => audioFor(ch).audio)));
     paintSpots(page);
+    relayout();
+    const artImg = document.querySelector("#scene img.art");
+    if (artImg && !artImg.complete) artImg.addEventListener("load", relayout, { once: true });
+  }
+
+  /* ---------------- 对话框（RPG） ---------------- */
+
+  // 与 reader 共用同一份课程与音频，只是把「字卡 + 点字」换成「点画面推进台词」。
+  // 舞台结构（.stage/.scene-card/#plate）保持不变，fitStage/layoutPlate 不必另写一套；
+  // 不渲染 hotspot、不渲染可点字，整块舞台交给 ShiziDialog 当推进按钮。
+  function renderDialog(lesson) {
+    const page = lesson.pages[state.page];
+    clearTimeout(bubbleTimer);
+    footHint.textContent = "点画面 · 一句一句听";
+
+    const art = page.art && page.art.file;
+    // p1 的底图是抠掉人物后的补洞图；把同一套 rig 贴回去，既盖住补洞，
+    // 又保留呼吸 / 锄地 / 沉腰 / 直腰。p2-p7 的原画本身带农夫，不能再叠。
+    const hasActors = (page.hotspots || []).some(hs => hs.actor);
+    const sceneHtml = art
+      ? '<div class="plate" id="plate">' +
+          '<img class="art" src="' + esc(art) + '" alt="" draggable="false">' +
+          (hasActors ? '<div class="actors" id="actors">' + actorsMarkup(page) + '</div>' : '') +
+        '</div>'
+      : artPlaceholder(page);
+
+    view.innerHTML =
+      '<section class="story is-dialog" style="grid-template-rows:minmax(0,1fr)">' +
+        '<div class="stage" id="stage">' +
+          '<div class="scene-card" id="sceneCard">' +
+            '<div class="scene" id="scene">' + sceneHtml + '</div>' +
+            '<div class="pageno">' + (state.page + 1) + " / " + lesson.pages.length + '</div>' +
+            '<button class="nav prev" id="prev" aria-label="上一页"' + (state.page === 0 ? " disabled" : "") + '>‹</button>' +
+            '<button class="nav next" id="next" aria-label="下一页"' + (state.page === lesson.pages.length - 1 ? " disabled" : "") + '>›</button>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+
+    document.getElementById("prev").addEventListener("click", () => turn(-1));
+    document.getElementById("next").addEventListener("click", () => turn(1));
+
+    const card = document.getElementById("sceneCard");
+    if (window.ShiziDialog) {
+      ShiziDialog.init(card, { lesson: lesson, pageIndex: state.page });
+    }
+
+    // dialog 模式里角色不可点（整块舞台负责推进台词），但 rig 的空闲动画照跑。
+    // 同时移出 Tab 顺序，免得键盘用户停在看不见的角色按钮上。
+    document.querySelectorAll("#actors .actor").forEach(el => {
+      el.tabIndex = -1;
+      el.setAttribute("aria-hidden", "true");
+      startIdle(el);
+    });
+
+    logExposure(state.page + 1);
+    preload((page.dialog || []).map(d => d.audio).concat([page.audio]));
     relayout();
     const artImg = document.querySelector("#scene img.art");
     if (artImg && !artImg.complete) artImg.addEventListener("load", relayout, { once: true });

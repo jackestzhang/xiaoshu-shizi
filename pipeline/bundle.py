@@ -25,8 +25,16 @@ def main() -> None:
     DIST.mkdir(exist_ok=True)
     html = (common.APP / "index.html").read_text(encoding="utf-8")
 
-    css = (common.APP / "app.css").read_text(encoding="utf-8")
-    html = html.replace('<link rel="stylesheet" href="app.css">', "<style>\n" + css + "\n</style>")
+    # 样式按 index.html 的引用顺序内联；app.css / dialog.css 都可能在，
+    # 后者依赖前者，不能调换顺序。index.html 没引用的样式直接跳过。
+    for name in ("app.css", "dialog.css"):
+        path = common.APP / name
+        tag = f'<link rel="stylesheet" href="{name}">'
+        if tag not in html:
+            continue
+        if not path.exists():
+            common.die(f"index.html 引用了 {name}，但文件不存在")
+        html = html.replace(tag, "<style>\n" + path.read_text(encoding="utf-8") + "\n</style>")
 
     data_js = (common.APP / "data.js").read_text(encoding="utf-8")
 
@@ -44,7 +52,10 @@ def main() -> None:
         total += f.stat().st_size
 
     js = {"data.js": data_js}
-    for name in ("sprites.js", "scene.js", "track.js", "app.js"):
+    # dialog.js 必须在 app.js 之前执行，和 index.html 的引用顺序一致。
+    for name in ("sprites.js", "scene.js", "track.js", "dialog.js", "app.js"):
+        if name == "dialog.js" and f'<script src="{name}"></script>' not in html:
+            continue
         js[name] = (common.APP / name).read_text(encoding="utf-8")
 
     for name, code in js.items():

@@ -1,0 +1,207 @@
+/* ============================================================================
+   RPG 对话框 · 方案 A（纸卡 + 96×96 圆形头像）
+   依据：Reviewer_WB_cloud 2026-11-10 评审（P0-1/P0-2 改 A）
+         SPEC v1.1 §4 / §4.1（z-index ≥ 2；container-type + clamp）
+   仅样式。DOM 契约与状态切换由 app/dialog.js 负责（T4），本文件不碰 JS。
+
+   尺寸单位：
+   - 全部用 cqw（容器查询单位），跟着 .scene-card 的实际舞台宽度走；
+   - 禁止媒体查询：横屏时舞台只有视口一半宽，媒体查询会算错。
+   ========================================================================== */
+
+/* cqw 的容器。必须加在 .scene-card 上，否则 cqw 会退化成视口宽度。 */
+.scene-card{container-type:inline-size}
+
+/* dialog 模式是整幅画面 + 底部纸卡，不再给右侧文字列留空。
+   横屏那条 .story 两栏规则会让 1280 宽桌面空出约 600px。 */
+.story.is-dialog{
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:minmax(0,1fr);
+}
+.story.is-dialog .stage{grid-column:1;grid-row:1}
+/* rig 贴纸只负责动，点击穿透给舞台推进台词；同时去掉 reader 的“可点”光晕。 */
+.story.is-dialog .actor{pointer-events:none;cursor:default}
+.story.is-dialog .actor .body{animation:none}
+
+/* --------------------------------------------------------------------------
+   1. 层与三态
+   .dialog-layer 铺满舞台，z-index:2。
+   注意：现有 .scene-card::after 暗角是 z-index:1 且 inset:0，
+   dialog 若用 z-index:1 会被暗角压掉一圈，所以这里必须是 ≥2。
+   pointer-events 默认关闭，只有显示态的纸卡接管点击（否则透明层会吃掉点击）。
+   -------------------------------------------------------------------------- */
+.dialog-layer{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+  isolation:isolate;pointer-events:none;
+  opacity:0;
+  /* 退场 180ms：收起要干脆。进场不在这里做，交给纸卡/头像各自 240/280ms */
+  transition:opacity 180ms cubic-bezier(.4,0,1,1);
+}
+/* 底部留白 = 舞台高度的 4%。flex-basis 的百分比在 column 方向按高度解析，
+   所以这里能精确得到 T2 实测的 bottom:4%（普通 padding 百分比会按宽度算）。 */
+.dialog-layer::after{content:"";flex:0 0 4%;min-height:0}
+
+.dialog-layer[data-state="shown"],
+.dialog-layer[data-state="open"],
+.dialog-layer.is-open{
+  opacity:1;
+  transition:opacity 0s linear;   /* 进场透明度由子元素动画负责，避免双重淡入 */
+}
+
+/* --------------------------------------------------------------------------
+   2. 纸卡
+   -------------------------------------------------------------------------- */
+.dialog-box{
+  position:relative;z-index:3;flex:0 0 auto;
+  box-sizing:border-box;
+  display:flex;align-items:flex-start;gap:clamp(10px,2cqw,16px);
+  width:min(720px,92cqw);
+  margin:0;
+  padding:clamp(12px,2.6cqw,22px) clamp(14px,2.9cqw,24px) clamp(14px,3cqw,24px);
+  /* 纸质感：极淡横纹 + 上白下米黄的径向渐变，不引图片纹理 */
+  background:
+    repeating-linear-gradient(0deg,rgba(160,130,90,.030) 0 1px,rgba(0,0,0,0) 1px 4px),
+    radial-gradient(120% 110% at 50% 0%,#FFFEF9 0%,#FCF4E4 72%,#F9EFDA 100%);
+  border:1px solid rgba(122,94,58,.26);
+  border-radius:clamp(14px,1.9cqw,18px);
+  box-shadow:0 12px 26px -18px rgba(70,52,30,.55),inset 0 1px 0 rgba(255,255,255,.9);
+  font-size:clamp(20px,2.9cqw,26px);
+  pointer-events:none;
+}
+.dialog-layer[data-state="shown"] .dialog-box,
+.dialog-layer[data-state="open"] .dialog-box,
+.dialog-layer.is-open .dialog-box{pointer-events:auto}
+
+/* 纸卡外层：只负责把纸卡收成 720px / 92cqw，不参与头像布局。 */
+.dialog-stack{
+  display:flex;flex-direction:column;align-items:center;flex:0 0 auto;
+  width:min(720px,92cqw);
+}
+.dialog-stack .dialog-box{width:100%}
+
+/* 进场 240ms：透明度 + 8px 上浮。退场不复位位移（由 layer 做 180ms 淡出）。 */
+.dialog-layer[data-state="shown"] .dialog-box,
+.dialog-layer[data-state="open"] .dialog-box,
+.dialog-layer.is-open .dialog-box{
+  animation:dialogBoxIn 240ms cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes dialogBoxIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+/* --------------------------------------------------------------------------
+   3. 名字行 / 正文 / 继续箭头
+   -------------------------------------------------------------------------- */
+.dialog-name{
+  display:flex;align-items:center;gap:.42em;
+  margin:0 0 .30em;
+  font-family:var(--ui,-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif);
+  font-size:clamp(14px,2.1cqw,18px);line-height:1;font-weight:600;
+  letter-spacing:.06em;color:var(--sage-d,#55704F);
+}
+.dialog-name::before{
+  content:"";flex:0 0 auto;width:.42em;height:.42em;border-radius:50%;
+  background:var(--ochre,#D99A4E);
+}
+/* narrator 或数据里没有名字时，名字行不占位 */
+.dialog-name:empty{display:none}
+
+.dialog-text{flex:1 1 auto;min-width:0}
+
+.dialog-line{
+  margin:0;
+  color:var(--ink,#3B352C);
+  font-family:var(--hanzi,"Kaiti SC","STKaiti","KaiTi","Noto Serif CJK SC",serif);
+  font-size:clamp(20px,2.9cqw,26px);line-height:1.55;letter-spacing:.01em;
+  /* 句间切换 120ms：只透明度，纸卡不位移 */
+  transition:opacity 120ms linear;
+}
+/* T4 换句钩子（可选）：
+   换字前 .dialog-box[data-swap="out"] → 120ms 后换文本并改成 data-swap="in" */
+.dialog-box[data-swap="out"] .dialog-line,
+.dialog-layer[data-state="swapping"] .dialog-line{opacity:0}
+.dialog-box[data-swap="in"] .dialog-line{animation:dialogLineIn 120ms linear both}
+@keyframes dialogLineIn{from{opacity:0}to{opacity:1}}
+
+.dialog-next{
+  position:absolute;right:14px;bottom:10px;
+  font-size:.55em;line-height:1;color:#B49A72;
+  pointer-events:none;
+  animation:dialogBob 1.2s ease-in-out infinite;
+}
+@keyframes dialogBob{
+  0%,100%{transform:translateY(0);opacity:.55}
+  50%{transform:translateY(2px);opacity:1}
+}
+
+/* --------------------------------------------------------------------------
+   4. 头像（方案 A）
+   对话框角 96×96 圆形头像；不再用半身像探头，避免和底图农夫同框。
+   小屏收到 64px，保证正文仍有足够宽度。
+   -------------------------------------------------------------------------- */
+.dialog-avatar{
+  position:relative;z-index:2;flex:0 0 auto;
+  width:clamp(64px,13cqw,96px);height:clamp(64px,13cqw,96px);
+  margin:0;border-radius:50%;overflow:hidden;
+  background:#FBF1DC;
+  border:2px solid #FFFDF8;
+  box-shadow:0 2px 8px rgba(70,55,35,.18);
+  pointer-events:none;
+}
+.dialog-avatar img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+
+/* 进场 200ms，延迟 40ms；只淡入，不位移，避免小屏抢视线。 */
+.dialog-layer[data-state="shown"] .dialog-avatar,
+.dialog-layer[data-state="open"] .dialog-avatar,
+.dialog-layer.is-open .dialog-avatar{
+  animation:dialogAvatarIn 200ms linear 40ms both;
+}
+@keyframes dialogAvatarIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* 右位头像：只换到文字右侧，不镜像人物（镜像脸会显得别扭）。 */
+.dialog-layer[data-anchor="right"] .dialog-avatar,
+.dialog-avatar[data-anchor="right"]{
+  order:2;
+}
+
+/* narrator：不渲染头像、不渲染名字行；正文颜色略深，占满可读宽度 */
+.dialog-layer[data-who="narrator"] .dialog-avatar,
+.dialog-avatar[data-who="narrator"]{display:none}
+.dialog-layer[data-who="narrator"] .dialog-name{display:none}
+.dialog-layer[data-who="narrator"] .dialog-line{color:#4A4238}
+
+/* 缺图 / 加载失败（T4 的 img.onerror 会隐藏 figure；这里兜底空 figure） */
+.dialog-avatar:empty,
+.dialog-avatar img[hidden]{display:none}
+
+/* --------------------------------------------------------------------------
+   5. prefers-reduced-motion
+   只保留透明度过渡（120ms），去掉位移、箭头 bob、任何 transform 动画。
+   完全无过渡会像闪屏，对前庭敏感用户反而更糟。
+   app.css 的全局 reduce 块里另有一条 .dialog-layer 透明度过渡（按 SPEC 要求）。
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  .dialog-layer,
+  .dialog-layer[data-state="shown"],
+  .dialog-layer[data-state="open"],
+  .dialog-layer.is-open{
+    transition:opacity 120ms linear;
+  }
+  .dialog-layer[data-state="shown"] .dialog-box,
+  .dialog-layer[data-state="open"] .dialog-box,
+  .dialog-layer.is-open .dialog-box,
+  .dialog-layer[data-state="shown"] .dialog-avatar,
+  .dialog-layer[data-state="open"] .dialog-avatar,
+  .dialog-layer.is-open .dialog-avatar,
+  .dialog-next{
+    animation:none!important;
+  }
+  .dialog-box,
+  .dialog-avatar,
+  .dialog-next{transform:none!important}
+}

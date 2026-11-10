@@ -2,6 +2,13 @@
   "id": "L03",
   "order": 3,
   "kind": "story",
+  "presentation": "dialog",
+  "portraits": {
+    "farmer": {
+      "anchor": "left",
+      "avatar": "assets/actors/L03_farmer_avatar.webp"
+    }
+  },
   "title": "守株待兔",
   "status": "confirmed",
   "world": "农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。",
@@ -166,7 +173,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "天刚亮，农夫就来到田里。"
+        },
+        {
+          "who": "farmer",
+          "text": "今天得把这垄草锄干净。"
+        },
+        {
+          "who": "narrator",
+          "text": "他挥起锄头，一下，一下。"
+        }
+      ]
     },
     {
       "text": "忽然，一只白兔从树林里跑出来，跑得飞快。",
@@ -234,7 +255,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "忽然，一只白兔从树林里跑出来。"
+        },
+        {
+          "who": "narrator",
+          "text": "它跑得飞快，头也不回。"
+        },
+        {
+          "who": "farmer",
+          "text": "咦，哪儿来的兔子？"
+        }
+      ]
     },
     {
       "text": "兔子没看路，一头撞在树桩上，倒在地上就不动了。",
@@ -302,7 +337,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "兔子没看路，一头撞在树桩上。"
+        },
+        {
+          "who": "farmer",
+          "text": "哎呀！它怎么不动了？"
+        },
+        {
+          "who": "narrator",
+          "text": "兔子倒在地上，一动不动。"
+        }
+      ]
     },
     {
       "text": "农夫跑过去，捡起兔子，抱在怀里，笑得合不上嘴。",
@@ -358,7 +407,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "farmer",
+          "text": "哈哈，白捡一只大兔子！"
+        },
+        {
+          "who": "narrator",
+          "text": "农夫抱起兔子，笑得合不上嘴。"
+        },
+        {
+          "who": "farmer",
+          "text": "今天真是好运气！"
+        }
+      ]
     },
     {
       "text": "他把锄头放在一边，天天坐在树桩旁，等兔子再来。",
@@ -432,7 +495,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "他把锄头放在一边，天天坐在树桩旁。"
+        },
+        {
+          "who": "farmer",
+          "text": "兔子还会再来的，我就在这儿等。"
+        },
+        {
+          "who": "narrator",
+          "text": "从早上等到天黑，他也不走。"
+        }
+      ]
     },
     {
       "text": "一天天过去，兔子再也没来，田里长满了野草。",
@@ -488,7 +565,21 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "一天天过去，兔子再也没来。"
+        },
+        {
+          "who": "narrator",
+          "text": "田里长满了野草，庄稼都看不见了。"
+        },
+        {
+          "who": "farmer",
+          "text": "怎么还不来呢……"
+        }
+      ]
     },
     {
       "text": "邻居都笑他傻。农夫红着脸，重新拿起锄头下地。",
@@ -544,7 +635,25 @@
         "model": "manual",
         "source": "import",
         "created": "2026-10-24 18:14"
-      }
+      },
+      "dialog": [
+        {
+          "who": "narrator",
+          "text": "邻居看见了，都笑他傻。"
+        },
+        {
+          "who": "farmer",
+          "text": "唉，我不该光等着。"
+        },
+        {
+          "who": "narrator",
+          "text": "农夫红着脸，重新拿起锄头。"
+        },
+        {
+          "who": "farmer",
+          "text": "还是好好种地吧。"
+        }
+      ]
     }
   ]
 }

@@ -604,6 +604,7 @@ table.stat td{padding:6px 3px;border-bottom:1px solid #F3EAD8;text-align:right;c
 
 @media (prefers-reduced-motion:reduce){
   .scene *,.scene-card,.textcard,.story,.cards{animation:none!important}
+  .dialog-layer{transition:opacity 120ms linear!important}
   /* 光晕是「这里可以点」的唯一提示，不彻底关掉，只放慢到几乎察觉不到 */
   .actor .skin,.actor.rig .body{animation:haloSoft 8s ease-in-out infinite!important;
     filter:drop-shadow(0 0 5px rgba(255,200,120,.45)) drop-shadow(0 6px 12px rgba(70,55,35,.18))}

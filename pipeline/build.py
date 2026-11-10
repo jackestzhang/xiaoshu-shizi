@@ -19,6 +19,27 @@ import tts
 import validate
 
 
+def normalize_dialog(lessons: list[dict]) -> None:
+    """把 reader / dialog 两套视图在构建期一次补全（SPEC §2.3 降级表）。
+
+    产物里 page.text 与 page.dialog 一定同时存在，运行时不再判断「有没有 dialog」。
+    """
+    for l in lessons:
+        if l.get("kind") != "story":
+            continue
+        l.setdefault("presentation", "reader")
+        pages = l.get("pages", [])
+        if l.get("presentation") == "dialog":
+            for page in pages:
+                if not page.get("dialog"):
+                    page["dialog"] = [{"who": "narrator", "text": page.get("text", "")}]
+                if not page.get("text"):
+                    page["text"] = "".join(d.get("text", "") for d in page["dialog"])
+        else:
+            for page in pages:
+                page["dialog"] = [{"who": "narrator", "text": page.get("text", "")}]
+
+
 def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
     used = common.unique([ch for l in lessons for ch in common.lesson_chars(l)])
     picto_path = common.ROOT / "data" / "pictographs.json"
@@ -73,6 +94,15 @@ def synth_all(lessons: list[dict], curriculum: dict) -> tuple[dict, int, int]:
                 total_chars += 1
                 print(f"  · 第{i}页 {hs.get('label','')}", end="\r", flush=True)
                 time.sleep(0.15)
+
+            # 对话台词逐句配音：与 hotspot 同一套内容哈希缓存
+            for li, line in enumerate(page.get("dialog") or [], 1):
+                if not line.get("text"):
+                    continue
+                line["audio"] = f"assets/audio/{tts.synth(line['text']).name}"
+                total_chars += 1
+                print(f"  · 第{i}页第{li}句", end="\r", flush=True)
+                time.sleep(0.15)
     print(" " * 40, end="\r")
     return char_meta, page_audio, total_chars
 
@@ -114,6 +144,10 @@ def main() -> None:
                   if l.get("page_limit") and l["page_limit"] > PAGE_LIMIT]
     if long_pages:
         print(f"  长页课程：{'、'.join(long_pages)}")
+
+    # 校验看的是源数据；补全只在产物上做，源 JSON 不动
+    normalize_dialog(lessons)
+
     print(f"校验通过（{len(notes)} 条提醒），开始合成语音")
     char_meta, page_audio, n = synth_all(lessons, curriculum)
 
@@ -145,6 +179,9 @@ def main() -> None:
             for hs in page.get("hotspots", []):
                 if hs.get("audio"):
                     used.add(Path(hs["audio"]).name)
+            for line in page.get("dialog") or []:
+                if line.get("audio"):
+                    used.add(Path(line["audio"]).name)
     removed = 0
     for f in common.AUDIO.glob("*.mp3"):
         if f.name not in used:

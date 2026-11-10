@@ -59,6 +59,13 @@ window.SHIZI = {
       "id": "L03",
       "order": 3,
       "kind": "story",
+      "presentation": "dialog",
+      "portraits": {
+        "farmer": {
+          "anchor": "left",
+          "avatar": "assets/actors/L03_farmer_avatar.webp"
+        }
+      },
       "title": "守株待兔",
       "status": "confirmed",
       "world": "农夫戴草帽、穿蓝衣、手里拿锄头；田边有一个老树桩；一只雪白的兔子，长耳朵；田地周围有树林，远处是青山。",
@@ -227,6 +234,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "天刚亮，农夫就来到田里。",
+              "audio": "assets/audio/863227aef268.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "今天得把这垄草锄干净。",
+              "audio": "assets/audio/453f63e78344.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "他挥起锄头，一下，一下。",
+              "audio": "assets/audio/2e933cedce3e.mp3"
+            }
+          ],
           "audio": "assets/audio/3494ed4b3e8f.mp3"
         },
         {
@@ -296,6 +320,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "忽然，一只白兔从树林里跑出来。",
+              "audio": "assets/audio/8e63060846cd.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "它跑得飞快，头也不回。",
+              "audio": "assets/audio/5a0958ccd20d.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "咦，哪儿来的兔子？",
+              "audio": "assets/audio/15c077d263d4.mp3"
+            }
+          ],
           "audio": "assets/audio/bfe513d90c1e.mp3"
         },
         {
@@ -365,6 +406,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "兔子没看路，一头撞在树桩上。",
+              "audio": "assets/audio/0bd0bc058158.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "哎呀！它怎么不动了？",
+              "audio": "assets/audio/7dc741fe544c.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "兔子倒在地上，一动不动。",
+              "audio": "assets/audio/c5cb92ed3bfb.mp3"
+            }
+          ],
           "audio": "assets/audio/14a536233016.mp3"
         },
         {
@@ -422,6 +480,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "farmer",
+              "text": "哈哈，白捡一只大兔子！",
+              "audio": "assets/audio/1825541520bf.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "农夫抱起兔子，笑得合不上嘴。",
+              "audio": "assets/audio/19cc9c26471b.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "今天真是好运气！",
+              "audio": "assets/audio/5862844d7854.mp3"
+            }
+          ],
           "audio": "assets/audio/d3d8b1e02017.mp3"
         },
         {
@@ -497,6 +572,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "他把锄头放在一边，天天坐在树桩旁。",
+              "audio": "assets/audio/61414e91378b.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "兔子还会再来的，我就在这儿等。",
+              "audio": "assets/audio/746cb2165283.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "从早上等到天黑，他也不走。",
+              "audio": "assets/audio/c76ced42fc0a.mp3"
+            }
+          ],
           "audio": "assets/audio/6596f1e5c5b8.mp3"
         },
         {
@@ -554,6 +646,23 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "一天天过去，兔子再也没来。",
+              "audio": "assets/audio/ce5c92df446e.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "田里长满了野草，庄稼都看不见了。",
+              "audio": "assets/audio/bbcbe44b7ddb.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "怎么还不来呢……",
+              "audio": "assets/audio/3f349f4dc0e0.mp3"
+            }
+          ],
           "audio": "assets/audio/bf7e44b06412.mp3"
         },
         {
@@ -611,6 +720,28 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 18:14"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "邻居看见了，都笑他傻。",
+              "audio": "assets/audio/cffb13d35238.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "唉，我不该光等着。",
+              "audio": "assets/audio/4fd8a4f3fe9e.mp3"
+            },
+            {
+              "who": "narrator",
+              "text": "农夫红着脸，重新拿起锄头。",
+              "audio": "assets/audio/703226f3e9f0.mp3"
+            },
+            {
+              "who": "farmer",
+              "text": "还是好好种地吧。",
+              "audio": "assets/audio/064fe6523de1.mp3"
+            }
+          ],
           "audio": "assets/audio/655029b98c2c.mp3"
         }
       ]
@@ -679,6 +810,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:21"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "清清的小河里，住着一条小鲤鱼，他天天游来游去。",
+              "audio": "assets/audio/a288fe3d78a2.mp3"
+            }
+          ],
           "audio": "assets/audio/a288fe3d78a2.mp3"
         },
         {
@@ -748,6 +886,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:21"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "妈妈告诉他：山上有龙门，跳过去就能变成龙了。",
+              "audio": "assets/audio/12f6e2e6adce.mp3"
+            }
+          ],
           "audio": "assets/audio/12f6e2e6adce.mp3"
         },
         {
@@ -805,6 +950,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:35"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "小鲤鱼告别妈妈，顺着河水，一直用力往上游。",
+              "audio": "assets/audio/86cc3249d02a.mp3"
+            }
+          ],
           "audio": "assets/audio/86cc3249d02a.mp3"
         },
         {
@@ -856,6 +1008,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:35"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "大浪打来，小鲤鱼一次一次往上跳，一点也不怕。",
+              "audio": "assets/audio/5429e80e7c02.mp3"
+            }
+          ],
           "audio": "assets/audio/5429e80e7c02.mp3"
         },
         {
@@ -913,6 +1072,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:35"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "他用尽全身力气，向前纵身一跳，终于跳过了龙门。",
+              "audio": "assets/audio/b796bcc0e25e.mp3"
+            }
+          ],
           "audio": "assets/audio/b796bcc0e25e.mp3"
         },
         {
@@ -970,6 +1136,13 @@ window.SHIZI = {
             "source": "user",
             "created": "2026-10-24 17:35"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "龙门那边，天很蓝，水很清，小鲤鱼真的变成了龙。",
+              "audio": "assets/audio/7409835fc10a.mp3"
+            }
+          ],
           "audio": "assets/audio/7409835fc10a.mp3"
         }
       ],
@@ -1025,7 +1198,8 @@ window.SHIZI = {
         "很",
         "蓝",
         "真"
-      ]
+      ],
+      "presentation": "reader"
     },
     {
       "id": "L05",
@@ -1103,6 +1277,13 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 20:48"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "春眠不觉晓",
+              "audio": "assets/audio/dcad493da388.mp3"
+            }
+          ],
           "audio": "assets/audio/dcad493da388.mp3"
         },
         {
@@ -1154,6 +1335,13 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 20:48"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "处处闻啼鸟",
+              "audio": "assets/audio/9fa458878c77.mp3"
+            }
+          ],
           "audio": "assets/audio/9fa458878c77.mp3"
         },
         {
@@ -1205,6 +1393,13 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 20:48"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "夜来风雨声",
+              "audio": "assets/audio/b967d26d3858.mp3"
+            }
+          ],
           "audio": "assets/audio/b967d26d3858.mp3"
         },
         {
@@ -1256,9 +1451,17 @@ window.SHIZI = {
             "source": "import",
             "created": "2026-10-24 20:48"
           },
+          "dialog": [
+            {
+              "who": "narrator",
+              "text": "花落知多少",
+              "audio": "assets/audio/c394480f9e1d.mp3"
+            }
+          ],
           "audio": "assets/audio/c394480f9e1d.mp3"
         }
-      ]
+      ],
+      "presentation": "reader"
     }
   ],
   "chars": {
